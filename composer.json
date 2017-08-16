@@ -18,6 +18,12 @@
         "cakephp/bake": "~1.1",
         "cakephp/cakephp-codesniffer": "^3.0"
     },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://packages.3xw.ch"
+      }
+    ],
     "suggest": {
         "dereuromark/cakephp-queue": "nice plugin force queued tasks",
         "awallef/cakephp-redis": "redis plugin",
