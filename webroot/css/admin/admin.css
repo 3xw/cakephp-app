@@ -25,7 +25,7 @@ img{flex:none;}
 .img-responsive{display:table;margin:0 auto;}
 
 .btn-primary,
-.btn-success{background-color: #25235f !important;border-color: #25235f !important;color:white !important }
+.btn-success{background-color: #c90123 !important;border-color: #c90123 !important;color:white !important }
 .btn-info:not(.btn-icon){background-color: #4b3c3c !important;border-color: #4b3c3c !important;color:white !important}
 .locale-area { background-color: #f1f1f1 !important;}
 
@@ -37,21 +37,24 @@ a, a:hover { color: #25235f ; }
 
 .sidebar .user, .bootstrap-navbar .user{border-bottom:0px solid #25235f;}
 .sidebar .user a, .bootstrap-navbar .user a,
-.sidebar .nav li > a{color:#25235f;}
+.sidebar .nav li > a{color:white;}
+.sidebar .nav li.active > a,
+.sidebar .nav li:hover > a { background: rgba(0, 0, 0, 0.1); opacity: 1;}
 .main-panel .container-fluid { max-width: 1200px; }
-.sidebar{background-image:url('../../img/fond-login.png');background-size: cover;}
+.sidebar{background-color: #c90123 !important;}
 .btn-danger.btn-fill,
-.login-page{border-color:#25235f;background-color: #25235f !important;}
+.login-page{background-color: #c90123 !important;}
 .login-page .card{border-radius:0px;padding:0;box-shadow: 0 5px 50px 10px rgba(40, 40, 40, 0.4); }
 .login-page .container-flex{display: flex; justify-content: space-between;}
 .login-page .container-flex>div{display: flex; flex-direction: column;width:50% !important;}
 .login-page .footer .copyright { color: #4a3c3c; }
 .login-page .login-form{padding:15px 0}
-.login-page .login-img{background-image:url('../../img/fond-login.png');background-size: cover;align-items: center; justify-content: center;}
+.login-page .login-img{background-image:url('../../img/admin/logo--login.jpg');background-size: cover;align-items: center; justify-content: center;}
 .login-page .login-img img{max-width:250px;}
 
 .logo-text,
-.nav>li *, .nav>li:hover *{color: #25235f !important;}
+.nav>li *, .nav>li:hover *{color: white !important;}
+.navbar-nav.nav>li *, .navbar-nav.nav>li:hover *{color: #9A9A9A !important;}
 
 .full-page:after, .sidebar:before, .sidebar:after, .full-page:before {width:0;height:0;}
 

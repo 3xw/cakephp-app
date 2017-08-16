@@ -9,10 +9,10 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
 
   <!-- LOGO & LINK -->
   <div class="logo">
-    <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', true).'img/logo-sumus.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
+    <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', true).'img/admin/logo--sidebar.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
   </div>
   <div class="logo logo-mini">
-    <?= $this->Html->link('Client', ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text']) ?>
+    <?= $this->Html->link('WGR SA', ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text']) ?>
   </div>
 
   <!-- MENU -->

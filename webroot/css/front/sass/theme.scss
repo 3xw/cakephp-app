@@ -15,7 +15,7 @@ $break--phone: 767px;
 $break--tablet: 991px;
 $break--desktop: 1199px;
 
-$blue: #25235f;
+$font-color: black;
 
 /*
  *   IMPORTS
@@ -28,7 +28,7 @@ $blue: #25235f;
 /*
  *   FONTS
  *************/
-body{ font-family: $default-font--light;color:$blue;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;letter-spacing: 1px;}
+body{ font-family: $default-font--light;color:$font-color;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;letter-spacing: 1px;}
 html{font-size: 62.5%;}
 body{font-size: 1.6rem;}
 h1{font-family: $default-font--medium;font-size: 3.5rem;text-transform:uppercase;letter-spacing: 5px;}
