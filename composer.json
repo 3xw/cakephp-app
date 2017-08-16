@@ -1,6 +1,6 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
+    "name": "3xw/cakephp-app",
+    "description": "3xw CakePHP skeleton app",
     "homepage": "https://cakephp.org",
     "type": "project",
     "require": {
