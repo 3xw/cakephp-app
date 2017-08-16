@@ -1,0 +1,32 @@
+# Cake specific & automatically generated files #
+#################################################
+/config/app.php
+/config/attachment.php
+/logs/*
+/plugins/*
+/tmp/*
+/vendor/*
+/webroot/robots.txt
+/webroot/files/*
+/webroot/imagecache/*
+/webroot/thumbnails/*
+
+# composer      #
+#############
+/composer.lock
+
+# GRUNT NPM #
+#############
+/node_modules/*
+/.sass-cache/*
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db

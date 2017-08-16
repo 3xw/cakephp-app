@@ -1,0 +1,17 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.6",
+    "cssnano": "^3.10.0",
+    "grunt-contrib-cssmin": "^2.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.8.0",
+    "pixrem": "^3.0.2"
+  }
+}
