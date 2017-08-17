@@ -7,37 +7,25 @@ The framework source code can be found here: [cakephp/cakephp](https://github.co
 ## Installation
 
 1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist 3xw/cakephp-app [app_name]`.
-
-If Composer is installed globally, run
-
-```bash
-composer create-project --prefer-dist 3xw/cakephp-app
-```
-
-In case you want to use a custom app dir name (e.g. `/myapp/`):
+2. run following:
 
 ```bash
 composer create-project --prefer-dist 3xw/cakephp-app myapp
 ```
+## DB
 
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
+1. configure your app.php with db settings
+2. run following:
 
 ```bash
-bin/cake server -p 8765
+bin/cake migrations migrate
 ```
+	
+this create all needed tables
 
-Then visit `http://localhost:8765` to see the welcome page.
-
-## Users
-Add a user using the plugin like so:
+## Add your first user
+Add a user using plugin Users like so:
 
 	bin/cake Users addSuperuser
 
-
-## Configuration
-
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
 
