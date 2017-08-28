@@ -1,6 +1,7 @@
 # Cake specific & automatically generated files #
 #################################################
 /config/app.php
+/config/.env
 /config/attachment.php
 /logs/*
 /plugins/*

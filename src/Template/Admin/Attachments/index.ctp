@@ -19,7 +19,7 @@
 
             <!-- Attachments element -->
             <?= $this->Attachment->buildIndex([
-              'actions' => ['add','edit','delete'],
+              'actions' => ['add','edit','delete','download'],
               'types' =>['image/jpeg','image/png','embed/youtube','embed/vimeo'],
               'atags' => [],
               'restrictions' => [
