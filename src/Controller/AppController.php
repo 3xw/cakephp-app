@@ -61,14 +61,14 @@ class AppController extends Controller
       {
         if( !empty($this->request->params['plugin']) && ($this->request->params['plugin'] == 'CakeDC/Users' || $this->request->params['plugin'] == 'attachment'))
         {
-          $this->Auth->allow('login','register','proceed');
+          $this->Auth->allow(['login','register','proceed']);
         }else
         {
           $this->Auth->allow();
         }
       }else
       {
-        $this->Auth->allow('login','register');
+        $this->Auth->allow(['login','register']);
       }
 
       $this->set("referer", $this->referer());
