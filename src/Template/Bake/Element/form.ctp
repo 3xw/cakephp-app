@@ -19,73 +19,92 @@ $fields = collection($fields)
   return $schema->columnType($field) !== 'binary';
 });
 %>
-<?= $this->element('header',['title' => __('<%= Inflector::humanize($action) %> <%= $singularHumanName %>'),'menus' => ['<i class="fa fa-list"></i><p>List </p>' => ['action' => 'index']]]) ?>
-
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-
-        <!-- LIST ELEMENT -->
-        <div class="card">
-
-          <!-- CONTENT -->
-          <div class="content">
-
-            <!-- FORM -->
-            <?= $this->Form->create($<%= $singularVar %>); ?>
-            <?php
-            <%
-            foreach ($fields as $field) {
-              if (in_array($field, $primaryKey)) {
-                continue;
-              }
-              if (isset($keyFields[$field])) {
-                $fieldData = $schema->column($field);
-                if (!empty($fieldData['null'])) {
-                  %>
-                  echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true, 'class' => 'form-control']);
-                  <%
-                } else {
-                  %>
-                  echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'class' => 'form-control']);
-                  <%
-                }
-                continue;
-              }
-              if (!in_array($field, ['created', 'modified', 'updated'])) {
-                $fieldData = $schema->column($field);
-                if (($fieldData['type'] === 'date') && (!empty($fieldData['null']))) {
-                  %>
-                  echo $this->Form->input('<%= $field %>', ['empty' => true, 'default' => '', 'class' => 'form-control']);
-                  <%
-                }   else {
-                  %>
-                  echo $this->Form->input('<%= $field %>', ['class' => 'form-control']);
-                  <%
-                }
-              }
+<div class="row justify-content-md-center">
+  <div class="col">
+    <div class="card">
+      <?= $this->Form->create($<%= $singularVar %>, ['novalidate']); ?>
+      <div class="card-header">
+        <div class="row">
+          <div class="col-4">
+            <h4 class="title"><?= __('<%= Inflector::humanize($action) %> <%= $singularHumanName %>') ?></h4>
+          </div>
+          <div class="col-8">
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- FORM -->
+        <?php
+        <%
+        foreach ($fields as $field) {
+          if (in_array($field, $primaryKey)) {
+            continue;
+          }
+          if (isset($keyFields[$field])) {
+            $fieldData = $schema->column($field);
+            if (!empty($fieldData['null'])) {
+              %>
+              echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true, 'class' => 'form-control']);
+              <%
+            } else {
+              %>
+              echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'class' => 'form-control']);
+              <%
             }
-            if (!empty($associations['BelongsToMany'])) {
-              foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
-                %>
-                echo $this->Form->input('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>, 'class' => 'form-control']);
-                <%
-              }
+            continue;
+          }
+          if (!in_array($field, ['created', 'modified', 'updated'])) {
+            $fieldData = $schema->column($field);
+            if (($fieldData['type'] === 'date') && (!empty($fieldData['null']))) {
+              %>
+              echo $this->Form->input('<%= $field %>', ['empty' => true, 'default' => '', 'class' => 'form-control']);
+              <%
+            }   else {
+              %>
+              echo $this->Form->input('<%= $field %>', ['class' => 'form-control']);
+              <%
             }
+          }
+        }
+        if (!empty($associations['BelongsToMany'])) {
+          foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
             %>
-            ?>
+            <%
+            if (($assocData['property'] === 'attachments')) {
+              %>
+              echo $this->Attachment->input('Attachments', // if Attachments => HABTM else if !Attachments => belongsTo
+              ['label' => __('Images'),
+              'types' =>['image/jpeg','image/png'],
+              'atags' => [],
+              'restrictions' => [
+                Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
+                Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
+              ],
+              'attachments' => [] // array of exisiting Attachment entities ( HABTM ) or entity ( belongsTo )
+            ]);
+            <%
+          }   else {
+            %>
+            echo $this->Form->input('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>, 'class' => 'form-control']);
+            <%
+          }
 
-            <div class="btn-group">
-              <?= $this->Html->link(__('Cancel'), $referer, ['class' => 'btn btn-sm btn-info btn-fill']) ?>
-              <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-sm btn-success btn-fill']) ?>
-            </div>
-
-            <?= $this->Form->end() ?>
-
-          </div><!-- end content-->
-        </div><!-- end card-->
-      </div><!-- end col-md-8 col-md-offset-2-->
-    </div><!-- end row-->
-  </div><!-- end container-fluid-->
-</div><!-- end content-->
+        }
+      }
+      %>
+      ?>
+    </div>
+    <div class="card-footer text-right">
+      <div class="btn-group">
+        <?= $this->Html->link(__('Cancel'), $referer, ['class' => 'btn btn-danger btn-fill']) ?>
+        <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-info btn-fill']) ?>
+      </div>
+    </div>
+    <?= $this->Form->end() ?>
+  </div>
+</div>
+</div>
