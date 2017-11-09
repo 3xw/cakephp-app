@@ -81,7 +81,7 @@ class <%= $name %>Table extends Table
 <% foreach ($behaviors as $behavior => $behaviorData): %>
         $this->addBehavior('<%= $behavior %>'<%= $behaviorData ? ", [" . implode(', ', $behaviorData) . ']' : '' %>);
 <% endforeach %>
-        $this->addBehavior('Search.Search');
+$this->addBehavior('Search.Search');
         $this->searchManager()
           ->add('q', 'Search.Like', [
             'before' => true,
@@ -92,6 +92,7 @@ class <%= $name %>Table extends Table
             'wildcardOne' => '?',
             'field' => ['<%= $displayField %>']
           ]);
+
 <% if (!empty($associations['belongsTo']) || !empty($associations['hasMany']) || !empty($associations['belongsToMany'])): %>
 
 <% endif; %>

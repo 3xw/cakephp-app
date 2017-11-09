@@ -1,6 +1,0 @@
-.elem-drag{
-  cursor: move; /* fallback:; if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}

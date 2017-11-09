@@ -6,18 +6,25 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Network\Exception\NotFoundException;
 ?>
-<?= $this->element('header',['title' => 'Dashboard','form' => false]) ?>
-
-<data class="content">
-  <div class="container-fluid">
-    <div class="row">
-
-      <!-- hello -->
-      <div class="col-md-12">
+<nav class="navbar navbar-expand">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <?= __('Dashboard') ?>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="utils--spacer-default"></div>
+<div class="row no-gutters">
+  <div class="col-11 mx-auto ">
         <div class="card">
           <!-- HEADER -->
           <div class="header">
-            <h4>Settings</h4>
+            <h3>Settings</h3>
           </div>
           <!-- CONTENT -->
           <div class="content">
@@ -25,7 +32,7 @@ use Cake\Network\Exception\NotFoundException;
             <div class="row">
               <div class="col-md-6">
                   <h4>Environment</h4>
-                  <ul>
+                  <ul class="list-unstyled">
                   <?php if (version_compare(PHP_VERSION, '5.6.0', '>=')) : ?>
                       <li class="alert alert-success">Your version of PHP is 5.6.0 or higher (detected <?= PHP_VERSION ?>).</li>
                   <?php else : ?>
@@ -55,7 +62,7 @@ use Cake\Network\Exception\NotFoundException;
               </div>
               <div class="col-md-6">
                   <h4>Filesystem</h4>
-                  <ul>
+                  <ul class="list-unstyled">
                   <?php if (is_writable(TMP)) : ?>
                       <li class="alert alert-success">Your tmp directory is writable.</li>
                   <?php else : ?>
@@ -96,7 +103,7 @@ use Cake\Network\Exception\NotFoundException;
                       endif;
                   }
                   ?>
-                  <ul>
+                  <ul class="list-unstyled">
                   <?php if ($connected) : ?>
                       <li class="alert alert-success">CakePHP is able to connect to the database.</li>
                   <?php else : ?>
@@ -106,7 +113,7 @@ use Cake\Network\Exception\NotFoundException;
               </div>
               <div class="col-md-6">
                   <h4>DebugKit</h4>
-                  <ul>
+                  <ul class="list-unstyled">
                   <?php if (Plugin::loaded('DebugKit')) : ?>
                       <li class="alert alert-success">DebugKit is loaded.</li>
                   <?php else : ?>

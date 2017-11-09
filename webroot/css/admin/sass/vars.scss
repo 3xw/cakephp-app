@@ -1,0 +1,62 @@
+$margin--mini: 10px;
+$margin--semi: 25px;
+$margin--default: 50px;
+$margin--double: 100px;
+
+$padding--mini: 10px;
+$padding--semi: 20px;
+$padding--default: 40px;
+$padding--double: 80px;
+
+/*** VARS -- BREAKPOINTS (TYPE:LIST / KEY:NAME / VALUE:WIDTH) ****/
+$breakpoints: ('small': 576px, 'medium': 768px, 'large': 992px, 'extra large': 1200px);
+
+/*** VARS -- RATIOS (TYPE:LIST / KEY:RATIO / VALUE:HEIGHT ) ****/
+$ratios: ('3:1': 33.33%, '2:1': 50%, '16:9': 56.25%, '3:2': 66.66%, '4:3': 75%, '1:1': 100%, '3:4': 133.33%, '2:3': 150%, '9:16': 177.77%, '1:2': 200%, '1:3': 300%);
+
+/*** VARS -- COLORS (TYPE:LIST / KEY:NAME / VALUE:HEX ) ****/
+$colors: (
+
+  'blue':    #007bff ,
+  'indigo':  #6610f2 ,
+  'purple':  #6f42c1 ,
+  'pink':    #e83e8c ,
+  'red':     #c90123 ,//Default #dc3545
+  'orange':  #fd7e14 ,
+  'yellow':  #ffc107 ,
+  'green':   #28a745 ,
+  'teal':    #20c997 ,
+  'cyan':    #17a2b8 ,
+
+  'grey': #4A4A4A,
+  'grey-light': #E6E5E5,
+  'grey-very-light': #fbfbf9,
+  'grey-heavy': #302F2F,
+
+  'black': #000000,
+  'white': #FFFFFF,
+
+);
+
+$color--default: map-get($colors, 'white');
+$color--primary: map-get($colors, 'cyan');
+$color--success: map-get($colors, 'green');
+$color--info: map-get($colors, 'blue');
+$color--warning: map-get($colors, 'orange');
+$color--danger: map-get($colors, 'red');
+$color--link: map-get($colors, 'white');
+
+$link--color: map-get($colors, 'red');
+
+$sidebar--background: map-get($colors, 'grey');
+$sidebar--color: map-get($colors, 'white');
+
+$content--background: map-get($colors, 'grey-very-light');
+$content--color: map-get($colors, 'grey-heavy');
+
+$login--background: map-get($colors, 'red');
+$login--color: map-get($colors, 'white');
+
+$border--radius: 0px;
+
+$font--default: 'Source Sans Pro', sans-serif;

@@ -60,28 +60,28 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
 
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <?= $this->Html->css([
-    'admin/bootstrap.min.css','admin/light-bootstrap-dashboard.css',
-    'https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css',
-    'https://fonts.googleapis.com/css?family=Roboto:400,700,300',
-    'admin/pe-icon-7-stroke.css',
-    'admin/admin.css'
-  ])
+    'admin/vendor.min.css?v='.md5_file(APP.'../webroot/css/admin/vendor.min.css'),
+    'admin/admin.min.css?v='.md5_file(APP.'../webroot/css/admin/admin.min.css')
+  ]);
   ?>
 
   <?= $this->fetch('meta') ?>
   <?= $this->fetch('css') ?>
+
 </head>
-<body>
+<body class="login">
 
   <!-- CONTENT -->
   <?= $this->fetch('content') ?>
 
   <!-- SCRIPTS -->
   <?= $this->Html->script([
-    'admin/jquery.min.js','admin/jquery-ui.min.js',
-    'admin/bootstrap.min.js','admin/light-bootstrap-dashboard.js','admin/bootstrap-checkbox-radio-switch-tags.js'
+    'admin/vendor.min.js?v='.md5_file(APP.'../webroot/js/admin/vendor.min.js'),
+    'admin/app.min.js?v='.md5_file(APP.'../webroot/js/admin/app.min.js')
   ])
   ?>
   <?= $this->fetch('script') ?>

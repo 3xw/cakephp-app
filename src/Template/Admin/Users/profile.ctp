@@ -1,92 +1,62 @@
 <?php use Cake\Core\Configure; ?>
-<?= $this->element('header',['title' => __('My Profile')]) ?>
+<nav class="navbar navbar-expand">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <?= __('User') ?>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <?= $this->Html->link('<i class="material-icons">mode_edit</i> '.__('Edit'),['action'=>'edit', $user->id], ['class' => '','escape'=>false]) ?>
+        <?= $this->Html->link('<i class="material-icons">delete</i> '.__('Delete'),['action'=>'delete', $user->id], ['class' => '','escape'=>false, 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="utils--spacer-default"></div>
+<div class="row no-gutters">
+  <div class="col-11 mx-auto ">
+        <div class="card text-center">
 
-<div class="content">
-  <div class="container-fluid">
 
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
-
-        <div class="card card-user">
-          <div class="image">
-            <img src="<?= $this->Url->build('/img/admin/bg.jpg') ?>" alt="...">
-          </div>
-          <div class="content">
-            <div class="author">
               <?php
               if(empty($user->attachment))
               {
-                echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'avatar border-gray']);
+                echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'rounded-circle']);
               }else{
                 echo $this->Attachment->image([
                   'image' => $user->attachment->path,
                   'profile' => $user->attachment->profile,
                   'width' => 678,
                   'cropratio' => '1:1'
-                ],['class' =>'avatar border-gray']);
+                ],['class' =>'rounded-circle']);
               }
               ?>
 
               <h4 class="title">
-                <?= $this->request->session()->read('Auth.User.first_name').' '.$this->request->session()->read('Auth.User.last_name') ?>
+                <?= $user->first_name.' '.$user->last_name ?>
                 <br>
                 <small>
-                  <?= $this->request->session()->read('Auth.User.username') ?>
+                  <?= $user->username ?>
                 </small>
               </h4>
-            </div>
-            <p class="description text-center">
-              <?= $this->request->session()->read('Auth.User.email') ?>
+            <p >
+              <?= $user->email ?>
             </p>
-
-            <?php if (!empty($user->social_accounts)): ?>
-              <hr>
-              <h6 class="subheader"><?= __d('CakeDC/Users', 'Social Accounts') ?></h6>
-              <table cellpadding="0" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th><?= __d('CakeDC/Users', 'Avatar'); ?></th>
-                    <th><?= __d('CakeDC/Users', 'Provider'); ?></th>
-                    <th><?= __d('CakeDC/Users', 'Link'); ?></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  foreach ($user->social_accounts as $socialAccount):
-                    $escapedUsername = h($socialAccount->username);
-                    $linkText = empty($escapedUsername) ? __d('CakeDC/Users', 'Link to {0}', h($socialAccount->provider)) : h($socialAccount->username)
-                    ?>
-                    <tr>
-                      <td><?=
-                        $this->Html->image(
-                        $socialAccount->avatar,
-                        ['width' => '90', 'height' => '90']
-                        ) ?>
-                      </td>
-                      <td><?= h($socialAccount->provider) ?></td>
-                      <td><?=
-                      $this->Html->link(
-                      $linkText,
-                      $socialAccount->link,
-                      ['target' => '_blank']
-                      ) ?></td>
-                    </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            <?php endif; ?>
-            <hr/>
-            <div class="text-center" style="margin-top: 20px;">
+            <div  >
               <div class="btn-group">
-                <?= $this->Html->link(__('Edit profile'), ['controller' => 'Users', 'action' => 'editByUser', $this->request->session()->read('Auth.User.id')],['class' =>'btn btn-sm btn-info btn-fill']); ?>
-                <?= $this->Html->link(__d('CakeDC/Users', 'Change Password'), ['controller' => 'Users', 'action' => 'changePassword'],['class' =>'btn btn-sm btn-info btn-fill']); ?>
+                <?= $this->Html->link(__('Edit profile'), ['controller' => 'Users', 'action' => 'edit', $user->id],['class' =>'btn btn-sm btn-info btn-fill']); ?>
+                <?= $this->Html->link(__d('CakeDC/Users', 'Change Password'), ['controller' => 'Users', 'action' => 'changeUserPassword', $user->id],['class' =>'btn btn-sm btn-info btn-fill']); ?>
               </div>
             </div>
-
           </div>
-        </div>
+        </div><!-- profile -->
 
       </div> <!-- end col-md-12 -->
     </div> <!-- end row -->
-  </div>
-</div>
+  </div> <!-- end container-fluid -->
+</div> <!-- end content -->

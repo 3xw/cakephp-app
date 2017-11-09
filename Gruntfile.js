@@ -8,6 +8,12 @@ module.exports = function(grunt) {
 						'webroot/css/front/vendor/bootstrap.min.css',
 						'webroot/css/front/vendor/animate.css',
 						'webroot/css/front/vendor/font-awesome.min.css',
+					],
+					'webroot/css/admin/vendor.min.css': [
+						'webroot/css/admin/vendor/bootstrap/bootstrap.min.css',
+						'webroot/css/admin/vendor/select2/select2.min.css',
+						'webroot/css/admin/vendor/trumbowyg/trumbowyg.min.css',
+						'webroot/css/admin/vendor/3xw/animate.min.css',
 					]
 				}
 			}
@@ -15,7 +21,8 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'webroot/css/front/front.min.css' : 'webroot/css/front/sass/theme.scss'
+					'webroot/css/front/front.min.css' : 'webroot/css/front/sass/theme.scss',
+					'webroot/css/admin/admin.min.css' : 'webroot/css/admin/sass/theme.scss'
 				}
 			}
 		},
@@ -29,7 +36,8 @@ module.exports = function(grunt) {
 				]
 			},
 			dist: {
-				src: 'webroot/css/front/front.min.css'
+				src: 'webroot/css/front/front.min.css',
+				src: 'webroot/css/admin/admin.min.css'
 			}
 		},
 		// JS
@@ -42,6 +50,9 @@ module.exports = function(grunt) {
 				files: {
 					'webroot/js/front/app.min.js': [
 						'webroot/js/front/app/app.js'
+					],
+					'webroot/js/admin/app.min.js': [
+						'webroot/js/admin/app/app.js'
 					]
 				}
 			},
@@ -56,6 +67,16 @@ module.exports = function(grunt) {
 						'webroot/js/front/vendor/isotope.pkgd.min.js',
 						'webroot/js/front/vendor/vue.js',
 						'webroot/js/front/vendor/vue-resource.js'
+					],
+					'webroot/js/admin/vendor.min.js': [
+						'webroot/js/admin/vendor/jquery/jquery-3.2.1.min.js',
+						'webroot/js/admin/vendor/popper/popper.min.js',
+						'webroot/js/admin/vendor/moment/moment.js',
+						'webroot/js/admin/vendor/bootstrap/bootstrap.min.js',
+						'webroot/js/admin/vendor/select2/select2.min.js',
+						'webroot/js/admin/vendor/trumbowyg/trumbowyg.min.js',
+						'webroot/js/admin/vendor/vuejs/vue2.js',
+						'webroot/js/admin/vendor/vuejs/vue-resource.min.js'
 					]
 				}
 			}
@@ -64,6 +85,7 @@ module.exports = function(grunt) {
 			scripts: {
 				files: [
 					'webroot/js/front/app/*.js',
+					'webroot/js/admin/app/*.js'
 				],
 				tasks: ['uglify:dev'],
 				options: {
@@ -76,7 +98,6 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');

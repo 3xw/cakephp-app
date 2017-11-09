@@ -51,29 +51,34 @@ $groupedFields = collection($fields)
 $groupedFields += ['number' => [], 'string' => [], 'boolean' => [], 'date' => [], 'text' => []];
 $pk = "\$$singularVar->{$primaryKey[0]}";
 %>
-<div class="row justify-content-md-center">
-  <div class="col">
+<nav class="navbar navbar-expand-lg">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <?= __('<%= $pluralHumanName %>') ?>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <?= $this->Html->link('<i class="material-icons">mode_edit</i> '.__('Edit'),['action'=>'edit', <%= $pk %>], ['class' => '','escape'=>false]) ?>
+        <?= $this->Html->link('<i class="material-icons">delete</i> '.__('Delete'),['action'=>'delete', <%= $pk %>], ['class' => '','escape'=>false, 'confirm' => __('Are you sure you want to delete # {0}?', <%= $pk %>)]) ?>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="utils--spacer-default"></div>
+<div class="row no-gutters">
+  <div class="col-11 mx-auto ">
 
     <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-4">
-            <h4 class="title"><?= __('<%= Inflector::humanize($singularVar) %>') ?></h4>
-          </div>
-          <div class="col-8">
-            <ul class="nav justify-content-end">
-              <li class="nav-item">
-                <div class="btn-group">
-                  <?= $this->Html->link(__('<i class="fa fa-edit"></i> '.__('Edit')), ['action' => 'edit', <%= $pk %>], ['class' => 'btn btn-simple btn-info btn-icon edit','escape'=>false]) ?>
-                  <?= $this->Form->postLink(__('<i class="fa fa-trash-o"></i> '.__('Delete')), ['action' => 'delete', <%= $pk %>], ['class' => 'btn btn-simple btn-danger btn-icon edit','escape'=>false, 'confirm' => __('Are you sure you want to delete # {0}?', <%= $pk %>)]) ?>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+
       <!-- CONTENT -->
       <div class="card-body">
+        <figure class="figure figure--table">
+
         <table class="table">
           <tbody>
             <% if ($groupedFields['string']) : %>
@@ -127,6 +132,7 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
             <% endif; %>
           </tbody>
         </table>
+      </figure>
 
         <% if ($groupedFields['text']) : %>
         <% foreach ($groupedFields['text'] as $field) : %>
@@ -139,14 +145,11 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
         <% endforeach; %>
         <% endif; %>
       </div>
-      <div class="card-footer">
-        <?= $this->Html->link('<i class="fa fa-arrow-left" aria-hidden="true"></i> '.__('Back'), $referer, ['class' => 'btn btn-light', 'escape'=>false]) ?>
-      </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col">
+<div class="row no-gutters">
+  <div class="col-11 mx-auto ">
     <%
     $relations = $associations['HasMany'] + $associations['BelongsToMany'];
     foreach ($relations as $alias => $details):
@@ -157,35 +160,38 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
       <div class="card  mt-4">
         <div class="card-body">
           <h4 class="card-title"><?= __('Related <%= $otherPluralHumanName %>') ?></h4>
-          <table id="datatables" class="table table-striped table-no-bordered table-hover dataTable dtr-inline" cellspacing="0" width="100%" style="width: 100%;" role="grid" aria-describedby="datatables_info">
-            <thead>
-              <tr>
-                <% foreach ($details['fields'] as $field): %>
-                <th><?= __('<%= Inflector::humanize($field) %>') ?></th>
-                <% endforeach; %>
-                <th class="actions"><?= __('Actions') ?></th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($<%= $singularVar %>-><%= $details['property'] %> as $<%= $otherSingularVar %>): ?>
+          <figure class="figure figure--table">
+            <table id="datatables" class="table table-striped table-no-bordered table-hover dataTable dtr-inline" cellspacing="0" width="100%" style="width: 100%;" role="grid" aria-describedby="datatables_info">
+              <thead>
                 <tr>
-                  <%- foreach ($details['fields'] as $field): %>
-                  <td data-title="<%= Inflector::humanize($field) %>"><?= h($<%= $otherSingularVar %>-><%= $field %>) ?></td>
-                  <%- endforeach; %>
-                  <%- $otherPk = "\${$otherSingularVar}->{$details['primaryKey'][0]}"; %>
-                  <td data-title="actions" class="actions" class="text-right">
-                    <div class="btn-group">
-                      <?= $this->Html->link('<i class="fa fa-eye"></i> '.__('View'), ['controller' => '<%= $details['controller'] %>', 'action' => 'view', <%= $otherPk %>],['class' => 'btn btn-xs btn-simple btn-info btn-icon edit','escape' => false]) ?>
-                    </td>
-                  </div>
-                </tr >
+                  <% foreach ($details['fields'] as $field): %>
+                  <th><?= __('<%= Inflector::humanize($field) %>') ?></th>
+                  <% endforeach; %>
+                  <th class="actions"><?= __('Actions') ?></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <?php foreach ($<%= $singularVar %>-><%= $details['property'] %> as $<%= $otherSingularVar %>): ?>
+                    <tr>
+                      <%- foreach ($details['fields'] as $field): %>
+                      <td data-title="<%= Inflector::humanize($field) %>"><?= h($<%= $otherSingularVar %>-><%= $field %>) ?></td>
+                    <%- endforeach; %>
+                    <%- $otherPk = "\${$otherSingularVar}->{$details['primaryKey'][0]}"; %>
+                    <td data-title="actions" class="actions" class="text-right">
+                      <div class="btn-group">
+                        <?= $this->Html->link('<i class="material-icons">visibility</i>', ['controller' => '<%= $details['controller'] %>', 'action' => 'view', <%= $otherPk %>],['class' => 'btn btn-xs btn-simple btn-info btn-icon edit','escape' => false]) ?>
+                      </td>
+                    </div>
+                  </tr >
 
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </figure>
         </div>
       </div>
     <?php endif; ?>
     <% endforeach; %>
   </div>
 </div>
+<div class="utils--spacer-default"></div>

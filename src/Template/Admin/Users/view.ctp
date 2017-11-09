@@ -1,33 +1,39 @@
 <?php use Cake\Core\Configure; ?>
+<nav class="navbar navbar-expand">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <?= __('User') ?>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <?= $this->Html->link('<i class="material-icons">mode_edit</i> '.__('Edit'),['action'=>'edit', $user->id], ['class' => '','escape'=>false]) ?>
+        <?= $this->Html->link('<i class="material-icons">delete</i> '.__('Delete'),['action'=>'delete', $user->id], ['class' => '','escape'=>false, 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="utils--spacer-default"></div>
+<div class="row no-gutters">
+  <div class="col-11 mx-auto ">
+        <div class="card text-center">
 
-<?= $this->element('header',['title' => __('View'),'menus' => [
-  '<i class="fa fa-list"></i><p>'.__('List').'</p>' => ['action' => 'index'],
-  '<i class="fa fa-plus"></i><p>'.__('Add').'</p>' => ['action' => 'add'],
-  '<i class="fa fa-edit"></i><p>'.__('Edit').'</p>' => ['action' => 'edit', $user->id],
-  ]]) ?>
 
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6">
-
-        <div class="card card-user">
-          <div class="image">
-            <img src="<?= $this->Url->build('/img/admin/bg.jpg') ?>" alt="...">
-          </div>
-          <div class="content">
-            <div class="author">
               <?php
               if(empty($user->attachment))
               {
-                echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'avatar border-gray']);
+                echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'rounded-circle']);
               }else{
                 echo $this->Attachment->image([
                   'image' => $user->attachment->path,
                   'profile' => $user->attachment->profile,
                   'width' => 678,
                   'cropratio' => '1:1'
-                ],['class' =>'avatar border-gray']);
+                ],['class' =>'rounded-circle']);
               }
               ?>
 
@@ -38,12 +44,10 @@
                   <?= $user->username ?>
                 </small>
               </h4>
-            </div>
-            <p class="description text-center">
+            <p >
               <?= $user->email ?>
             </p>
-            <hr/>
-            <div class="text-center" style="margin-top: 20px;">
+            <div  >
               <div class="btn-group">
                 <?= $this->Html->link(__('Edit profile'), ['controller' => 'Users', 'action' => 'edit', $user->id],['class' =>'btn btn-sm btn-info btn-fill']); ?>
                 <?= $this->Html->link(__d('CakeDC/Users', 'Change Password'), ['controller' => 'Users', 'action' => 'changeUserPassword', $user->id],['class' =>'btn btn-sm btn-info btn-fill']); ?>

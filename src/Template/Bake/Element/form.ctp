@@ -18,87 +18,94 @@ $fields = collection($fields)
 ->filter(function($field) use ($schema) {
   return $schema->columnType($field) !== 'binary';
 });
-%>
-<div class="row justify-content-md-center">
-  <div class="col">
-    <div class="card">
-      <?= $this->Form->create($<%= $singularVar %>, ['novalidate']); ?>
-      <div class="card-header">
-        <div class="row">
-          <div class="col-4">
-            <h4 class="title"><?= __('<%= Inflector::humanize($action) %> <%= $singularHumanName %>') ?></h4>
-          </div>
-          <div class="col-8">
-            <ul class="nav justify-content-end">
-              <li class="nav-item">
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <!-- FORM -->
-        <?php
-        <%
-        foreach ($fields as $field) {
-          if (in_array($field, $primaryKey)) {
-            continue;
-          }
-          if (isset($keyFields[$field])) {
-            $fieldData = $schema->column($field);
-            if (!empty($fieldData['null'])) {
-              %>
-              echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true, 'class' => 'form-control']);
-              <%
-            } else {
-              %>
-              echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'class' => 'form-control']);
-              <%
-            }
-            continue;
-          }
-          if (!in_array($field, ['created', 'modified', 'updated'])) {
-            $fieldData = $schema->column($field);
-            if (($fieldData['type'] === 'date') && (!empty($fieldData['null']))) {
-              %>
-              echo $this->Form->input('<%= $field %>', ['empty' => true, 'default' => '', 'class' => 'form-control']);
-              <%
-            }   else {
-              %>
-              echo $this->Form->input('<%= $field %>', ['class' => 'form-control']);
-              <%
-            }
-          }
-        }
-        if (!empty($associations['BelongsToMany'])) {
-          foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
-            %>
-            <%
-            if (($assocData['property'] === 'attachments')) {
-              %>
-              echo $this->Attachment->input('Attachments', // if Attachments => HABTM else if !Attachments => belongsTo
-              ['label' => __('Images'),
-              'types' =>['image/jpeg','image/png'],
-              'atags' => [],
-              'restrictions' => [
-                Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
-                Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
-              ],
-              'attachments' => [] // array of exisiting Attachment entities ( HABTM ) or entity ( belongsTo )
-            ]);
-            <%
-          }   else {
-            %>
-            echo $this->Form->input('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>, 'class' => 'form-control']);
-            <%
-          }
 
+if (isset($modelObject) && $modelObject->hasBehavior('Tree')) {
+  $fields = $fields->reject(function ($field) {
+    return $field === 'lft' || $field === 'rght';
+  });
+}
+%>
+<nav class="navbar navbar-expand-lg">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <?= __('<%= Inflector::humanize($action) %> <%= $singularHumanName %>') ?>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+          <?= $this->Html->link('<i class="material-icons">list</i> '.__('List'),['action'=>'index'], ['class' => '','escape'=>false]) ?>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="utils--spacer-default"></div>
+<div class="row no-gutters">
+  <div class="col-11 mx-auto">
+    <div class="card">
+      <?= $this->Form->create($<%= $singularVar %>); ?>
+      <?php
+      <%
+      foreach ($fields as $field) {
+        if (in_array($field, $primaryKey)) {
+          continue;
+        }
+        if (isset($keyFields[$field])) {
+          $fieldData = $schema->column($field);
+          if (!empty($fieldData['null'])) {
+            %>
+            echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true, 'class' => 'form-control']);
+            <%
+          } else {
+            %>
+            echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'class' => 'form-control']);
+            <%
+          }
+          continue;
+        }
+        if (!in_array($field, ['created', 'modified', 'updated'])) {
+          $fieldData = $schema->column($field);
+          if (in_array($fieldData['type'], ['date', 'datetime', 'time']) && (!empty($fieldData['null']))) {
+            %>
+            echo $this->Form->input('<%= $field %>', ['empty' => true, 'default' => '', 'class' => 'form-control']);
+            <%
+          } else {
+            %>
+            echo $this->Form->input('<%= $field %>', ['class' => 'form-control']);
+            <%
+          }
         }
       }
-      %>
-      ?>
-    </div>
-    <div class="card-footer text-right">
+      if (!empty($associations['BelongsToMany'])) {
+        foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
+          %>
+          <%
+          if (($assocData['property'] === 'attachments')) {
+            %>
+            echo $this->Attachment->input('Attachments', // if Attachments => HABTM else if !Attachments => belongsTo
+            ['label' => __('Images'),
+            'types' =>['image/jpeg','image/png'],
+            'atags' => [],
+            'restrictions' => [
+              Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
+              Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
+            ],
+            'attachments' => [] // array of exisiting Attachment entities ( HABTM ) or entity ( belongsTo )
+          ]);
+          <%
+        }   else {
+          %>
+          echo $this->Form->input('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>, 'class' => 'form-control']);
+          <%
+        }
+      }
+    }
+    %>
+    ?>
+    <div class="text-right">
       <div class="btn-group">
         <?= $this->Html->link(__('Cancel'), $referer, ['class' => 'btn btn-danger btn-fill']) ?>
         <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-info btn-fill']) ?>
@@ -108,3 +115,4 @@ $fields = collection($fields)
   </div>
 </div>
 </div>
+<div class="utils--spacer-default"></div>
