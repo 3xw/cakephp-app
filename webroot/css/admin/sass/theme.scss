@@ -193,7 +193,7 @@ table{
 
   background: $sidebar--background;padding:$padding--default $padding--semi;min-height:100vh;height:100%;
   *{color:$sidebar--color !important;}
-  hr{border-top: 1px solid rgba(255, 255, 255, 0.4);background: transparent;}
+  hr{border-top: 1px solid rgba(255, 255, 255, 0.4) !important;background: transparent;width: 100%;}
 
   &__user-menu{
     a i{vertical-align: middle;}
