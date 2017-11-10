@@ -5,9 +5,8 @@ module.exports = function(grunt) {
 			vendor:{
 				files: {
 					'webroot/css/front/vendor.min.css': [
-						'webroot/css/front/vendor/bootstrap.min.css',
-						'webroot/css/front/vendor/animate.css',
-						'webroot/css/front/vendor/font-awesome.min.css',
+						'webroot/css/front/vendor/bootstrap/bootstrap.min.css',
+						'webroot/css/front/vendor/3xw/animate.css',
 					],
 					'webroot/css/admin/vendor.min.css': [
 						'webroot/css/admin/vendor/bootstrap/bootstrap.min.css',
@@ -59,14 +58,14 @@ module.exports = function(grunt) {
 			vendor: {
 				files: {
 					'webroot/js/front/vendor.min.js': [
-						'webroot/js/front/vendor/jquery-3.1.1.min.js',
-						'webroot/js/front/vendor/moment.js',
-						'webroot/js/front/vendor/bootstrap.min.js',
-						'webroot/js/front/vendor/bootstrap-datetimepicker.min.js',
-						'webroot/js/front/vendor/imagesloaded.js',
-						'webroot/js/front/vendor/isotope.pkgd.min.js',
-						'webroot/js/front/vendor/vue.js',
-						'webroot/js/front/vendor/vue-resource.js'
+						'webroot/js/front/vendor/jquery/jquery-3.2.1.min.js',
+						'webroot/js/front/vendor/moment/moment.js',
+						'webroot/js/front/vendor/popper/popper.min.js',
+						'webroot/js/front/vendor/bootstrap/bootstrap.min.js',
+						'webroot/js/front/vendor/imagesloaded/imagesloaded.js',
+						'webroot/js/front/vendor/isotope/isotope.pkgd.min.js',
+						'webroot/js/front/vendor/vuejs/vue.js',
+						'webroot/js/front/vendor/vuejs/vue-resource.js'
 					],
 					'webroot/js/admin/vendor.min.js': [
 						'webroot/js/admin/vendor/jquery/jquery-3.2.1.min.js',
