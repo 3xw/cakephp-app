@@ -22,6 +22,7 @@
     <div class="card">
       <?= $this->Form->create($user); ?>
       <!-- avatar -->
+      <?= $this->Form->input('attachment_id', ['type' => 'hidden']); ?>
       <?= $this->Attachment->input('attachment_id',[
         'label' => 'Avatar',
         'types' =>['image/jpeg','image/png','image/gif'],
