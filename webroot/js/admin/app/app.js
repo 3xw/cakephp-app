@@ -21,7 +21,7 @@
   }
 
   var initTextarea = function(){
-    $('textarea').trumbowyg({
+    $('textarea:not(.no-trumbowyg)').trumbowyg({
       btns: [
           ['viewHTML'],
           ['formatting'],
