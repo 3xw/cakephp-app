@@ -23,11 +23,11 @@ use Cake\Network\Exception\NotFoundException;
   <div class="col-11 mx-auto ">
         <div class="card">
           <!-- HEADER -->
-          <div class="header">
+          <div class="card-header">
             <h3>Settings</h3>
           </div>
           <!-- CONTENT -->
-          <div class="content">
+          <div class="card-body">
 
             <div class="row">
               <div class="col-md-6">
