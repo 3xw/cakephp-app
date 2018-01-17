@@ -1,4 +1,4 @@
-<%
+{#
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -9,47 +9,42 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.1.0
+ * @since         2.0.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
-$belongsTo = $this->Bake->aliasExtractor($modelObj, 'BelongsTo');
-$belongsToMany = $this->Bake->aliasExtractor($modelObj, 'BelongsToMany');
-$compact = ["'" . $singularName . "'"];
-%>
+#}
+{% set belongsTo = Bake.aliasExtractor(modelObj, 'BelongsTo') %}
+{% set belongsToMany = Bake.aliasExtractor(modelObj, 'belongsToMany') %}
+{% set compact = ["'#{singularName}'"] %}
 
     /**
      * Edit method
      *
-     * @param string|null $id <%= $singularHumanName %> id.
+     * @param string|null $id {{ singularHumanName }} id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $<%= $singularName %> = $this-><%= $currentModelName %>->get($id, [
-            'contain' => [<%= $this->Bake->stringifyList($belongsToMany, ['indent' => false]) %>]
+        ${{ singularName }} = $this->{{ currentModelName }}->get($id, [
+            'contain' => [{{ Bake.stringifyList(belongsToMany, {'indent': false})|raw }}]
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $<%= $singularName %> = $this-><%= $currentModelName %>->patchEntity($<%= $singularName %>, $this->request->getData());
-            if ($this-><%= $currentModelName; %>->save($<%= $singularName %>)) {
-                $this->Flash->success(__('The <%= strtolower($singularHumanName) %> has been saved.'));
+            ${{ singularName }} = $this->{{ currentModelName }}->patchEntity(${{ singularName }}, $this->request->getData());
+            if ($this->{{ currentModelName }}->save(${{ singularName }})) {
+                $this->Flash->success(__('The {{ singularHumanName|lower }} has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The <%= strtolower($singularHumanName) %> could not be saved. Please, try again.'));
+            $this->Flash->error(__('The {{ singularHumanName|lower }} could not be saved. Please, try again.'));
         }
-<%
-        foreach (array_merge($belongsTo, $belongsToMany) as $assoc):
-            $association = $modelObj->association($assoc);
-            $otherName = $association->getTarget()->getAlias();
-            $otherPlural = $this->_variableName($otherName);
-%>
-        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200]);
-<%
-            $compact[] = "'$otherPlural'";
-        endforeach;
-%>
-        $this->set(compact(<%= join(', ', $compact) %>));
-        $this->set('_serialize', ['<%=$singularName%>']);
+{% for assoc in belongsTo|merge(belongsToMany) %}
+    {%- set otherName = Bake.getAssociatedTableAlias(modelObj, assoc) %}
+    {%- set otherPlural = otherName|variable %}
+        ${{ otherPlural }} = $this->{{ currentModelName }}->{{ otherName }}->find('list', ['limit' => 200]);
+        {{- "\n" }}
+    {%- set compact = compact|merge(["'#{otherPlural}'"]) %}
+{% endfor %}
+        $this->set(compact({{ compact|join(', ')|raw }}));
+        $this->set('_serialize', ['{{ singularName }}']);
     }

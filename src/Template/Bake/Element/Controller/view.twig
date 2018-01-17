@@ -1,4 +1,4 @@
-<%
+{#
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -9,30 +9,28 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.1.0
+ * @since         2.0.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-$allAssociations = array_merge(
-    $this->Bake->aliasExtractor($modelObj, 'BelongsTo'),
-    $this->Bake->aliasExtractor($modelObj, 'BelongsToMany'),
-    $this->Bake->aliasExtractor($modelObj, 'HasOne'),
-    $this->Bake->aliasExtractor($modelObj, 'HasMany')
-);
-%>
+#}
+{% set allAssociations = Bake.aliasExtractor(modelObj, 'BelongsTo') %}
+{% set allAssociations = allAssociations|merge(Bake.aliasExtractor(modelObj, 'BelongsToMany')) %}
+{% set allAssociations = allAssociations|merge(Bake.aliasExtractor(modelObj, 'HasOne')) %}
+{% set allAssociations = allAssociations|merge(Bake.aliasExtractor(modelObj, 'HasMany')) %}
 
     /**
      * View method
      *
-     * @param string|null $id <%= $singularHumanName %> id.
+     * @param string|null $id {{ singularHumanName }} id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $<%= $singularName%> = $this-><%= $currentModelName %>->get($id, [
-            'contain' => [<%= $this->Bake->stringifyList($allAssociations, ['indent' => false]) %>]
+        ${{ singularName }} = $this->{{ currentModelName }}->get($id, [
+            'contain' => [{{ Bake.stringifyList(allAssociations, {'indent': false})|raw }}]
         ]);
 
-        $this->set('<%= $singularName %>', $<%= $singularName %>);
-        $this->set('_serialize', ['<%= $singularName %>']);
+        $this->set('{{ singularName }}', ${{ singularName }});
+        $this->set('_serialize', ['{{ singularName }}']);
     }
