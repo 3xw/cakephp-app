@@ -54,17 +54,23 @@ foreach( $languages as $lng )
       }else{
         $label = Inflector::humanize($key).' ('.$lng.')';
       }
-      if( $lng == I18n::defaultLocale() )
+
+      $inputConf = ['class' => '', 'label' => $label];
+      $inputConf['required'] = ($lng == I18n::defaultLocale())? true: false;
+      $fieldName = ($lng == I18n::defaultLocale())? $key: '_translations.'.$lng.'.'.$key;
+      if(!empty($field['Attachment.trumbowyg']))
       {
-        $inputConf = ['class' => '', 'label' => $label];
+        $inputConf = array_merge($inputConf, $field['Attachment.trumbowyg']);
+        $inputConf['class'] .= ' form-control '.$class;
+        if(!empty($field['Attachment.trumbowyg']['content'])){
+          $inputConf['content'] = ($lng == I18n::defaultLocale())? $field['Attachment.trumbowyg']['content']->$fieldName : $field['Attachment.trumbowyg']['content']->_translations[$lng]->$key;
+        }
+        $fieldInputs .= $this->Attachment->trumbowyg($fieldName,$inputConf);
+      }else
+      {
         $inputConf = array_merge($inputConf, $field);
         $inputConf['class'] .= ' form-control '.$class;
-        $fieldInputs .= $this->Form->input($key, $inputConf );
-      }else{
-        $inputConf = ['class' => '', 'label' => $label,'required' => false];
-        $inputConf = array_merge($inputConf, $field);
-        $inputConf['class'] .= ' form-control '.$class;
-        $fieldInputs .= $this->Form->input('_translations.'.$lng.'.'.$key, $inputConf);
+        $fieldInputs .= $this->Form->input($fieldName, $inputConf);
       }
     }
     $i++;
