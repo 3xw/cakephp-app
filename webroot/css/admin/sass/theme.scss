@@ -244,6 +244,10 @@ table{
   padding:$padding--semi;
 }
 
+.card-footer,
+.card-header{background: transparent;border: 0;}
+.attachment-trumbowyg.form-control{padding: 0;border: 0;}
+
 .nav-tabs{
   padding:5px 0 3px;margin-bottom: 20px;border-width: 3px;
 
