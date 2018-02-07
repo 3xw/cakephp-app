@@ -243,3 +243,10 @@ table{
 .navbar{
   padding:$padding--semi;
 }
+
+.nav-tabs{
+  padding:5px 0 3px;margin-bottom: 20px;border-width: 3px;
+
+  li a{padding:5px 15px;color:#302f2f;}
+  li.active a{border-bottom: 3px solid black;background-color: #fefefe}
+}

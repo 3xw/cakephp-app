@@ -12,7 +12,9 @@ class MissingTranslationsShell extends Shell
     if(empty($model)) return $this->err('Need to pass one Model');
 
 
-    $table = $this->loadModel($model);
+    $this->loadModel($model);
+    $model = explode('.', $model);
+    $model = end($model);
 
     $associationsFields = $this->$model->associations()->keys();
     if(empty($associationsFields)) return $this->err('Model not found ...');
