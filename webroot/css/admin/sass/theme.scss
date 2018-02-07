@@ -248,6 +248,19 @@ table{
 .card-header{background: transparent;border: 0;}
 .attachment-trumbowyg.form-control{padding: 0;border: 0;}
 
+
+.pagination {
+  display: -ms-flexbox; display: flex; padding-left: 0; list-style: none; border-radius: 0.25rem;
+  li:first-child a { margin-left: 0; border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem; }
+  li:last-child a { border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; }
+  li.active a { z-index: 2; color: #fff; background-color: map-get($colors, 'blue'); border-color: map-get($colors, 'blue'); }
+  li.disabled a { color: #868e96; pointer-events: none; background-color: #fff; border-color: #ddd; }
+  a{ position: relative; display: block; padding: 0.5rem 0.75rem; margin-left: -1px; line-height: 1.25; color: map-get($colors, 'blue'); background-color: #fff; border: 1px solid #ddd; }
+  a:focus, a:hover { color: #0056b3; text-decoration: none; background-color: #e9ecef; border-color: #ddd; }
+}
+
+
+
 .nav-tabs{
   padding:5px 0 3px;margin-bottom: 20px;border-width: 3px;
 
