@@ -35,8 +35,10 @@ module.exports = function(grunt) {
 				]
 			},
 			dist: {
-				src: 'webroot/css/front/front.min.css',
-				src: 'webroot/css/admin/admin.min.css'
+				src: [
+					'webroot/css/front/front.min.css',
+					'webroot/css/admin/admin.min.css'
+				]
 			}
 		},
 		// JS
