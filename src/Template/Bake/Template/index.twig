@@ -42,18 +42,13 @@
 
           <!-- START CONTEMT -->
           <div class="card-body">
-
           <figure class="figure figure--table">
-
           <table id="datatables" class="table table-no-bordered table-hover dataTable dtr-inline" cellspacing="0" width="100%" style="width: 100%;" role="grid" aria-describedby="datatables_info">
           <thead class="thead-default">
           <tr>
           {% for field in fields %}
           {% set columnData = Bake.columnData(field, schema) %}
-
-
           <th scope="col"><?= $this->Paginator->sort('{{ field }}') ?></th>
-
       {% endfor %}
       <th scope="col" class="actions"><?= __('Actions') ?></th>
       </tr>
