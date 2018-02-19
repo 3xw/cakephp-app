@@ -6,7 +6,6 @@ use Cake\Utility\Inflector;
 $languages = Configure::read('I18n.languages');
 $language = I18n::locale();
 
-$this->Html->script(['Template/Admin/Element/locale.js?v='.time()],['block' => 'script']);
 $this->Html->scriptBlock('var languages = '.  json_encode($languages).'; var language = "'.$language.'";', ['block' => 'script']);
 
 $li = $fieldInputs = $originalFieldInputs = '';
