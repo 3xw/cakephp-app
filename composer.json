@@ -10,7 +10,8 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "~1.0",
         "cakedc/users": "^5.0",
-        "3xw/attachment": "3.5.*"
+        "3xw/attachment": "3.5.*",
+        "3xw/cakephp-utils": "3.5.*"
     },
     "require-dev": {
         "psy/psysh": "@stable",
