@@ -86,6 +86,9 @@ a, a:hover{color:$link--color;text-decoration: none;}
   &-error{border:1px solid $color--danger;}
 }
 
+.form-error{border:1px solid $color--danger;}
+.error-message{font-size: 1.2rem;color: $color--danger;}
+
 .required label:after{content:' *';color:$color--danger;}
 
 .form-inline{
