@@ -24,7 +24,7 @@ foreach( $languages as $lng )
     $this->Html->link($lng, '#locale-selector-ul', ['aria-controls' => '#locale-selector-ul']),
     [
       'role' => 'presentation',
-      'class' => $active
+      'class' => 'locale-selector-li locale-selector-li--'.$lng.' '.$active
     ]
   );
 

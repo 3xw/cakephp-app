@@ -71,8 +71,8 @@
   {
     evt.preventDefault();
     var lng = $(this).html();
-    $('#locale-selector-ul li').removeClass('active');
-    $(this).parent().addClass('active');
+    $('.locale-selector-li').removeClass('active');
+    $('.locale-selector-li--'+lng).addClass('active');
     hideShowLanguagesInputs( lng );
   }
 
