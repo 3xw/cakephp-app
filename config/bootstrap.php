@@ -231,6 +231,9 @@ if (Configure::read('debug')) {
  */
 
 // 3xw
+Plugin::load('Trois/Bake');
+Configure::write('Bake.theme', 'Trois/Bake');
+
 //Configure::write('Attachment.config', ['attachment']);
 Plugin::load('Attachment', ['bootstrap' => true, 'routes' => true]);
 
