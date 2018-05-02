@@ -34,7 +34,10 @@
           ['removeformat'],
           ['fullscreen']
       ],
-      svgPath: webroot+'js/admin/vendor/trumbowyg/icons.svg'
+      svgPath: webroot+'js/admin/vendor/trumbowyg/icons.svg',
+      autogrow: true,
+      resetCss: true,
+      removeFormatPasted: false
     });
   }
 
