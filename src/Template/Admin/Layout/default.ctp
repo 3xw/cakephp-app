@@ -24,7 +24,7 @@
 </head>
 <body>
 
-  <div id="admin-app" data-webroot="<?= $this->request->webroot ?>" class="page-wrap">
+  <div id="admin-app" data-webroot="<?= $this->request->getAttribute('webroot') ?>" class="page-wrap">
 
     <div class="row no-gutters">
       <div class="col-12 col-md-4 col-lg-3 col-xl-2">

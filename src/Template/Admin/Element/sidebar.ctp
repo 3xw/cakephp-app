@@ -1,6 +1,6 @@
 <?php
 use Cake\Core\Configure;
-$menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role'));
+$menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.User.role'));
 ?>
 <!-- SIDEBAR -->
 <div class="sidebar navbar-expand-md " >
@@ -24,13 +24,13 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
     <div class="sidebar__user text-center">
       <div class="sidebar__user-picture">
         <?php
-        if(empty($this->request->session()->read('Auth.User.attachment')))
+        if(empty($this->request->getSession()->read('Auth.User.attachment')))
         {
           echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'sidebar__avatar rounded-circle img-fluid']);
         }else{
           echo $this->Attachment->image([
-            'image' => $this->request->session()->read('Auth.User.attachment.path'),
-            'profile' => $this->request->session()->read('Auth.User.attachment.profile'),
+            'image' => $this->request->getSession()->read('Auth.User.attachment.path'),
+            'profile' => $this->request->getSession()->read('Auth.User.attachment.profile'),
             'width' => 678,
             'cropratio' => '1:1'
           ],['class' =>'sidebar__avatar rounded-circle img-fluid']);
@@ -41,10 +41,10 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
 
       <div class="sidebar__user-menu">
         <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
-          <? if(empty($this->request->session()->read('Auth.User.first_name')) && empty($this->request->session()->read('Auth.User.last_name'))): ?>
-            <?= $this->request->session()->read('Auth.User.email') ?>
+          <? if(empty($this->request->getSession()->read('Auth.User.first_name')) && empty($this->request->getSession()->read('Auth.User.last_name'))): ?>
+            <?= $this->request->getSession()->read('Auth.User.email') ?>
           <? else: ?>
-            <?= $this->request->session()->read('Auth.User.first_name').' '.$this->request->session()->read('Auth.User.last_name') ?>
+            <?= $this->request->getSession()->read('Auth.User.first_name').' '.$this->request->getSession()->read('Auth.User.last_name') ?>
           <? endif ?>
           <i class="material-icons">expand_more</i>
         </a>
@@ -54,7 +54,7 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
               <?= $this->Html->link(__('My Profile'), Configure::read('Users.Profile.route')); ?>
             </li>
             <li>
-              <?= $this->html->link(__('Edit Profile'), ['controller' => 'Users', 'action' => 'editByUser', $this->request->session()->read('Auth.User.id')]) ?>
+              <?= $this->html->link(__('Edit Profile'), ['controller' => 'Users', 'action' => 'editByUser', $this->request->getSession()->read('Auth.User.id')]) ?>
             </li>
             <li>
               <?= $this->Html->link(__('Logout'),['controller' => 'Users', 'action' => 'logout','prefix' => false, 'plugin' => 'CakeDC/Users'] ) ?>
@@ -81,11 +81,11 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
           $html .= '<div class="collapse" id="menu-item-'.$menuCount.'">'."\n";
 
           // check active
-          if(array_search($this->request->params['controller'], array_column($m['collapse'], 'controller')) !== false )
+          if(array_search($this->request->getParam('controller'), array_column($m['collapse'], 'controller')) !== false )
           {
-            if( array_search($this->request->params['action'], array_column($m['collapse'], 'action')) !== false )
+            if( array_search($this->request->getParam('action'), array_column($m['collapse'], 'action')) !== false )
             {
-              $in = $this->request->session()->read('Settings.css.sidebar-mini') == '' ? 'in' : '';
+              $in = $this->request->getSession()->read('Settings.css.sidebar-mini') == '' ? 'in' : '';
               $html = '<li class="active">'."\n";
               $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto">expand_more</i></a>'."\n";
               $html .= '<div class="collapse '.$in.'" id="menu-item-'.$menuCount.'">'."\n";
@@ -97,8 +97,8 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
           foreach($m['collapse'] as $subMenuLabel => $subMenu)
           {
             $active = (!empty($subMenu['controller']))? (
-              $this->request->params['controller'] == $subMenu['controller'] &&
-              $this->request->params['action'] == $subMenu['action']
+              $this->request->getParam('controller') == $subMenu['controller'] &&
+              $this->request->getParam('action') == $subMenu['action']
             )? 'active' : '' : '';
             echo $this->Html->tag('li',$this->Html->link($subMenuLabel, $subMenu, ['escape' => false]),['class' => $active]);
           }
@@ -108,8 +108,8 @@ $menu = Configure::read('Menus.'.$this->request->session()->read('Auth.User.role
         }else
         {
           $active = (!empty($m['controller']))? (
-            $this->request->params['controller'] == $m['controller'] &&
-            $this->request->params['action'] == $m['action']
+            $this->request->getParam('controller') == $m['controller'] &&
+            $this->request->getParam('action') == $m['action']
           )? 'active' : '' : '';
           echo $this->Html->tag('li',$this->Html->link($header, $m, ['escape' => false]),['class' => $active]);
         }
