@@ -43,3 +43,6 @@
 *.mwb binary
 *.mwb.bak binary
 *.zip binary
+*.psd binary
+*.ai binary
+*.indd binary
