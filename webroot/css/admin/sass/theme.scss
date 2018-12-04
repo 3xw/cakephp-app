@@ -53,8 +53,9 @@ a, a:hover{color:$link--color;text-decoration: none;}
     float: right;
     &:after{content:'';display:block;clear:both;}
   }
-
 }
+
+label{display:block; font-size: 1.5rem; font-weight: 700;margin-top: 1.5rem; margin-bottom: 0.5rem}
 
 .label{
   font-size: 1.2rem;line-height: 1.2rem;padding:5px;
@@ -68,7 +69,6 @@ a, a:hover{color:$link--color;text-decoration: none;}
 }
 
 .alert{
-
   position:relative;background:map-get($colors, 'grey');color:white;border:0px;border-radius: $border--radius;padding:20px 20px 20px 70px;margin-top: $margin--mini;font-size: 1.4rem;line-height: 1.8rem;
 
   *{margin:0;color:white;font-size: 1.6rem;line-height:2rem;}
@@ -157,7 +157,7 @@ a, a:hover{color:$link--color;text-decoration: none;}
 }
 
 .card{
-  width: 100%;padding: $padding--semi;
+  width: 100%;
   img{align-self: center}
   .card{padding: 0;}
   .card.border-0 .card-body{padding: 0;}
@@ -165,6 +165,7 @@ a, a:hover{color:$link--color;text-decoration: none;}
     .btn{margin-bottom: 0;}
   }
 }
+
 
 .login .card{padding:$padding--semi $padding--default;}
 
@@ -248,7 +249,12 @@ table{
 }
 
 .card-footer,
-.card-header{background: transparent;border: 0;}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
 .attachment-trumbowyg.form-control{padding: 0;border: 0;}
 
 
