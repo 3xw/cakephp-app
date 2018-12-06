@@ -23,6 +23,14 @@ class UsersController extends CakeDCUsersController
     'maxLimit' => 200,
   ];
 
+  public function initialize()
+  {
+    parent::initialize();
+    $this->loadComponent('Search.Prg', [
+      'actions' => ['index']
+    ]);
+  }
+
   public function view($id = null)
   {
     $user = $this->Users->get($id,['contain' => ['Attachments']]);
@@ -30,11 +38,25 @@ class UsersController extends CakeDCUsersController
     $this->set('_serialize', ['user']);
   }
 
+  /**
+   * Index method
+   *
+   * @return \Cake\Http\Response|void
+   */
   public function index()
   {
-    $this->set('users', $this->paginate($this->Users->find('search', ['search' => $this->request->query])));
-    $this->set(compact('users'));
-    $this->set('_serialize', ['users']);
+      $query = $this->Users->find('search', ['search' => $this->request->query])->contain([]);
+      if (isset($this->request->params['?'])) {
+        if (!$query->count()) {
+          $this->Flash->error(__('No result.'));
+        }else{
+          $this->Flash->success($query->count()." ".__('result(s).'));
+        }
+        $this->set('q',$this->request->params['?']['q']);
+      }
+      $users = $this->paginate($query);
+      $this->set(compact('users'));
+      $this->set('_serialize', ['users']);
   }
 
   public function add()
@@ -74,9 +96,9 @@ class UsersController extends CakeDCUsersController
     $this->set('_serialize', ['user']);
   }
 
-  public function editByUser($id = null)
+  public function editByUser()
   {
-    $user = $this->Users->get($id,[
+    $user = $this->Users->get($this->Auth->user('id'),[
       'contain' => ['Attachments']
     ]);
     if ($this->request->is(['patch', 'post', 'put'])) {

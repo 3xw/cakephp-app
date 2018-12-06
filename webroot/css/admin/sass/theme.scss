@@ -69,7 +69,7 @@ label{display:block; font-size: 1.5rem; font-weight: 700;margin-top: 1.5rem; mar
 }
 
 .alert{
-  position:relative;background:map-get($colors, 'grey');color:white;border:0px;border-radius: $border--radius;padding:20px 20px 20px 70px;margin-top: $margin--mini;font-size: 1.4rem;line-height: 1.8rem;
+  position:relative;background:map-get($colors, 'grey');color:white;border:0px;border-radius: $border--radius;padding:20px 20px 20px 70px;font-size: 1.4rem;line-height: 1.8rem;
 
   *{margin:0;color:white;font-size: 1.6rem;line-height:2rem;}
   &:before{position:absolute;top:auto;bottom:auto;left:20px;font-size: 2.2rem;line-height: 2.2rem;height:calc(100% - 40px);display:flex;flex-direction: column;justify-content: center;font-family: 'Material Icons';word-wrap:initial;}
