@@ -65,24 +65,44 @@ foreach( $languages as $lng )
           $inputConf['content'] = ($lng == I18n::defaultLocale())? $field['Attachment.trumbowyg']['content']->$fieldName : $field['Attachment.trumbowyg']['content']->_translations[$lng]->$key;
         }
         $fieldInputs .= $this->Attachment->trumbowyg($fieldName,$inputConf);
-      }else
+      }elseif(!empty($field['Trois/Tinymce.tinymce']))
       {
-        $inputConf = array_merge($inputConf, $field);
-        $inputConf['class'] .= ' form-control '.$class;
-        $fieldInputs .= $this->Form->input($fieldName, $inputConf);
+        $inputConf = array_merge($inputConf, $field['Trois/Tinymce.tinymce']);
+        $inputConf['init']['class'] = ' no-trumbowyg '.$class;
+        $inputConf['init']['label'] = $label;
+        $inputConf['field'] = $fieldName;
+        if(!empty($field['Trois/Tinymce.tinymce']['value'])){
+          $inputConf['value'] = ($lng == I18n::defaultLocale())? $field['Trois/Tinymce.tinymce']['value']->$fieldName : $field['Trois/Tinymce.tinymce']['value']->_translations[$lng]->$key;
+        }
+        $fieldInputs .= $this->element('Trois/Tinymce.tinymce', [
+          'field' => $inputConf['field'],
+          'value' => $inputConf['value'],
+          'required' => $inputConf['required'],
+          'init' => [ // optional
+              'class' => $inputConf['init']['class'],
+              'label' => $inputConf['init']['label'],
+              'external_plugins' => (!empty($inputConf['init']['external_plugins']))? $inputConf['init']['external_plugins'] : null,
+              'attachment_settings' => (!empty($inputConf['init']['attachment_settings']))? $this->Attachment->jsSetup($fieldName, $inputConf['init']['attachment_settings']) : null
+            ]
+          ]);
+        }else
+        {
+          $inputConf = array_merge($inputConf, $field);
+          $inputConf['class'] .= ' form-control '.$class;
+          $fieldInputs .= $this->Form->input($fieldName, $inputConf);
+        }
       }
+      $i++;
     }
-    $i++;
   }
-}
 
-?>
-<div class="locale-area">
-  <ul id="locale-selector-ul" class="nav nav-tabs" role="tablist">
-    <?= $li; ?>
-  </ul>
-  <div class="tab-locale">
-    <?= $fieldInputs ?>
-    <?= $originalFieldInputs ?>
+  ?>
+  <div class="locale-area">
+    <ul id="locale-selector-ul" class="nav nav-tabs" role="tablist">
+      <?= $li; ?>
+    </ul>
+    <div class="tab-locale">
+      <?= $fieldInputs ?>
+      <?= $originalFieldInputs ?>
+    </div>
   </div>
-</div>
