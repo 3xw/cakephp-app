@@ -61,16 +61,14 @@ module.exports = function(grunt) {
 					'webroot/js/front/vendor.min.js': [
 						'webroot/js/front/vendor/jquery/jquery-3.2.1.min.js',
 						'webroot/js/front/vendor/moment/moment.js',
-						'webroot/js/front/vendor/popper/popper.min.js',
 						'webroot/js/front/vendor/bootstrap/bootstrap.min.js',
 						'webroot/js/front/vendor/imagesloaded/imagesloaded.js',
 						'webroot/js/front/vendor/isotope/isotope.pkgd.min.js',
-						'webroot/js/front/vendor/vuejs/vue.js',
+						'webroot/js/front/vendor/vuejs/vue2.js',
 						'webroot/js/front/vendor/vuejs/vue-resource.js'
 					],
 					'webroot/js/admin/vendor.min.js': [
 						'webroot/js/admin/vendor/jquery/jquery-3.2.1.min.js',
-						'webroot/js/admin/vendor/popper/popper.min.js',
 						'webroot/js/admin/vendor/moment/moment.js',
 						'webroot/js/admin/vendor/bootstrap/bootstrap.min.js',
 						'webroot/js/admin/vendor/select2/select2.min.js',

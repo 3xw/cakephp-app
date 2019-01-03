@@ -6,16 +6,17 @@ $margin--semi:20px;
 $margin--default:40px;
 $margin--double:80px;
 
-$default-font--light:'Arial';
-$default-font--book:'Arial';
-$default-font--medium:'Arial';
-$default-font--bold:'Arial';
+$font--default: 'Arial';
+$font--heading: 'Arial';
 
 $break--phone: 767px;
 $break--tablet: 991px;
 $break--desktop: 1199px;
 
-$font-color: black;
+$colors: (
+  'black': #000000,
+  'white': #FFFFFF,
+);
 
 /*
  *   IMPORTS
@@ -28,13 +29,13 @@ $font-color: black;
 /*
  *   FONTS
  *************/
-body{ font-family: $default-font--light;color:$font-color;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;letter-spacing: 1px;}
+body{ font-family: $font--default;color: map-get($colors, 'black');-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
 html{font-size: 62.5%;}
 body{font-size: 1.6rem;}
-h1{font-family: $default-font--medium;font-size: 3.5rem;text-transform:uppercase;letter-spacing: 5px;}
-h2{font-family: $default-font--medium;font-size: 3rem;text-transform:uppercase;letter-spacing: 3px;}
-h3{font-family: $default-font--medium;font-size:2rem;text-transform:uppercase;letter-spacing: 1px;}
-h4{font-family: $default-font--book;font-size:2rem;letter-spacing: 1px; }
+h1{font-family: $font--heading;font-size: 3.5rem;}
+h2{font-family: $font--heading;font-size: 3rem;}
+h3{font-family: $font--heading;font-size: 2rem;}
+h4{font-family: $font--heading;font-size: 2rem;}
 
 @media (max-width:$break--phone){
   h1{font-size: 2.5rem;}
@@ -46,23 +47,5 @@ h4{font-family: $default-font--book;font-size:2rem;letter-spacing: 1px; }
  *************/
 
 /*
- *   ANIMATION
- *************/
-@keyframes opacityIn { 0%{opacity: 0;} 100%{opacity: 1;} }
-@keyframes opacityOut { 0%{opacity: 1;} 100%{opacity: 0;} }
-
-/*
  *   ELEMS
  *************/
-
-/*
- *   HEADER
- *************/
-.navbar{}
-
-.footer{}
-
-/*
- *   BLOCKS - DEFAULT
- *************/
-.block-default{}
