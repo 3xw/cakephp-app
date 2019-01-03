@@ -12,8 +12,8 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakedc/users": "^8.0",
         "3xw/attachment": "^3.7.0",
-        "3xw/cakephp-utils":"^3.5",
-        "3xw/cakephp-tinymce": "^3.6"
+        "3xw/cakephp-utils":"^3.7.0",
+        "3xw/cakephp-tinymce": "^3.7.0"
     },
     "require-dev": {
         "cakephp/bake": "^1.9.0",
@@ -22,7 +22,7 @@
         "josegonzalez/dotenv": "3.*",
         "phpunit/phpunit": "^5|^6",
         "psy/psysh": "@stable",
-        "3xw/cakephp-bake": "dev-master as 3.7.0"
+        "3xw/cakephp-bake": "^3.7.0"
     },
     "suggest": {
         "admad/cakephp-i18n": "i18n",
