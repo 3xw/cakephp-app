@@ -59,6 +59,7 @@ module.exports = function(grunt) {
 			vendor: {
 				files: {
 					'webroot/js/front/vendor.min.js': [
+						'webroot/js/front/vendor/3xw/ie-fix.js',
 						'webroot/js/front/vendor/jquery/jquery-3.2.1.min.js',
 						'webroot/js/front/vendor/moment/moment.js',
 						'webroot/js/front/vendor/bootstrap/bootstrap.min.js',
@@ -68,6 +69,7 @@ module.exports = function(grunt) {
 						'webroot/js/front/vendor/vuejs/vue-resource.js'
 					],
 					'webroot/js/admin/vendor.min.js': [
+						'webroot/js/admin/vendor/3xw/ie-fix.js',
 						'webroot/js/admin/vendor/jquery/jquery-3.2.1.min.js',
 						'webroot/js/admin/vendor/moment/moment.js',
 						'webroot/js/admin/vendor/bootstrap/bootstrap.min.js',
