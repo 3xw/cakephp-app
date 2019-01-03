@@ -11,7 +11,6 @@ module.exports = function(grunt) {
 					'webroot/css/admin/vendor.min.css': [
 						'webroot/css/admin/vendor/bootstrap/bootstrap.min.css',
 						'webroot/css/admin/vendor/select2/select2.min.css',
-						'webroot/css/admin/vendor/trumbowyg/trumbowyg.min.css',
 						'webroot/css/admin/vendor/3xw/animate.min.css',
 					]
 				}
@@ -75,8 +74,6 @@ module.exports = function(grunt) {
 						'webroot/js/admin/vendor/moment/moment.js',
 						'webroot/js/admin/vendor/bootstrap/bootstrap.min.js',
 						'webroot/js/admin/vendor/select2/select2.min.js',
-						'webroot/js/admin/vendor/trumbowyg/trumbowyg.min.js',
-						'webroot/js/admin/vendor/trumbowyg/plugins/cleanpaste/trumbowyg.cleanpaste.min.js',
 						'webroot/js/admin/vendor/vuejs/vue2.js',
 						'webroot/js/admin/vendor/vuejs/vue-resource.min.js'
 					]

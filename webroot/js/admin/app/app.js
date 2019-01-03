@@ -20,27 +20,6 @@
     $('select').select2();
   }
 
-  var initTextarea = function(){
-    $('textarea:not(.no-trumbowyg)').trumbowyg({
-      btns: [
-          ['viewHTML'],
-          ['formatting'],
-          ['strong', 'em', 'del'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['unorderedList', 'orderedList'],
-          ['horizontalRule'],
-          ['removeformat'],
-          ['fullscreen']
-      ],
-      svgPath: webroot+'js/admin/vendor/trumbowyg/icons.svg',
-      autogrow: true,
-      resetCss: true,
-      removeFormatPasted: false
-    });
-  }
-
   var collapseIconChange = function(){
     $('[data-toggle="collapse"]:not(.navbar-toggler)').click(function(){
       var ico = $(this).find('i:last-child');
@@ -85,7 +64,6 @@
   {
     initViewJs();
     initSelect();
-    initTextarea();
     collapseIconChange();
     initI18n();
   }
