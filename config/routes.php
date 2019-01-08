@@ -21,7 +21,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
 // ADMIN SECTION
 Router::prefix('admin', function ($routes) {
-  //$routes->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
+  $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
   $routes->setExtensions(['json']);
   $routes->fallbacks(DashedRoute::class);
 });
