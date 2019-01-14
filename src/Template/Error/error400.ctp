@@ -2,7 +2,7 @@
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'error';
+$this->layout = 'default';
 
 if (Configure::read('debug')) :
     $this->layout = 'dev_error';
@@ -31,8 +31,19 @@ endif;
 $this->end();
 endif;
 ?>
-<h2><?= h($message) ?></h2>
-<p class="error">
-    <strong><?= __d('cake', 'Error') ?>: </strong>
-    <?= __d('cake', 'The requested address {0} was not found on this server.', "<strong>'{$url}'</strong>") ?>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto text-center">
+      <div class="utils--spacer-double"></div>
+
+      <h2><?= __d('cake', 'An Internal Error Has Occurred') ?></h2>
+
+      <p class="error">
+          <strong><?= __d('cake', 'Error') ?>: </strong>
+          <?= empty($error->getMessage())? h($message): $error->getMessage() ?>
+      </p>
+
+      <div class="utils--spacer-double"></div>
+    </div>
+  </div>
+</div>
