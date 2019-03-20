@@ -28,7 +28,6 @@ use Cake\Network\Exception\NotFoundException;
           </div>
           <!-- CONTENT -->
           <div class="card-body">
-
             <div class="row">
               <div class="col-md-6">
                   <h4>Environment</h4>
@@ -121,7 +120,12 @@ use Cake\Network\Exception\NotFoundException;
                   <?php endif; ?>
                   </ul>
               </div>
+              <div class="clearfix"></div>
 
+              <div class="col-md-6">
+                <h4>Webpack</h4>
+                <?= $this->Vue->component('exemple', ['name' => 'Exemple']) ?>
+              </div>
             </div>
 
           </div>

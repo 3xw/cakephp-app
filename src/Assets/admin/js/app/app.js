@@ -1,19 +1,8 @@
+import ComponentLoader from '../../vue/componentLaoder.vue';
 (function(scope, $, Vue){
 
   /* VUE WARPPER
   *************************/
-  var initViewJs = function()
-  {
-    Vue.http.interceptors.unshift(function(request, next) {
-        next(function(response) {
-            if(typeof response.headers['content-type'] != 'undefined') {
-                response.headers['Content-Type'] = response.headers['content-type'];
-            }
-        });
-    });
-    var adminApp = new Vue({el: "#admin-app"});
-  }
-
   var webroot = $('#admin-app').attr('data-webroot');
 
   var initSelect = function(){
@@ -62,13 +51,21 @@
 
   var main = function()
   {
-    initViewJs();
+
     initSelect();
     collapseIconChange();
     initI18n();
   }
 
-  $(document).ready(main);
+  $(document).ready(function(){
+    window.adminApp = new Vue({
+      el: "#admin-app",
+      components: {
+        'component-loader': ComponentLoader
+      }
+    });
+    main()
+  });
 
 
 })(window, jQuery, Vue);

@@ -1,12 +1,21 @@
 // CSS
-require('./../vendor/css/3xw/animate.min.css')
-require('./../vendor/css/bootstrap/bootstrap.min.css')
+import './../vendor/css/bootstrap/bootstrap.min.css';
+import './../vendor/css/3xw/animate.min.css';
+
 //JS
-require('./../vendor/js/3xw/ie-fix.js')
-require('./../vendor/js/jquery/jquery-3.2.1.min.js')
-require('./../vendor/js/moment/moment.js')
-require('./../vendor/js/bootstrap/bootstrap.min.js')
-require('./../vendor/js/imagesloaded/imagesloaded.js')
-require('./../vendor/js/isotope/isotope.pkgd.min.js')
-require('./../vendor/js/vuejs/vue2.js')
-require('./../vendor/js/vuejs/vue-resource.min.js')
+import './../vendor/js/3xw/ie-fix.js';
+
+import $ from 'jquery';
+window.$ = $;
+window.jQuery = $;
+
+import './../vendor/js/moment/moment.js';
+import './../vendor/js/bootstrap/bootstrap.min.js';
+import './../vendor/js/select2/select2.min.js';
+import './../vendor/js/imagesloaded/imagesloaded.js';
+import './../vendor/js/isotope/isotope.pkgd.min.js';
+
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+window.Vue = Vue;
+window.Vue.use(VueResource);

@@ -4,47 +4,66 @@ const prefix = process.env;
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const vendorConfig = env => {
   return {
-    mode: 'production',
+    mode: 'production', // developement
     name: 'vendorConfig',
-    entry: './src/Assets/'+env.prefix+'/vendor.conf.js',
+    entry: path.join(__dirname, 'src/Assets/'+env.prefix, 'vendor.conf.js'),
     output: {
       path: path.resolve(__dirname, 'webroot'),
-      filename: 'js/'+env.prefix+'/vendor.min.js'
+      filename: 'js/'+env.prefix+'/vendor.min.js',
     },
     optimization: {
       minimizer: [new UglifyJsPlugin({
+        extractComments: false,
         parallel: true,
+        uglifyOptions: {
+          keep_fnames: true,
+          mangle: true,
+        }
       })],
     },
     module: {
-      rules: [{
-        test: /\.(css)$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-          {
-            loader: 'postcss-loader',
+      rules: [
+        {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
             options: {
-              ident: 'postcss',
-              plugins: loader => [
-                require('cssnano')({
-                  preset: ['default', {
-                    discardComments: {
-                      removeAll: true,
-                    }
-                  }]
-                })
+              presets: ['@babel/preset-env'],
+              plugins: [
+                "@babel/plugin-syntax-dynamic-import"
               ]
             }
           }
-        ]
-      }]
+        },
+        {
+          test: /\.(css)$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: loader => [
+                  require('cssnano')({
+                    preset: ['default', {
+                      discardComments: {
+                        removeAll: true,
+                      }
+                    }]
+                  })
+                ]
+              }
+            }
+          ]
+        }
+      ]
     },
     plugins: [
       new MiniCssExtractPlugin({
@@ -57,26 +76,53 @@ const vendorConfig = env => {
       new webpack.IgnorePlugin({
         resourceRegExp: /got$/,
         contextRegExp: /vuejs$/
-      })
-    ]
+      }),
+    ],
+    resolve: {
+      alias: {
+          'vue$': 'vue/dist/vue.esm.js'
+      },
+      extensions: ['*', '.js', '.vue', '.json']
+    },
   }
 };
 
 const themeAppConfig = env => {
   return {
-    mode: 'production',
+    mode: 'production', // developement
     name: 'themeAppConfig',
     entry: './src/Assets/'+env.prefix+'/themeApp.conf.js',
     output: {
       path: path.resolve(__dirname, 'webroot'),
-      filename: 'js/'+env.prefix+'/app.min.js'
+      filename: 'js/'+env.prefix+'/app.min.js',
+      chunkFilename: 'js/'+env.prefix+'/components/[name].min.js',
     },
     watch: true,
     optimization: {
       minimizer: [new UglifyJsPlugin()],
     },
     module: {
-      rules: [{
+      rules: [
+        {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              "@babel/plugin-syntax-dynamic-import"
+            ]
+          }
+        }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          cacheBusting: true,
+        }
+      },
+      {
         test: /\.(scss)$/,
         use: [
           { loader: MiniCssExtractPlugin.loader, },
@@ -95,53 +141,30 @@ const themeAppConfig = env => {
           { loader: 'sass-loader' }
 
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       }]
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: 'css/'+env.prefix+'/theme.min.css',
-      })
-    ]
-  }
-}
-
-const vueConfig = env => {
-  return {
-    mode: 'production',
-    name: 'vueConfig',
-    watch: true,
-    entry: './src/Assets/'+env.prefix+'/vue.conf.js',
-    output: {
-      path: path.resolve(__dirname, 'webroot'),
-      chunkFilename: 'js/'+env.prefix+'/components/[name].min.js',
-      filename: 'js/'+env.prefix+'/components/[name].min.js'
-    },
-    module: {
-      rules: [
-        {
-       test: /\.vue$/,
-       loader: 'vue-loader'
-       },
-       {
-         test: /\.js$/,
-         loader: 'babel-loader'
-       },
-       {
-         test: /\.css$/,
-         use: [
-           'vue-style-loader',
-           'css-loader',
-           'sass-loader'
-         ]
-       }
-      ]
-    },
-    plugins: [
+        chunkFilename: 'css/'+env.prefix+'/components/[name].min.css',
+      }),
       new VueLoaderPlugin()
-    ]
+    ],
+    resolve: {
+      alias: {
+          'vue$': 'vue/dist/vue.esm.js'
+      },
+      extensions: ['*', '.js', '.vue', '.json']
+    },
   }
 }
 
-
-
-module.exports = [vendorConfig, themeAppConfig, vueConfig];
+module.exports = [vendorConfig, themeAppConfig];
