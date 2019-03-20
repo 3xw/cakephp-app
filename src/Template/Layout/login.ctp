@@ -65,7 +65,7 @@
 
   <?= $this->Html->css([
     'admin/vendor.min.css?v='.md5_file(APP.'../webroot/css/admin/vendor.min.css'),
-    'admin/admin.min.css?v='.md5_file(APP.'../webroot/css/admin/admin.min.css')
+    'admin/admin.min.css?v='.md5_file(APP.'../webroot/css/admin/theme.min.css')
   ]);
   ?>
 
@@ -85,15 +85,5 @@
   ])
   ?>
   <?= $this->fetch('script') ?>
-  <script type="text/javascript">
-  $().ready(function(){
-    lbd.checkFullPageBackgroundImage();
-
-    setTimeout(function(){
-      // after 1000 ms we add the class animated to the login/register card
-      $('.card').removeClass('card-hidden');
-    }, 700)
-  });
-  </script>
 </body>
 </html>

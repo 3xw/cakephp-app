@@ -45,9 +45,11 @@ use Cake\I18n\I18n;
   (function (document, navigator, standalone) { if ((standalone in navigator) && navigator[standalone]) { var curnode, location = document.location, stop = /^(a|html)$/i; document.addEventListener('click', function (e) { curnode = e.target; while (!(stop).test(curnode.nodeName)) { curnode = curnode.parentNode; } if ('href' in curnode && (curnode.href.indexOf('http') || ~curnode.href.indexOf(location.host))) { e.preventDefault(); location.href = curnode.href; } }, false); } })(document, window.navigator, 'standalone');
   </script>
   <?= $this->Html->meta('icon') ?>
-
-  <?= $this->Html->css(['front/vendor.min.css?v='.md5_file(APP.'../webroot/css/front/vendor.min.css'), 'front/front.min.css?v='.md5_file(APP.'../webroot/css/front/front.min.css')]) ?>
   <?= $this->fetch('meta') ?>
+  <?= $this->Html->css([
+    'front/vendor.min.css?v='.md5_file(APP.'../webroot/css/front/vendor.min.css'),
+    'front/theme.min.css?v='.md5_file(APP.'../webroot/css/front/theme.min.css')])
+  ?>
   <?= $this->fetch('css') ?>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -65,8 +67,8 @@ use Cake\I18n\I18n;
 
   <?= $this->Html->script([
     'front/vendor.min.js?v='.md5_file(APP.'../webroot/js/front/vendor.min.js'),
-    'front/app.min.js?v='.md5_file(APP.'../webroot/js/front/app.min.js'),
-  ]) ?>
+    'front/app.min.js?v='.md5_file(APP.'../webroot/js/front/app.min.js')])
+  ?>
   <?= $this->fetch('script') ?>
 </body>
 </html>

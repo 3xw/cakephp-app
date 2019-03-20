@@ -37,6 +37,7 @@ class AppView extends View
     public function initialize()
     {
       $this->loadHelper('Form',['templates' => 'app_form']);
+      $this->loadHelper('Vue');
       $this->loadHelper('Attachment.Attachment');
     }
 }
