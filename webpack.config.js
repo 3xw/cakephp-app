@@ -132,14 +132,14 @@ const themeAppConfig = env => {
             options: {
               ident: 'postcss',
               plugins: loader => [
+                require('postcss-preset-env')(),
                 require('pixrem')(),
                 require('autoprefixer')({browsers: 'last 10 versions'}),
                 require('cssnano')()
               ]
             }
           },
-          { loader: 'sass-loader' }
-
+          { loader: 'sass-loader' },
         ]
       },
       {

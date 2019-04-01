@@ -34,7 +34,7 @@
     "cssnano": "^4.1.10",
     "jquery": "^3.3.1",
     "pixrem": "^5.0.0",
-    "postcss-preset-env": "^6.5.0",
+    "postcss-preset-env": "^6.6.0",
     "vue": "^2.6.8",
     "vue-loader": "^15.7.0",
     "vue-resource": "^1.5.1",

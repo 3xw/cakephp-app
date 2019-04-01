@@ -1,3 +1,4 @@
+import ComponentLoader from '../../vue/componentLaoder.vue';
 (function(scope, $, Vue){
 
   /* VUE WARPPER
