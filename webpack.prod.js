@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
+const conf = require('dotenv').config({path: './conf.env'});
+const webroot = conf.PUBLIC_PATH;
 const prefix = process.env;
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -8,7 +10,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const vendorConfig = env => {
   return {
-    mode: 'production', // developement
+    mode: 'production',
     name: 'vendorConfig',
     entry: path.join(__dirname, 'src/Assets/'+env.prefix, 'vendor.conf.js'),
     output: {
@@ -89,15 +91,15 @@ const vendorConfig = env => {
 
 const themeAppConfig = env => {
   return {
-    mode: 'production', // developement
+    mode: 'production',
     name: 'themeAppConfig',
     entry: './src/Assets/'+env.prefix+'/themeApp.conf.js',
     output: {
       path: path.resolve(__dirname, 'webroot'),
+      publicPath: webroot,
       filename: 'js/'+env.prefix+'/app.min.js',
       chunkFilename: 'js/'+env.prefix+'/components/[name].min.js',
     },
-    watch: true,
     optimization: {
       minimizer: [new UglifyJsPlugin()],
     },

@@ -31,3 +31,7 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Webpack ENV && built assets files #
+#####################################
+/webpack.env

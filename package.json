@@ -4,10 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "vendorFront": "webpack --env.prefix=front --config-name vendorConfig",
-    "vendorAdmin": "webpack --env.prefix=admin --config-name vendorConfig",
-    "watchFront": "webpack --env.prefix=front --config-name themeAppConfig",
-    "watchAdmin": "webpack --env.prefix=admin --config-name themeAppConfig"
+    "vendorFront": "webpack --env.prefix=front --config webpack.dev.js --config-name vendorConfig",
+    "vendorAdmin": "webpack --env.prefix=admin --config webpack.dev.js --config-name vendorConfig",
+    "watchFront": "webpack --env.prefix=front --config webpack.dev.js --config-name themeAppConfig",
+    "watchAdmin": "webpack --env.prefix=admin --config webpack.dev.js --config-name themeAppConfig",
+    "build": "webpack --env.prefix=admin --config webpack.prod.js && webpack --env.prefix=front --config webpack.prod.js"
   },
   "keywords": [],
   "author": "",
@@ -32,8 +33,10 @@
     "babel-loader": "^8.0.5",
     "bootstrap": "^4.3.1",
     "cssnano": "^4.1.10",
+    "dotenv": "^7.0.0",
     "jquery": "^3.3.1",
     "pixrem": "^5.0.0",
+    "popper.js": "^1.14.7",
     "postcss-preset-env": "^6.6.0",
     "vue": "^2.6.8",
     "vue-loader": "^15.7.0",
