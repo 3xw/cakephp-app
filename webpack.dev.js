@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-const conf = require('dotenv').config({path: './conf.env'});
-const webroot = conf.PUBLIC_PATH;
+const conf = require('dotenv').config({path: './webpack.env'});
+const webroot = conf.parsed.PUBLIC_PATH;
 const prefix = process.env;
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -142,6 +142,7 @@ const themeAppConfig = env => {
               ]
             }
           },
+          { loader: 'resolve-url-loader' },
           { loader: 'sass-loader' },
         ]
       },
@@ -152,6 +153,17 @@ const themeAppConfig = env => {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+          test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [{
+              loader: 'file-loader',
+              options: {
+                  name: '[name].[ext]',
+                  publicPath: webroot+'fonts/',
+                  outputPath: 'fonts/'
+              }
+          }]
       }]
     },
     plugins: [
