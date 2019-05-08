@@ -65,7 +65,7 @@
 
   <?= $this->Html->css([
     'admin/vendor.min.css?v='.md5_file(APP.'../webroot/css/admin/vendor.min.css'),
-    'admin/admin.min.css?v='.md5_file(APP.'../webroot/css/admin/theme.min.css')
+    'admin/theme.min.css?v='.md5_file(APP.'../webroot/css/admin/theme.min.css')
   ]);
   ?>
 
