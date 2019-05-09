@@ -98,7 +98,7 @@ const themeAppConfig = env => {
       path: path.resolve(__dirname, 'webroot'),
       publicPath: webroot,
       filename: 'js/'+env.prefix+'/app.min.js',
-      chunkFilename: 'js/'+env.prefix+'/components/[name].min.js',
+      chunkFilename: 'js/'+env.prefix+'/components/[hash].[name].min.js',
     },
     optimization: {
       minimizer: [new UglifyJsPlugin()],
