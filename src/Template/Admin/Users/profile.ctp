@@ -26,22 +26,7 @@
 <div class="utils--spacer-semi"></div>
 <div class="row no-gutters">
   <div class="col-6 mx-auto">
-    <div class="card">
-      <div class="utils--spacer-default"></div>
-      <!-- pic -->
-      <?php
-      if(empty($user->attachment))
-      {
-        echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'rounded-circle']);
-      }else{
-        echo $this->Attachment->image([
-          'image' => $user->attachment->path,
-          'profile' => $user->attachment->profile,
-          'width' => 678,
-          'cropratio' => '1:1'
-        ],['class' =>'rounded-circle']);
-      }
-      ?>
+    <div class="card"> 
       <!-- CONTENT -->
       <div class="card-body text-center">
         <h4 class="title">

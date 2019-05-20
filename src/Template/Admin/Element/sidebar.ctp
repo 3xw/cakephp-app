@@ -22,22 +22,6 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.User.r
 
     <!-- USER -->
     <div class="sidebar__user text-center">
-      <div class="sidebar__user-picture">
-        <?php
-        if(empty($this->request->getSession()->read('Auth.User.attachment')))
-        {
-          echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'sidebar__avatar rounded-circle img-fluid']);
-        }else{
-          echo $this->Attachment->image([
-            'image' => $this->request->getSession()->read('Auth.User.attachment.path'),
-            'profile' => $this->request->getSession()->read('Auth.User.attachment.profile'),
-            'width' => 678,
-            'cropratio' => '1:1'
-          ],['class' =>'sidebar__avatar rounded-circle img-fluid']);
-        }
-        ?>
-      </div>
-      <div class="utils--spacer-mini"></div>
 
       <div class="sidebar__user-menu">
         <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
