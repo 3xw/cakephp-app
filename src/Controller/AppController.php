@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -15,7 +17,6 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Cake\Event\Event;
 
 /**
  * Application Controller
@@ -27,7 +28,6 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
     /**
      * Initialization hook method.
      *
@@ -37,58 +37,17 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('CakeDC/Users.UsersAuth');
 
         /*
-         * Enable the following components for recommended CakePHP security settings.
+         * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
-    }
-
-    public function beforeFilter(Event $event)
-    {
-      //debug($this->request->session()->read());
-      // auth
-      if (empty($this->request->params['prefix']))
-      {
-        if( !empty($this->request->params['plugin']) && ($this->request->params['plugin'] == 'CakeDC/Users' || $this->request->params['plugin'] == 'attachment'))
-        {
-          $this->Auth->allow(['login','register','proceed']);
-        }else
-        {
-          $this->Auth->allow();
-        }
-      }else
-      {
-        $this->Auth->allow(['login','register']);
-      }
-
-      $this->set("referer", $this->referer());
-    }
-
-    /**
-     * Before render callback.
-     *
-     * @param \Cake\Event\Event $event The beforeRender event.
-     * @return \Cake\Http\Response|null|void
-     */
-    public function beforeRender(Event $event)
-    {
-        // Note: These defaults are just to get started quickly with development
-        // and should not be used in production. You should instead set "_serialize"
-        // in each action as required.
-        if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
-        ) {
-            $this->set('_serialize', true);
-        }
     }
 }

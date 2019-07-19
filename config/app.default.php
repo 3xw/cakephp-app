@@ -42,8 +42,8 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'fr_CH'),
-        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'Europe/Paris'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
+        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
         'base' => false,
         'dir' => 'src',
         'webroot' => 'webroot',
@@ -55,8 +55,8 @@ return [
         'jsBaseUrl' => 'js/',
         'paths' => [
             'plugins' => [ROOT . DS . 'plugins' . DS],
-            'templates' => [APP . 'Template' . DS],
-            'locales' => [APP . 'Locale' . DS],
+            'templates' => [ROOT . DS . 'templates' . DS],
+            'locales' => [RESOURCES . 'locales' . DS],
         ],
     ],
 
@@ -103,7 +103,7 @@ return [
         '_cake_core_' => [
             'className' => 'Cake\Cache\Engine\FileEngine',
             'prefix' => 'myapp_cake_core_',
-            'path' => CACHE . 'persistent/',
+            'path' => CACHE . 'persistent' . DS,
             'serialize' => true,
             'duration' => '+1 years',
             'url' => env('CACHE_CAKECORE_URL', null),
@@ -118,7 +118,7 @@ return [
         '_cake_model_' => [
             'className' => 'Cake\Cache\Engine\FileEngine',
             'prefix' => 'myapp_cake_model_',
-            'path' => CACHE . 'models/',
+            'path' => CACHE . 'models' . DS,
             'serialize' => true,
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEMODEL_URL', null),
@@ -250,16 +250,20 @@ return [
             'persistent' => false,
             'host' => 'localhost',
             /*
-             * CakePHP will use the default DB port based on the driver selected
-             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
-             * the following line and set the port accordingly
+             * CakePHP will use the default DB port based on the driver selected.
+             * For instance, MariaDB/MySQL on MAMP uses port 8889
+             * thus MAMP users will want to uncomment the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
             'username' => 'my_app',
             'password' => 'secret',
             'database' => 'my_app',
             /*
-             * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
+             * When using PostgreSQL driver you will need to define the schema as well.
+             */
+            //'schema' => 'myapp',
+            /*
+             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
              */
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
@@ -350,8 +354,8 @@ return [
      *
      * ## Options
      *
-     * - `cookie` - The name of the cookie to use. Defaults to 'CAKEPHP'. Avoid using `.` in cookie names,
-     *   as PHP will drop sessions from cookies with `.` in the name.
+     * - `cookie` - The name of the cookie to use. Defaults to value set for `session.name` php.ini config.
+     *    Avoid using `.` in cookie names, as PHP will drop sessions from cookies with `.` in the name.
      * - `cookiePath` - The url path for which session cookie is set. Maps to the
      *   `session.cookie_path` php.ini config. Defaults to base path of app.
      * - `timeout` - The time in minutes the session should be valid for.
