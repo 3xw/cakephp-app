@@ -1,0 +1,105 @@
+/*
+ *   MIXINS
+ *************/
+
+/*** MIXIN -- BREAKPOINTS ****/
+@mixin respond-to($breakpoint) {
+  @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}
+/*** MIXIN -- COLORS ****/
+@mixin hover-background-lighten($color) {
+    background-color: $color;
+    &:hover { background-color: lighten($color,10%); }
+}
+@mixin hover-background-darken($color) {
+    background-color: $color;
+    &:hover { background-color: darken($color,10%); }
+}
+@mixin hover-text-lighten($color) {
+    color: $color;
+    &:hover { color: lighten($color,20%); }
+}
+@mixin hover-text-darken($color) {
+    color: $color;
+    &:hover { color: darken($color,20%); }
+}
+
+/*
+ *   CLASSES
+ *************/
+
+/*** CLASSES -- COLORS ****/
+@each $name, $hexa in $colors {
+  .color--#{$name} {
+    color: #{$hexa};
+  }
+  .bg--#{$name} {
+    background: #{$hexa} !important;
+  }
+  .section--#{$name}{
+    background: #{$hexa};
+  }
+  .block--#{$name}{
+    background: #{$hexa};
+  }
+  .btn--#{$name}{
+    background: #{$hexa};
+  }
+}
+
+/*
+ *   ATTR
+ *************/
+
+/*** ATTR -- RATIOS ****/
+[data-aspect-ratio] {
+    display: block; max-width: 100%; position: relative;
+    &:before { content: ''; display: block; }
+    > * { display: block; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+}
+@each $key, $value in $ratios {
+  [data-aspect-ratio="#{$key}"]:before { padding-top: #{$value}; }
+}
+
+
+/*
+ *   UTILS
+ *************/
+.utils--absolute-default{position:absolute;top:0;left:0;right:0;bottom:0;}
+
+.utils--margin-mini{margin:$margin--mini;}
+.utils--margin-semi{margin:$margin--semi;}
+.utils--margin-default{margin:$margin--default;}
+.utils--margin-double{margin:$margin--double;}
+
+.utils--vertical-margin-mini{margin:$margin--mini 0;}
+.utils--vertical-margin-semi{margin:$margin--semi 0;}
+.utils--vertical-margin-default{margin:$margin--default 0;}
+.utils--vertical-margin-double{margin:$margin--double 0;}
+
+.utils--horizontal-margin-mini{margin:0 $margin--mini;}
+.utils--horizontal-margin-semi{margin:0 $margin--semi;}
+.utils--horizontal-margin-default{margin:0 $margin--default;}
+.utils--horizontal-margin-double{margin:0 $margin--double;}
+
+.utils--padding-mini{padding:$padding--mini;}
+.utils--padding-semi{padding:$padding--semi;}
+.utils--padding-default{padding:$padding--default;}
+.utils--padding-double{padding:$padding--double;}
+
+.utils--vertical-padding-mini{padding:$padding--mini 0;}
+.utils--vertical-padding-semi{padding:$padding--semi 0;}
+.utils--vertical-padding-default{padding:$padding--default 0;}
+.utils--vertical-padding-double{padding:$padding--double 0;}
+
+.utils--horizontal-padding-mini{padding:0 $padding--mini;}
+.utils--horizontal-padding-semi{padding:0 $padding--semi;}
+.utils--horizontal-padding-default{padding:0 $padding--default;}
+.utils--horizontal-padding-double{padding:0 $padding--double;}
+
+.utils--spacer-mini{height:$margin--mini;}
+.utils--spacer-semi{height:$margin--semi;}
+.utils--spacer-default{height:$margin--default;}
+.utils--spacer-double{height:$margin--double;}

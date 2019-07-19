@@ -1,0 +1,93 @@
+/*
+ *   COLORS SHIT
+ *************/
+@mixin hover-background-lighten($color) {
+    background-color: $color;
+    &:hover {
+        background-color: lighten($color,10%);
+    }
+}
+@mixin hover-background-darken($color) {
+    background-color: $color;
+    &:hover {
+        background-color: darken($color,10%);
+    }
+}
+@mixin hover-text-lighten($color) {
+    color: $color;
+    &:hover {
+        color: lighten($color,20%);
+    }
+}
+@mixin hover-text-darken($color) {
+    color: $color;
+    &:hover {
+        color: darken($color,20%);
+    }
+}
+
+.no-scroll{overflow: hidden;}
+
+[data-aspect-ratio] {
+    display: block;
+    max-width: 100%;
+    position: relative;
+    &:before { content: ''; display: block; }
+    > * { display: block; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+}
+[data-aspect-ratio="3:1"]:before { padding-top: 33.33%; }
+[data-aspect-ratio="2:1"]:before { padding-top: 50%; }
+[data-aspect-ratio="16:9"]:before { padding-top: 56.25%; }
+[data-aspect-ratio="3:2"]:before { padding-top: 66.66%; }
+[data-aspect-ratio="4:3"]:before { padding-top: 75%; }
+[data-aspect-ratio="1:1"]:before { padding-top: 100%; }
+[data-aspect-ratio="3:4"]:before { padding-top: 133.33%; }
+[data-aspect-ratio="2:3"]:before { padding-top: 150%; }
+[data-aspect-ratio="9:16"]:before { padding-top: 177.77%; }
+[data-aspect-ratio="1:2"]:before { padding-top: 200%; }
+[data-aspect-ratio="1:3"]:before { padding-top: 300%; }
+
+@each $name, $hexa in $colors {
+  .color--#{$name} {
+    color: #{$hexa} !important;
+  }
+  .bg--#{$name} {
+    background: #{$hexa} !important;
+  }
+  .section--#{$name}{
+    background: #{$hexa};
+  }
+  .block--#{$name}{
+    background: #{$hexa};
+  }
+  .btn--#{$name}{
+    @include hover-background-lighten($hexa);
+  }
+
+  .hr--#{$name}{
+    background: #{$hexa} !important;
+  }
+
+  .badge--#{$name}{
+    background: #{$hexa};
+  }
+
+  .tag--#{$name}{
+    background: #{$hexa};
+  }
+
+  .label--#{$name}{
+    background: #{$hexa};
+  }
+
+}
+
+/*
+ *   UTILS
+ *************/
+.utils--absolute-default{position:absolute;top:0;left:0;right:0;bottom:0;}
+
+.utils--spacer-mini{height:$margin--mini;}
+.utils--spacer-semi{height:$margin--semi;}
+.utils--spacer-default{height:$margin--default;}
+.utils--spacer-double{height:$margin--double;}
