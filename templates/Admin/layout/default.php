@@ -24,7 +24,7 @@
   <div id="admin-app" data-webroot="<?= $this->request->getAttribute('webroot') ?>" class="page-wrap">
     <div class="row no-gutters">
       <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-        <?= $this->element('sidebar') ?>
+        <? /*echo $this->element('sidebar')*/ ?>
       </div>
       <div class="col-12 col-md-8 col-lg-9 col-xl-10">
         <?= $this->Flash->render() ?>

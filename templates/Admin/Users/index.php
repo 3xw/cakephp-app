@@ -24,7 +24,8 @@
 
       <div class="card-header">
         <h2 class="card-title">
-          <?= __('Users')?> <small><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></small>
+          <?= __('Users')?> <small><?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of
+     {{count}} total, starting on record {{start}}, ending on {{end}}') ?></small>
         </h2>
         <?= $this->Form->create('Search', ['novalidate', 'class'=>'', 'role'=>'search']) ?>
         <?= $this->Form->input('q', ['class'=>'form-control', 'placeholder'=>__('Search...'), 'label'=>false]) ?>
@@ -79,7 +80,8 @@
       <div class="card-footer">
         <div class="row no-gutters">
           <div class="col-6">
-            <?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?>
+            <?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of
+     {{count}} total, starting on record {{start}}, ending on {{end}}') ?>
           </div>
           <div class="col-6">
           <nav aria-label="pagination">

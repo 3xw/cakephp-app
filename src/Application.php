@@ -35,7 +35,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     if (Configure::read('debug')) $this->addPlugin('DebugKit');
 
     // Load more plugins here
-    //$this->addPlugin('Authentication');
+    $this->addPlugin('Authentication');
     //$this->addPlugin('Authorization');
   }
 
@@ -54,13 +54,31 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     ];
 
     // Load identifiers
-    $service->loadIdentifier('Authentication.Password', compact('fields'));
+    $service->loadIdentifier('Authentication.Password', [
+      'fields' => $fields,
+      'passwordHasher' => [
+        'className' => 'Authentication.Fallback',
+        'hashers' => [
+          'Authentication.Default',
+          [
+            'className' => 'Authentication.Legacy',
+            'hashType' => 'md5'
+          ],
+        ]
+      ]
+    ]);
 
     // Load the authenticators, you want session first
     $service->loadAuthenticator('Authentication.Session');
     $service->loadAuthenticator('Authentication.Form', [
       'fields' => $fields,
-      'loginUrl' => '/users/login'
+      'loginUrl' => [
+        'controller' => 'Users',
+        'action' => 'login',
+        'prefix' => 'admin',
+        'plugin' => false
+      ],
+      'checkFullUrl' => true
     ]);
 
     return $service;
@@ -74,8 +92,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
       'cacheTime' => Configure::read('Asset.cacheTime'),
     ]))
     ->add(new RoutingMiddleware($this))
-    ;//->add(new AuthenticationMiddleware($this))
-    //->add(new AuthorizationMiddleware($this));
+    ->add(new AuthenticationMiddleware($this))
+    ;//->add(new AuthorizationMiddleware($this));
 
     return $middlewareQueue;
   }
