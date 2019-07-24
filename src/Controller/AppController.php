@@ -19,8 +19,10 @@ class AppController extends Controller
     */
     //$this->loadComponent('Security');
 
+    /*
     $this->loadComponent('Authentication.Authentication', [
-      'logoutRedirect' => '/plugins/cakephp-app/admin/users/login'  // Default is false
+      'logoutRedirect' => ['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin', 'plugin' => false],  // Default is false
     ]);
+    */
   }
 }

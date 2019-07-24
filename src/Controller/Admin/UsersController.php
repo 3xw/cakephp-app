@@ -17,7 +17,6 @@ class UsersController extends AppController
     $result = $this->Authentication->getResult();
 
     // regardless of POST or GET, redirect if user is logged in
-    debug($result);
     if ($result->isValid())
     {
       $redirect = $this->request->getQuery('redirect', ['action' => 'index']);
@@ -25,10 +24,8 @@ class UsersController extends AppController
     }
 
     // display error if user submitted and authentication failed
-    if ($this->request->is(['post']) && !$result->isValid())
-    {
-      $this->Flash->error('Invalid username or password');
-    }
+    debug($result);
+    if ($this->request->is(['post']) && !$result->isValid()) $this->Flash->error('Invalid username or password');
   }
 
   public function index()

@@ -11,6 +11,10 @@ use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
+// Router
+use Cake\Routing\Router;
+
+/*
 // Authentication
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
@@ -24,8 +28,9 @@ use Authorization\AuthorizationService;
 use Authorization\AuthorizationServiceProviderInterface;
 use Authorization\Middleware\AuthorizationMiddleware;
 use Authorization\Policy\OrmResolve;
+*/
 
-class Application extends BaseApplication implements AuthenticationServiceProviderInterface//,AuthorizationServiceProviderInterface
+class Application extends BaseApplication //implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
 
   public function bootstrap(): void
@@ -35,10 +40,12 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     if (Configure::read('debug')) $this->addPlugin('DebugKit');
 
     // Load more plugins here
-    $this->addPlugin('Authentication');
+    //$this->addPlugin('Authentication');
     //$this->addPlugin('Authorization');
+    $this->addPlugin(\CakeDC\Users\Plugin::class);
   }
 
+  /*
   public function getAuthorizationService(ServerRequestInterface $request)
   {
     return new AuthorizationService(new OrmResolver());
@@ -72,17 +79,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     $service->loadAuthenticator('Authentication.Session');
     $service->loadAuthenticator('Authentication.Form', [
       'fields' => $fields,
-      'loginUrl' => [
-        'controller' => 'Users',
-        'action' => 'login',
-        'prefix' => 'admin',
-        'plugin' => false
-      ],
-      'checkFullUrl' => true
+      'urlChecker' => 'Authentication.CakeRouter',
+      'loginUrl' => ['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin', 'plugin' => false],
+      //'checkFullUrl' => true
     ]);
 
     return $service;
   }
+  */
 
   public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
   {
@@ -92,8 +96,13 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
       'cacheTime' => Configure::read('Asset.cacheTime'),
     ]))
     ->add(new RoutingMiddleware($this))
-    ->add(new AuthenticationMiddleware($this))
-    ;//->add(new AuthorizationMiddleware($this));
+    ;/*
+    ->add(new AuthenticationMiddleware($this,[
+      'unauthenticatedRedirect' => Router::url(['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin', 'plugin' => false], false),
+      'queryParam' => 'redirect',
+    ]))
+    ->add(new AuthorizationMiddleware($this));
+    */
 
     return $middlewareQueue;
   }
