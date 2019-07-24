@@ -37,11 +37,14 @@ class Application extends BaseApplication //implements AuthenticationServiceProv
   {
     parent::bootstrap();
     if (PHP_SAPI === 'cli') $this->bootstrapCli();
-    if (Configure::read('debug')) $this->addPlugin('DebugKit');
+    //if (Configure::read('debug')) $this->addPlugin('DebugKit');
 
     // Load more plugins here
     //$this->addPlugin('Authentication');
     //$this->addPlugin('Authorization');
+
+    // users
+    Configure::write('Users.config', ['users']);
     $this->addPlugin(\CakeDC\Users\Plugin::class);
   }
 

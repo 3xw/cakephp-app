@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 class AppController extends Controller
 {
@@ -18,11 +19,12 @@ class AppController extends Controller
     * see https://book.cakephp.org/3.0/en/controllers/components/security.html
     */
     //$this->loadComponent('Security');
-
-    /*
-    $this->loadComponent('Authentication.Authentication', [
-      'logoutRedirect' => ['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin', 'plugin' => false],  // Default is false
-    ]);
-    */
   }
+
+  /*
+  public function beforeFilter(EventInterface $event)
+  {
+    $this->Authentication->allowUnauthenticated('*');
+  }
+  */
 }
