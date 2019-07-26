@@ -4,7 +4,7 @@ use Cake\Routing\Router;
 $config = [
   'Users' => [
     // Table used to manage users
-    'table' => 'CakeDC/Users.Users',
+    'table' => 'Users',
     // Controller used to manage users plugin features & actions
     'controller' => 'CakeDC/Users.Users',
     // Password Hasher
@@ -51,7 +51,7 @@ $config = [
     'Profile' => [
       // Allow view other users profiles
       'viewOthers' => true,
-      'route' => ['plugin' => 'CakeDC/Users', 'controller' => 'Users', 'action' => 'profile'],
+      'route' => ['controller' => 'Users', 'action' => 'profile','prefix' => 'admin','plugin' => false],
     ],
     'Key' => [
       'Session' => [
@@ -74,7 +74,7 @@ $config = [
       ],
     ],
     // Avatar placeholder
-    'Avatar' => ['placeholder' => 'CakeDC/Users.avatar_placeholder.png'],
+    'Avatar' => ['placeholder' => 'admin/avatar.jpg'],
     'RememberMe' => [
       // configure Remember Me component
       'active' => true,
@@ -138,7 +138,7 @@ $config = [
         'action' => 'login',
         'prefix' => false,
       ],
-      'loginRedirect' => '/',
+      'loginRedirect' => ['controller' => 'Dashboard', 'action' => 'index', 'prefix'=> 'admin', 'plugin' => false,],
       'requireIdentity' => false
     ],
     'Authenticators' => [
@@ -149,28 +149,9 @@ $config = [
       ],
       'Form' => [
         'className' => 'CakeDC/Auth.Form',
-        'urlChecker' => 'Authentication.CakeRouter',
-        'loginUrl' => [
-          'plugin' => 'CakeDC/Users',
-          'controller' => 'Users',
-          'action' => 'login',
-          'prefix' => false,
-        ]
-      ],
-      'Token' => [
-        'className' => 'Authentication.Token',
-        'skipTwoFactorVerify' => true,
-        'header' => null,
-        'queryParam' => 'api_key',
-        'tokenPrefix' => null,
-      ],
-      'Cookie' => [
-        'className' => 'CakeDC/Auth.Cookie',
-        'skipTwoFactorVerify' => true,
-        'rememberMeField' => 'remember_me',
-        'cookie' => [
-          'expires' => '1 month',
-          'httpOnly' => true,
+        'fields' => [
+          'username' => 'email',
+          'password' => 'password'
         ],
         'urlChecker' => 'Authentication.CakeRouter',
         'loginUrl' => [
@@ -179,14 +160,6 @@ $config = [
           'action' => 'login',
           'prefix' => false,
         ]
-      ],
-      'Social' => [
-        'className' => 'CakeDC/Users.Social',
-        'skipTwoFactorVerify' => true,
-      ],
-      'SocialPendingEmail' => [
-        'className' => 'CakeDC/Users.SocialPendingEmail',
-        'skipTwoFactorVerify' => true,
       ]
     ],
     'Identifiers' => [
@@ -239,6 +212,9 @@ $config = [
     'PasswordRehash' => [
       'identifiers' => ['Password'],
     ]
+  ],
+  'OAuth' => [
+    'path' => false
   ]
 ];
 

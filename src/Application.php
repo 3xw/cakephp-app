@@ -46,6 +46,7 @@ class Application extends BaseApplication //implements AuthenticationServiceProv
     // users
     Configure::write('Users.config', ['users']);
     $this->addPlugin(\CakeDC\Users\Plugin::class);
+    
   }
 
   /*

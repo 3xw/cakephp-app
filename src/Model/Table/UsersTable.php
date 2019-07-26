@@ -7,117 +7,79 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use CakeDC\Users\Model\Table\UsersTable as CakeDCUsersTable;
 
-class UsersTable extends Table
+class UsersTable extends CakeDCUsersTable
 {
+
   public function initialize(array $config): void
   {
     parent::initialize($config);
 
-    $this->setTable('users');
-    $this->setDisplayField('id');
-    $this->setPrimaryKey('id');
-
-    $this->addBehavior('Timestamp');
-
     $this->belongsTo('Attachments', [
       'foreignKey' => 'attachment_id',
-      'className' => 'Attachments',
+      'joinType' => 'LEFT'
     ]);
-    $this->hasMany('SocialAccounts', [
-      'foreignKey' => 'user_id',
-      'className' => 'SocialAccounts',
+
+    // Add the behaviour to your table
+    $this->addBehavior('Search.Search');
+
+    // Setup search filter using search manager
+    $this->searchManager()
+    // Here we will alias the 'q' query param to search the `Articles.title`
+    // field and the `Articles.content` field, using a LIKE match, with `%`
+    // both before and after.
+    ->add('q', 'Search.Like', [
+      'before' => true,
+      'after' => true,
+      'mode' => 'or',
+      'comparison' => 'LIKE',
+      'wildcardAny' => '*',
+      'wildcardOne' => '?',
+      'field' => [$this->aliasField('first_name'), $this->aliasField('last_name'),$this->aliasField('email'),$this->aliasField('role')]
     ]);
+  }
+
+  public function validationStrongPassword(Validator $validator)
+  {
+    $validator->add('password', 'custom', [
+      'rule' => function ($value, $context) {
+        return preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i', $value)? true : false;
+      },
+      'message' => __('Password need to be at least 8 characters long AND must contain at least 1 Alphabet and 1 Number'),
+      'on' => ['create', 'update'],
+      'allowEmpty' => false
+    ]);
+    return $validator;
+  }
+
+  public function validationStrongUsername(Validator $validator)
+  {
+    $validator->add('username', 'custom', [
+      'rule' => function ($value, $context) {
+        return preg_match('/^[a-zA-Z0-9._\-]{5,}$/i', $value)? true : false;
+      },
+      'message' => __('Username need to be at least 5 characters long AND must contain only following chars').': a-z A-Z 0-9 '.__('and optionally').' . _ -',
+      'on' => ['create', 'update'],
+      'allowEmpty' => false
+    ]);
+    return $validator;
+  }
+
+  public function validationPasswordConfirm(Validator $validator)
+  {
+    $validator = parent::validationPasswordConfirm($validator);
+    $validator = $this->validationStrongPassword($validator);
+    //debug($validator);
+    //die();
+    return $validator;
   }
 
   public function validationDefault(Validator $validator): Validator
   {
-    $validator
-    ->uuid('id')
-    ->allowEmptyString('id', 'create');
-
-    $validator
-    ->scalar('username')
-    ->maxLength('username', 255)
-    ->requirePresence('username', 'create')
-    ->notEmptyString('username');
-
-    $validator
-    ->email('email')
-    ->allowEmptyString('email');
-
-    $validator
-    ->scalar('password')
-    ->maxLength('password', 255)
-    ->requirePresence('password', 'create')
-    ->notEmptyString('password');
-
-    $validator
-    ->scalar('first_name')
-    ->maxLength('first_name', 50)
-    ->allowEmptyString('first_name');
-
-    $validator
-    ->scalar('last_name')
-    ->maxLength('last_name', 50)
-    ->allowEmptyString('last_name');
-
-    $validator
-    ->scalar('token')
-    ->maxLength('token', 255)
-    ->allowEmptyString('token');
-
-    $validator
-    ->dateTime('token_expires')
-    ->allowEmptyDateTime('token_expires');
-
-    $validator
-    ->scalar('api_token')
-    ->maxLength('api_token', 255)
-    ->allowEmptyString('api_token');
-
-    $validator
-    ->dateTime('activation_date')
-    ->allowEmptyDateTime('activation_date');
-
-    $validator
-    ->dateTime('tos_date')
-    ->allowEmptyDateTime('tos_date');
-
-    $validator
-    ->boolean('active')
-    ->notEmptyString('active');
-
-    $validator
-    ->boolean('is_superuser')
-    ->notEmptyString('is_superuser');
-
-    $validator
-    ->scalar('role')
-    ->maxLength('role', 255)
-    ->allowEmptyString('role');
-
-    $validator
-    ->scalar('locale')
-    ->maxLength('locale', 5)
-    ->allowEmptyString('locale');
-
+    $validator = parent::validationDefault($validator);
+    $validator = $this->validationStrongUsername($validator);
+    $validator = $this->validationStrongPassword($validator);
     return $validator;
-  }
-
-  /**
-  * Returns a rules checker object that will be used for validating
-  * application integrity.
-  *
-  * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-  * @return \Cake\ORM\RulesChecker
-  */
-  public function buildRules(RulesChecker $rules): RulesChecker
-  {
-    $rules->add($rules->isUnique(['username']));
-    $rules->add($rules->isUnique(['email']));
-    $rules->add($rules->existsIn(['attachment_id'], 'Attachments'));
-
-    return $rules;
   }
 }

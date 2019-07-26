@@ -2,95 +2,155 @@
 declare(strict_types=1);
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
-use Cake\Event\EventInterface;
 
-class UsersController extends AppController
+use CakeDC\Users\Exception\UserNotActiveException;
+use CakeDC\Users\Exception\UserNotFoundException;
+use CakeDC\Users\Exception\WrongPasswordException;
+use Cake\Core\Configure;
+use Cake\Validation\Validator;
+use Exception;
+use Cake\Event\Event;
+use CakeDC\Users\Controller\UsersController as CakeDCUsersController;
+use Cake\Controller\Component\AuthComponent;
+/**
+* Users Controller
+*
+* @property \App\Model\Table\UsersTable $Users
+*/
+class UsersController extends CakeDCUsersController
 {
-  public function beforeFilter(EventInterface $event)
+  public $paginate = [
+    'limit' => 100,
+    'maxLimit' => 200,
+  ];
+
+  public function initialize()
   {
-    $this->Authentication->allowUnauthenticated(['login']);
-  }
-
-  public function login()
-  {
-    $result = $this->Authentication->getResult();
-
-    // regardless of POST or GET, redirect if user is logged in
-    if ($result->isValid())
-    {
-      $redirect = $this->request->getQuery('redirect', ['action' => 'index']);
-      return $this->redirect($redirect);
-    }
-
-    // display error if user submitted and authentication failed
-    debug($result);
-    if ($this->request->is(['post']) && !$result->isValid()) $this->Flash->error('Invalid username or password');
-  }
-
-  public function index()
-  {
-    $this->paginate = [
-      'contain' => ['Attachments'],
-    ];
-    $users = $this->paginate($this->Users);
-
-    $this->set(compact('users'));
+    parent::initialize();
+    $this->loadComponent('Search.Prg', [
+      'actions' => ['index']
+    ]);
   }
 
   public function view($id = null)
   {
-    $user = $this->Users->get($id, [
-      'contain' => ['Attachments', 'SocialAccounts'],
-    ]);
+    $user = $this->Users->get($id,['contain' => ['Attachments']]);
+    $this->set(compact('user'));
+    $this->set('_serialize', ['user']);
+  }
 
-    $this->set('user', $user);
+  /**
+   * Index method
+   *
+   * @return \Cake\Http\Response|void
+   */
+  public function index()
+  {
+      $query = $this->Users->find('search', ['search' => $this->request->query])->contain([]);
+      if (isset($this->request->params['?'])) {
+        if (!$query->count()) {
+          $this->Flash->error(__('No result.'));
+        }else{
+          $this->Flash->success($query->count()." ".__('result(s).'));
+        }
+        $this->set('q',$this->request->params['?']['q']);
+      }
+      $users = $this->paginate($query);
+      $this->set(compact('users'));
+      $this->set('_serialize', ['users']);
   }
 
   public function add()
   {
-    $user = $this->Users->newEmptyEntity();
+    $user = $this->Users->newEntity();
     if ($this->request->is('post')) {
-      $user = $this->Users->patchEntity($user, $this->request->getData());
-      if ($this->Users->save($user)) {
-        $this->Flash->success(__('The user has been saved.'));
-
-        return $this->redirect(['action' => 'index']);
-      }
-      $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        $user = $this->Users->patchEntity($user, $this->request->data);
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__('The user has been saved.'));
+            return $this->redirect(['action' => 'index']);
+        } else {
+            $this->Flash->error(__('The parser could not be saved. Please, try again.'));
+        }
     }
-    $attachments = $this->Users->Attachments->find('list', ['limit' => 200]);
-    $this->set(compact('user', 'attachments'));
+    $this->set(compact('user'));
+    $this->set('_serialize', ['user']);
+
   }
 
   public function edit($id = null)
   {
-    $user = $this->Users->get($id, [
-      'contain' => [],
+    $user = $this->Users->get($id,[
+      'contain' => ['Attachments']
     ]);
+
     if ($this->request->is(['patch', 'post', 'put'])) {
-      $user = $this->Users->patchEntity($user, $this->request->getData());
+      $user = $this->Users->patchEntity($user, $this->request->data);
       if ($this->Users->save($user)) {
         $this->Flash->success(__('The user has been saved.'));
 
         return $this->redirect(['action' => 'index']);
+      } else {
+        $this->Flash->error(__('The user could not be saved. Please, try again.'));
       }
-      $this->Flash->error(__('The user could not be saved. Please, try again.'));
     }
-    $attachments = $this->Users->Attachments->find('list', ['limit' => 200]);
-    $this->set(compact('user', 'attachments'));
+    $this->set(compact('user'));
+    $this->set('_serialize', ['user']);
   }
 
-  public function delete($id = null)
+  public function editByUser()
   {
-    $this->request->allowMethod(['post', 'delete']);
+    $user = $this->Users->get($this->Auth->user('id'),[
+      'contain' => ['Attachments']
+    ]);
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      $user = $this->Users->patchEntity($user, $this->request->data);
+      if ($this->Users->save($user)) {
+        $this->Flash->success(__('The user has been saved.'));
+
+        return $this->redirect(['action' => 'index']);
+      } else {
+        $this->Flash->error(__('The user could not be saved. Please, try again.'));
+      }
+    }
+    $this->set(compact('user'));
+    $this->set('_serialize', ['user']);
+  }
+
+  /* FROM SUPER USER
+  ***************************/
+  public function changeUserPassword($id = null)
+  {
     $user = $this->Users->get($id);
-    if ($this->Users->delete($user)) {
-      $this->Flash->success(__('The user has been deleted.'));
-    } else {
-      $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+
+    if ($this->request->is(['patch', 'post', 'put'])) {
+      try {
+        $validator = $this->getUsersTable()->validationPasswordConfirm(new Validator());
+        if (!empty($id)) {
+          $validator = $this->getUsersTable()->validationCurrentPassword($validator);
+        }
+        $user = $this->getUsersTable()->patchEntity($user, $this->request->data(), ['validate' => $validator]);
+        if ($user->errors()) {
+          $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
+        } else {
+          $user = $this->getUsersTable()->changePassword($user);
+          if ($user) {
+            $this->Flash->success(__d('CakeDC/Users', 'Password has been changed successfully'));
+
+            return $this->redirect(['action' => 'index']);
+          } else {
+            $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
+          }
+        }
+      } catch (UserNotFoundException $exception) {
+        $this->Flash->error(__d('CakeDC/Users', 'User was not found'));
+      } catch (WrongPasswordException $wpe) {
+        $this->Flash->error(__d('CakeDC/Users', '{0}', $wpe->getMessage()));
+      } catch (Exception $exception) {
+        $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
+      }
     }
 
-    return $this->redirect(['action' => 'index']);
+    $this->set(compact('user'));
+    $this->set('_serialize', ['user']);
   }
 }
