@@ -6,9 +6,12 @@
   "scripts": {
     "vendorFront": "webpack --env.prefix=front --config webpack.dev.js --config-name vendorConfig",
     "vendorAdmin": "webpack --env.prefix=admin --config webpack.dev.js --config-name vendorConfig",
+    "vendorAttachment": "webpack --config vendor/3xw/attachment/webpack.js --config-name attachmentVendorConfig",
     "watchFront": "webpack --env.prefix=front --config webpack.dev.js --config-name themeAppConfig",
     "watchAdmin": "webpack --env.prefix=admin --config webpack.dev.js --config-name themeAppConfig",
-    "build": "webpack --env.prefix=admin --config webpack.prod.js && webpack --env.prefix=front --config webpack.prod.js"
+    "watchAttachment": "webpack --config vendor/3xw/attachment/webpack.js --config-name attachmentConfig",
+    "build": "webpack --env.prefix=admin --config webpack.prod.js && webpack --env.prefix=front --config webpack.prod.js",
+    "buildAttachment": "webpack --config vendor/3xw/attachment/webpack.js"
   },
   "keywords": [],
   "author": "",
