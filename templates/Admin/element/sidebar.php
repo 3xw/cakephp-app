@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+Configure::load('menus','default',true);
 $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role'));
 ?>
 <!-- SIDEBAR -->
