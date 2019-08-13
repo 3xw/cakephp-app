@@ -1,13 +1,13 @@
 <?php
 use Cake\Core\Configure;
-$menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.User.role'));
+$menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role'));
 ?>
 <!-- SIDEBAR -->
 <div class="sidebar navbar-expand-md " >
 
   <!-- LOGO & LINK -->
   <div class="logo d-none d-md-block text-center">
-    <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', true).'img/admin/logo--sidebar.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
+    <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', ['fullBase' => true]).'img/admin/logo--sidebar.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
   </div>
   <div class="logo logo-mini d-block d-md-none text-left">
     <?= $this->Html->link('WGR SA', ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text']) ?>
@@ -24,13 +24,13 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.User.r
     <div class="sidebar__user text-center">
       <div class="sidebar__user-picture">
         <?php
-        if(empty($this->request->getSession()->read('Auth.User.attachment')))
+        if(empty($this->request->getSession()->read('Auth.attachment')))
         {
           echo $this->Html->image(Configure::read('Users.Avatar.placeholder'),['class' =>'sidebar__avatar rounded-circle img-fluid']);
         }else{
           echo $this->Attachment->image([
-            'image' => $this->request->getSession()->read('Auth.User.attachment.path'),
-            'profile' => $this->request->getSession()->read('Auth.User.attachment.profile'),
+            'image' => $this->request->getSession()->read('Auth.attachment.path'),
+            'profile' => $this->request->getSession()->read('Auth.attachment.profile'),
             'width' => 678,
             'cropratio' => '1:1'
           ],['class' =>'sidebar__avatar rounded-circle img-fluid']);
@@ -41,10 +41,10 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.User.r
 
       <div class="sidebar__user-menu">
         <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
-          <? if(empty($this->request->getSession()->read('Auth.User.first_name')) && empty($this->request->getSession()->read('Auth.User.last_name'))): ?>
-            <?= $this->request->getSession()->read('Auth.User.email') ?>
+          <? if(empty($this->request->getSession()->read('Auth.first_name')) && empty($this->request->getSession()->read('Auth.last_name'))): ?>
+            <?= $this->request->getSession()->read('Auth.email') ?>
           <? else: ?>
-            <?= $this->request->getSession()->read('Auth.User.first_name').' '.$this->request->getSession()->read('Auth.User.last_name') ?>
+            <?= $this->request->getSession()->read('Auth.first_name').' '.$this->request->getSession()->read('Auth.last_name') ?>
           <? endif ?>
           <i class="material-icons">expand_more</i>
         </a>
@@ -54,7 +54,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.User.r
               <?= $this->Html->link(__('My Profile'), Configure::read('Users.Profile.route')); ?>
             </li>
             <li>
-              <?= $this->html->link(__('Edit Profile'), ['controller' => 'Users', 'action' => 'editByUser', $this->request->getSession()->read('Auth.User.id')]) ?>
+              <?= $this->html->link(__('Edit Profile'), ['controller' => 'Users', 'action' => 'editByUser', $this->request->getSession()->read('Auth.id')]) ?>
             </li>
             <li>
               <?= $this->Html->link(__('Logout'),['controller' => 'Users', 'action' => 'logout','prefix' => false, 'plugin' => 'CakeDC/Users'] ) ?>

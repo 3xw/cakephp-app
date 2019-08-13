@@ -22,7 +22,6 @@ use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Psr\Http\Message\ServerRequestInterface;
 
-
 // Authorization
 use Authorization\AuthorizationService;
 use Authorization\AuthorizationServiceProviderInterface;
@@ -30,7 +29,7 @@ use Authorization\Middleware\AuthorizationMiddleware;
 use Authorization\Policy\OrmResolve;
 */
 
-class Application extends BaseApplication //implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
+class Application extends BaseApplication// implements AuthenticationServiceProviderInterface//, AuthorizationServiceProviderInterface
 {
 
   public function bootstrap(): void
@@ -46,7 +45,11 @@ class Application extends BaseApplication //implements AuthenticationServiceProv
     // users
     Configure::write('Users.config', ['users']);
     $this->addPlugin(\CakeDC\Users\Plugin::class);
-    
+
+    // Attachment
+    Configure::write('Attachment.config', ['attachment']);
+    $this->addPlugin(\Attachment\Plugin::class);
+    //$this->addPlugin(\Attachment\ThirdParty\Plugin::class);
   }
 
   /*
@@ -100,7 +103,8 @@ class Application extends BaseApplication //implements AuthenticationServiceProv
       'cacheTime' => Configure::read('Asset.cacheTime'),
     ]))
     ->add(new RoutingMiddleware($this))
-    ;/*
+    ;
+    /*
     ->add(new AuthenticationMiddleware($this,[
       'unauthenticatedRedirect' => Router::url(['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin', 'plugin' => false], false),
       'queryParam' => 'redirect',

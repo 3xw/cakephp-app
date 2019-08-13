@@ -11,6 +11,11 @@ use Cake\Event\EventInterface;
 
 class PagesController extends AppController
 {
+  public function beforeFilter(EventInterface $event)
+  {
+    $this->Authentication->allowUnauthenticated(['display']);
+  }
+
   public function display(...$path): ?Response
   {
     $count = count($path);
