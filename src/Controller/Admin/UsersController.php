@@ -24,7 +24,7 @@ class UsersController extends CakeDCUsersController
     'maxLimit' => 200,
   ];
 
-  public function initialize()
+  public function initialize():void
   {
     parent::initialize();
     $this->loadComponent('Search.Prg', [
@@ -46,14 +46,14 @@ class UsersController extends CakeDCUsersController
    */
   public function index()
   {
-      $query = $this->Users->find('search', ['search' => $this->request->query])->contain([]);
-      if (isset($this->request->params['?'])) {
+      $query = $this->Users->find('search', ['search' => $this->getRequest()->getQuery()])->contain([]);
+      if (isset($this->getRequest()->params['?'])) {
         if (!$query->count()) {
           $this->Flash->error(__('No result.'));
         }else{
           $this->Flash->success($query->count()." ".__('result(s).'));
         }
-        $this->set('q',$this->request->params['?']['q']);
+        $this->set('q',$this->getRequest()->params['?']['q']);
       }
       $users = $this->paginate($query);
       $this->set(compact('users'));
@@ -63,8 +63,8 @@ class UsersController extends CakeDCUsersController
   public function add()
   {
     $user = $this->Users->newEntity();
-    if ($this->request->is('post')) {
-        $user = $this->Users->patchEntity($user, $this->request->data);
+    if ($this->getRequest()->is('post')) {
+        $user = $this->Users->patchEntity($user, $this->getRequest()->getData());
         if ($this->Users->save($user)) {
             $this->Flash->success(__('The user has been saved.'));
             return $this->redirect(['action' => 'index']);
@@ -83,8 +83,8 @@ class UsersController extends CakeDCUsersController
       'contain' => ['Attachments']
     ]);
 
-    if ($this->request->is(['patch', 'post', 'put'])) {
-      $user = $this->Users->patchEntity($user, $this->request->data);
+    if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+      $user = $this->Users->patchEntity($user, $this->getRequest()->getData());
       if ($this->Users->save($user)) {
         $this->Flash->success(__('The user has been saved.'));
 
@@ -99,11 +99,11 @@ class UsersController extends CakeDCUsersController
 
   public function editByUser()
   {
-    $user = $this->Users->get($this->Auth->user('id'),[
+    $user = $this->Users->get($this->getRequest()->getAttribute('identity')['id'],[
       'contain' => ['Attachments']
     ]);
-    if ($this->request->is(['patch', 'post', 'put'])) {
-      $user = $this->Users->patchEntity($user, $this->request->data);
+    if ($this->getRequest()->is(['patch', 'post', 'put'])) {
+      $user = $this->Users->patchEntity($user, $this->getRequest()->getData());
       if ($this->Users->save($user)) {
         $this->Flash->success(__('The user has been saved.'));
 
@@ -122,30 +122,27 @@ class UsersController extends CakeDCUsersController
   {
     $user = $this->Users->get($id);
 
-    if ($this->request->is(['patch', 'post', 'put'])) {
+    if ($this->getRequest()->is(['patch', 'post', 'put'])) {
       try {
-        $validator = $this->getUsersTable()->validationPasswordConfirm(new Validator());
-        if (!empty($id)) {
-          $validator = $this->getUsersTable()->validationCurrentPassword($validator);
-        }
-        $user = $this->getUsersTable()->patchEntity($user, $this->request->data(), ['validate' => $validator]);
-        if ($user->errors()) {
-          $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
-        } else {
-          $user = $this->getUsersTable()->changePassword($user);
-          if ($user) {
-            $this->Flash->success(__d('CakeDC/Users', 'Password has been changed successfully'));
 
-            return $this->redirect(['action' => 'index']);
-          } else {
-            $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
-          }
+        // validation
+        $validator = $this->getUsersTable()->validationPasswordConfirm(new Validator());
+        if (!empty($id)) $validator = $this->getUsersTable()->validationCurrentPassword($validator);
+
+        // save
+        $user = $this->getUsersTable()->patchEntity($user, $this->getRequest()->getData(), ['validate' => $validator]);
+        if ($result = $this->getUsersTable()->changePassword($user))
+        {
+          $this->Flash->success(__d('CakeDC/Users', 'Password has been changed successfully'));
+          return $this->redirect(['action' => 'index']);
         }
+        else $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
+
       } catch (UserNotFoundException $exception) {
         $this->Flash->error(__d('CakeDC/Users', 'User was not found'));
       } catch (WrongPasswordException $wpe) {
         $this->Flash->error(__d('CakeDC/Users', '{0}', $wpe->getMessage()));
-      } catch (Exception $exception) {
+      } catch (Exception $exception){
         $this->Flash->error(__d('CakeDC/Users', 'Password could not be changed'));
       }
     }

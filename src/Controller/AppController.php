@@ -23,23 +23,6 @@ class AppController extends Controller
 
   public function beforeFilter(EventInterface $event)
   {
-    // auth
-    //debug($this->request->getSession()->read());
-    /*
-    if(empty($this->Authentication)) $this->loadComponent('Authentication.Authentication');
-    if (empty($this->request->getParam('prefix')))
-    {
-      if( !empty($this->request->getParam('prefix')) && ($this->request->getParam('prefix') == 'CakeDC/Users' || $this->request->getParam('prefix') == 'attachment'))
-      {
-        $this->Authentication->allowUnauthenticated(['login','register','proceed']);
-      }else
-      {
-        $this->Authentication->allowUnauthenticated(['*']);
-      }
-    }else
-    {
-      $this->Authentication->allowUnauthenticated(['login','register']);
-    }
-    */
+    $this->set("referer", $this->referer());
   }
 }

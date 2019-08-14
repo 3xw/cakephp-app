@@ -4,6 +4,7 @@ use Cake\Routing\Router;
 $config = [
   'Users' => [
     // Table used to manage users
+    //'table' => 'CakeDC/Users.Users',
     'table' => 'Users',
     // Controller used to manage users plugin features & actions
     'controller' => 'CakeDC/Users.Users',
