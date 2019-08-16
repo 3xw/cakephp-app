@@ -1,4 +1,6 @@
-import ComponentLoader from '../../vue/componentLaoder.vue';
+import ComponentLoader from '../vue/componentLaoder.vue'
+import store from './store/store.js'
+
 (function(scope, $, Vue){
 
   /* VUE WARPPER
@@ -59,15 +61,16 @@ import ComponentLoader from '../../vue/componentLaoder.vue';
 
   $(document).ready(function(){
 
+    Vue.config.devtools = true;
+    Vue.config.productionTip = true;
+
     window.adminApp = new Vue({
       el: "#admin-app",
+      store,
       components: {
         'component-loader': ComponentLoader
       }
     });
-
-    Vue.config.devtools = true;
-    Vue.config.productionTip = true;
 
     main()
   });
