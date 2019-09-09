@@ -50,7 +50,7 @@ $this->layout = 'login';
         <div class="utils--spacer-semi">
 
         </div>
-        <?= $this->Form->create('User') ?>
+        <?= $this->Form->create(null) ?>
 
         <div class="form-group">
           <label>Adresse Email</label>
