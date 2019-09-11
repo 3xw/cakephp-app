@@ -6,11 +6,7 @@ Vue.use(Vuex)
 // do the magic 🧙🏻‍♂️
 const
 easyAccess = createEasyAccess(),
-state = {
-
-}
-
-console.log(defaultMutations());
+state = {}
 
 export default new Vuex.Store({
   state: state, // pass state to state,
