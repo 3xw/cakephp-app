@@ -7,7 +7,6 @@
     "require": {
         "php": ">=7.2",
         "3xw/attachment": "next-dev",
-        "3xw/cakephp-utils": "next-dev",
         "cakedc/users": "9.next-dev",
         "cakephp/cakephp": "4.x-dev",
         "cakephp/plugin-installer": "^1.0",
@@ -17,6 +16,7 @@
         "cakephp/bake": "4.x-dev",
         "cakephp/cakephp-codesniffer": "dev-next",
         "cakephp/debug_kit": "4.x-dev",
+        "cakephp/migrations": "4.x-dev",
         "josegonzalez/dotenv": "3.*",
         "phpunit/phpunit": "^8.0",
         "psy/psysh": "@stable"
