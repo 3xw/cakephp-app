@@ -122,6 +122,7 @@ class Application extends BaseApplication// implements AuthenticationServiceProv
   {
     try {
       $this->addPlugin('Bake');
+      $this->addPlugin(\Trois\Bake\Plugin::class);
     } catch (MissingPluginException $e) {
       // Do not halt if the plugin is missing
     }

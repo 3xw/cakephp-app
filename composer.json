@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.2",
         "3xw/attachment": "next-dev",
+        "3xw/cakephp-bake": "next-dev",
         "cakedc/users": "9.next-dev",
         "cakephp/cakephp": "4.x-dev",
         "cakephp/plugin-installer": "^1.0",
