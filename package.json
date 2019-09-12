@@ -45,6 +45,7 @@
     "popper.js": "^1.14.7",
     "postcss-preset-env": "^6.6.0",
     "vue": "^2.6.8",
+    "vue-images-loaded": "^1.1.2",
     "vue-loader": "^15.7.0",
     "vue-packery-plugin": "^1.4.8",
     "vue-resource": "^1.5.1",
