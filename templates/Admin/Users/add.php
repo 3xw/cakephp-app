@@ -8,7 +8,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <?= $this->Html->link('<i class="material-icons">list</i> '.__('List'),['action'=>'index'], ['class' => '','escape'=>false]) ?>
@@ -21,25 +21,15 @@
   <div class="col-11 mx-auto">
     <div class="card">
       <?= $this->Form->create($user) ?>
+      <?php $this->Form->setTemplates(['dateWidget' => "{{day}}{{month}}{{year}}{{hour}}{{minute}}"]);?>
       <div class="card-header">
         <h2><?= __('Add User') ?></h2>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-sm-8">
-            <?php
-            echo $this->Form->input('username', ['class' => 'form-control','required' => 'required','placeholder' => 'john_doe']);
-            echo $this->Form->input('email', ['class' => 'form-control','required' => 'required','placeholder' => 'john.doe@gmail.com']);
-            echo $this->Form->input('password', ['class' => 'form-control','required' => 'required']);
-            echo $this->Form->input('first_name', ['class' => 'form-control','required' => 'required','placeholder' => 'John']);
-            echo $this->Form->input('last_name', ['class' => 'form-control','required' => 'required','placeholder' => 'Doe']);
-            echo $this->Form->input('role', ['class' => 'form-control','options' => ['admin' => 'admin']]);
-            echo $this->Form->input('active', ['type' => 'hidden','value' => 1]);
-            ?>
-          </div>
-          <div class="col-sm-4">
             <?= $this->Attachment->input('attachment_id',[
-              'label' => __('Avatar'),
+              'label' => __('Media'),
               'types' =>['image/jpeg','image/png'],
               'atags' => [],
               'cols' => 'col-xs-6 col-md-6 col-lg-4',
@@ -48,9 +38,15 @@
                 Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
                 Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
                 ],
-                'attachments' => []
+                'attachments' => [],
               ]
             );?>
+            <?= $this->Form->control('username',['class'=>'form-control']);?>
+            <?= $this->Form->control('email',['class'=>'form-control']);?>
+            <?= $this->Form->control('first_name',['class'=>'form-control']);?>
+            <?= $this->Form->control('last_name',['class'=>'form-control']);?>
+            <?= $this->Form->control('role',['class'=>'form-control']);?>
+            <?= $this->Form->control('active', ['class'=>'form-control']);?>
           </div>
         </div>
       </div>

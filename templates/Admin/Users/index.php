@@ -27,7 +27,7 @@
           <?= __('Users')?> <small><?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of
      {{count}} total, starting on record {{start}}, ending on {{end}}') ?></small>
         </h2>
-        <?= $this->Form->create('Search', ['novalidate', 'class'=>'', 'role'=>'search']) ?>
+        <?= $this->Form->create(null, ['novalidate', 'class'=>'', 'role'=>'search']) ?>
         <?= $this->Form->input('q', ['class'=>'form-control', 'placeholder'=>__('Search...'), 'label'=>false]) ?>
         <?= $this->Form->end() ?>
         <?php if (isset($q)): ?>
