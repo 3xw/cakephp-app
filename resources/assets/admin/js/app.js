@@ -22,6 +22,18 @@ import store from './store/store.js'
     });
   }
 
+  var reduceMenu = function(){
+    $('.sidebar__toggler').click(function(){
+      if($(this).hasClass('actived')){
+        $(this).removeClass('actived')
+        $('.row-sidebar').addClass('utils__sidebar--simple')
+      }else{
+        $(this).addClass('actived')
+        $('.row-sidebar').removeClass('utils__sidebar--simple')
+      }
+    });
+  }
+
   // i18n
   var initI18n = function()
   {
@@ -55,6 +67,7 @@ import store from './store/store.js'
   {
 
     initSelect();
+    reduceMenu();
     collapseIconChange();
     initI18n();
   }

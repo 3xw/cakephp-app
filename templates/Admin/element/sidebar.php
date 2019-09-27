@@ -15,12 +15,11 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
 
 
   <div class="sidebar--collapse collapse navbar-collapse" id="sidebarCollapse">
-    <? if($this->request->getParam('controller') == 'Attachments'): ?>
-      <div class="toggler-sidebar">
+      <div class="d-none d-md-block sidebar__toggler <?= ($this->request->getParam('controller') != 'Attachments')? 'actived' : '' ?>">
+        <div></div>
         <div></div>
         <div></div>
       </div>
-    <? endif ?>
 
     <!-- MENU -->
     <ul class="sidebar__menu">

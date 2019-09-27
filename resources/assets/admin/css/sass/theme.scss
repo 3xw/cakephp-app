@@ -202,8 +202,15 @@ header{
 
   .material-icons{vertical-align: top;font-size: 24px;}
 
+  .sidebar__toggler{
+    width: 24px;margin: $margin--mini auto $margin--semi auto ;cursor: pointer;
+    div{margin: 3px;height: 3px;background: map-get($colors, 'white');}
+    &.actived{
+      div{margin: 3px auto;width: 5px;border-radius: 5px;}
+    }
+  }
 
-  background: $sidebar--background;padding:$padding--default $padding--semi;min-height:100vh;height:100%;
+  background: $sidebar--background;padding:$margin--semi $padding--semi;min-height:100vh;height:100%;
   *{color:$sidebar--color !important;}
   *{transition: all ease .5s;}
 
