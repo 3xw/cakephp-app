@@ -139,7 +139,7 @@ $config = [
         'action' => 'login',
         'prefix' => false,
       ],
-      'loginRedirect' => ['controller' => 'Dashboard', 'action' => 'index', 'prefix'=> 'admin', 'plugin' => false,],
+      'loginRedirect' => ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false],
       'requireIdentity' => false
     ],
     'Authenticators' => [
@@ -177,7 +177,7 @@ $config = [
       ],
       "Social" => [
         'className' => 'CakeDC/Users.Social',
-        'authFinder' => 'active'
+        'authFinder' => false
       ],
       'Token' => [
         'className' => 'Authentication.Token',

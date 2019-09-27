@@ -1,4 +1,12 @@
 <?php
+
+use Cake\Cache\Engine\FileEngine;
+use Cake\Database\Connection;
+use Cake\Database\Driver\Mysql;
+use Cake\Error\ExceptionRenderer;
+use Cake\Log\Engine\FileLog;
+use Cake\Mailer\Transport\MailTransport;
+
 return [
     /**
      * Debug Level:
@@ -89,7 +97,7 @@ return [
      */
     'Cache' => [
         'default' => [
-            'className' => 'Cake\Cache\Engine\FileEngine',
+            'className' => FileEngine::class,
             'path' => CACHE,
             'url' => env('CACHE_DEFAULT_URL', null),
         ],
@@ -101,7 +109,7 @@ return [
          * If you set 'className' => 'Null' core cache will be disabled.
          */
         '_cake_core_' => [
-            'className' => 'Cake\Cache\Engine\FileEngine',
+            'className' => FileEngine::class,
             'prefix' => 'myapp_cake_core_',
             'path' => CACHE . 'persistent' . DS,
             'serialize' => true,
@@ -116,7 +124,7 @@ return [
          * Duration will be set to '+2 minutes' in bootstrap.php when debug = true
          */
         '_cake_model_' => [
-            'className' => 'Cake\Cache\Engine\FileEngine',
+            'className' => FileEngine::class,
             'prefix' => 'myapp_cake_model_',
             'path' => CACHE . 'models' . DS,
             'serialize' => true,
@@ -130,7 +138,7 @@ return [
          * Duration will be set to '+2 seconds' in bootstrap.php when debug = true
          */
         '_cake_routes_' => [
-            'className' => 'Cake\Cache\Engine\FileEngine',
+            'className' => FileEngine::class,
             'prefix' => 'myapp_cake_routes_',
             'path' => CACHE,
             'serialize' => true,
@@ -170,7 +178,7 @@ return [
      */
     'Error' => [
         'errorLevel' => E_ALL,
-        'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
+        'exceptionRenderer' => ExceptionRenderer::class,
         'skipLog' => [],
         'log' => true,
         'trace' => true,
@@ -197,7 +205,7 @@ return [
      */
     'EmailTransport' => [
         'default' => [
-            'className' => 'Cake\Mailer\Transport\MailTransport',
+            'className' => MailTransport::class,
             /*
              * The following keys are used in SMTP transports:
              */
@@ -245,11 +253,11 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Mysql',
+            'className' => Connection::class,
+            'driver' => Mysql::class,
             'persistent' => false,
             'host' => 'localhost',
-            /*
+            /**
              * CakePHP will use the default DB port based on the driver selected.
              * For instance, MariaDB/MySQL on MAMP uses port 8889
              * thus MAMP users will want to uncomment the following line and set the port accordingly
@@ -258,15 +266,20 @@ return [
             'username' => 'my_app',
             'password' => 'secret',
             'database' => 'my_app',
-            /*
+            /**
              * When using PostgreSQL driver you will need to define the schema as well.
              */
             //'schema' => 'myapp',
-            /*
+            /**
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
              */
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
+            /**
+             * If your MySQL server is configured with `skip-character-set-client-handshake`
+             * then you MUST use the `flags` config to set your charset encoding.
+             * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
+             */
             'flags' => [],
             'cacheMetadata' => true,
             'log' => false,
@@ -297,8 +310,8 @@ return [
          * The test connection is used during the test suite.
          */
         'test' => [
-            'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Mysql',
+            'className' => Connection::class,
+            'driver' => Mysql::class,
             'persistent' => false,
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
@@ -320,7 +333,7 @@ return [
      */
     'Log' => [
         'debug' => [
-            'className' => 'Cake\Log\Engine\FileLog',
+            'className' => FileLog::class,
             'path' => LOGS,
             'file' => 'debug',
             'url' => env('LOG_DEBUG_URL', null),
@@ -328,7 +341,7 @@ return [
             'levels' => ['notice', 'info', 'debug'],
         ],
         'error' => [
-            'className' => 'Cake\Log\Engine\FileLog',
+            'className' => FileLog::class,
             'path' => LOGS,
             'file' => 'error',
             'url' => env('LOG_ERROR_URL', null),
@@ -337,7 +350,7 @@ return [
         ],
         // To enable this dedicated query log, you need set your datasource's log flag to true
         'queries' => [
-            'className' => 'Cake\Log\Engine\FileLog',
+            'className' => FileLog::class,
             'path' => LOGS,
             'file' => 'queries',
             'url' => env('LOG_QUERIES_URL', null),

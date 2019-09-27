@@ -7,14 +7,15 @@
 body{color:$content--color;background:$content--background;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
 body.login{background: $login--background;}
 html{font-size: 62.5%;}
-body, ul, li, input{font-family: $font--default;font-size: 1.6rem;font-weight: 400;}
+body, ul, li{font-family: $font--default;font-size: 1.4rem;font-weight: 400;}
+input{font-family: $font--default;font-size: 1.6rem;font-weight: 400;}
 h1, h2, h3, b, strong{font-weight: 900;}
 h4, h5, h6{font-weight: 700;}
 
 body.login a, body.login a:hover{color:$login--color;}
 a, a:hover{color:$link--color;text-decoration: none;}
 
-.material-icons{vertical-align: top;}
+.material-icons{vertical-align: top;font-size: 16px;}
 
 @include respond-to('medium'){
   body, ul, li, input{font-size: 1.4rem}
@@ -26,7 +27,7 @@ a, a:hover{color:$link--color;text-decoration: none;}
 *************/
 .btn{
 
-  padding:9px 10px;text-align: center;line-height: 1.6rem;vertical-align: top;margin-bottom: $margin--semi;color: $content--color;border-radius: $border--radius;border:0px !important;outline:0 !important;font-size: 1.6rem;cursor:pointer;
+  padding:9px 10px 5px;text-align: center;line-height: 1.4rem;vertical-align: middle;margin-bottom: $margin--semi;color: $content--color;border-radius: $border--radius;border:0px !important;outline:0 !important;font-size: 1.4rem;cursor:pointer;
   &:hover, &:focus{border:0px !important;outline:0 !important;box-shadow:none !important;}
 
   i{font-size: 1.6rem;}
@@ -189,20 +190,30 @@ table{
   .btn{margin-bottom: 3px;}
 }
 
+header{
+  padding: $margin--semi;border-bottom: 1px solid map-get($colors, 'grey-light');
+  img{filter: invert(100%);}
+}
 
 /*
 *   SIDEBAR
 *************/
 .sidebar{
 
+  .material-icons{vertical-align: top;font-size: 24px;}
+
+
   background: $sidebar--background;padding:$padding--default $padding--semi;min-height:100vh;height:100%;
   *{color:$sidebar--color !important;}
+  *{transition: all ease .5s;}
+
   hr{border-top: 1px solid rgba(255, 255, 255, 0.4) !important;background: transparent;width: 100%;}
 
   &__user-menu{
     a i{vertical-align: middle;}
     ul{
       list-style-type: none;margin:0;padding:0;
+      li a {font-size: 1.2rem;}
     }
   }
 
@@ -244,8 +255,24 @@ table{
 
 }
 
+.row-sidebar{
+  >div{transition: all ease 0.5s;}
+}
+
+.utils__sidebar--simple{
+  @media (min-width: 767px){
+    >.col-xl-2{width: 80px !important;flex: 0 0 80px!important;max-width: 100% !important;}
+    >.col-xl-10{width: calc(100vw - 80px)!important;flex: 0 0 calc(100vw - 80px)!important;max-width: 100% !important;}
+    .sidebar{
+      .sidebar__menu a p{display: none;}
+    }
+  }
+
+
+}
+
 .navbar{
-  padding:$padding--semi;
+  padding:$padding--semi $margin--semi;
 }
 
 .card-footer,

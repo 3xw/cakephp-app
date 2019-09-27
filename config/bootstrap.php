@@ -120,7 +120,6 @@ if ($isCli) {
 } else {
     (new ErrorHandler(Configure::read('Error')))->register();
 }
-
 /*
  * Include the CLI bootstrap overrides.
  */
@@ -153,13 +152,6 @@ TransportFactory::setConfig(Configure::consume('EmailTransport'));
 Email::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
-
-/*
- * The default crypto extension in 3.0 is OpenSSL.
- * If you are migrating from 2.x uncomment this code to
- * use a more compatible Mcrypt based implementation
- */
-//Security::engine(new \Cake\Utility\Crypto\Mcrypt());
 
 /*
  * Setup detectors for mobile and tablet.

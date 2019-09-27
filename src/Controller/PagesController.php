@@ -7,14 +7,9 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\Event\EventInterface;
 
 class PagesController extends AppController
 {
-  public function beforeFilter(EventInterface $event)
-  {
-    $this->Authentication->allowUnauthenticated(['display']);
-  }
 
   public function display(...$path): ?Response
   {

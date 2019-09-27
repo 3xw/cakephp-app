@@ -1,29 +1,27 @@
 <?php
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
-use Cake\Routing\RouteBuilder;
-use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\RouteBuilder;
 
-Router::defaultRouteClass(DashedRoute::class);
+$routes->setRouteClass(DashedRoute::class);
 
-Router::scope('/', function (RouteBuilder $routes) {
+$routes->scope('/', function (RouteBuilder $builder) {
   // Register scoped middleware for in scopes.
-  $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
+  $builder->registerMiddleware('csrf', new CsrfProtectionMiddleware([
     'httpOnly' => true
   ]));
+  $builder->applyMiddleware('csrf');
+  $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+  $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-  $routes->applyMiddleware('csrf');
-  $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-  $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
-  $routes->fallbacks(DashedRoute::class);
+  $builder->fallbacks();
 });
 
 // ADMIN SECTION
-Router::prefix('admin', function ($routes) {
-  $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
-  $routes->setExtensions(['json']);
-  $routes->fallbacks(DashedRoute::class);
+$routes->prefix('admin', function (RouteBuilder $builder) {
+  $builder->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
+  $builder->setExtensions(['json']);
+  $builder->fallbacks();
 });
 
 /**
