@@ -9,7 +9,7 @@
         "3xw/attachment": "next-dev",
         "3xw/cakephp-bake": "next-dev",
         "cakedc/users": "9.next-dev",
-        "cakephp/cakephp": "4.x-dev",
+        "cakephp/cakephp": "4.x-dev#e01e681e9511e5f748674f3d25bbc568f093e8f4",
         "cakephp/plugin-installer": "^1.0",
         "mobiledetect/mobiledetectlib": "2.*"
     },
