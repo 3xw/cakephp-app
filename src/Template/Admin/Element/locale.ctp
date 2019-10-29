@@ -70,17 +70,21 @@ foreach( $languages as $lng )
         $inputConf = array_merge($inputConf, $field['Trois/Tinymce.tinymce']);
         $inputConf['init']['class'] = ' no-trumbowyg '.$class;
         $inputConf['init']['label'] = $label;
+        $inputConf['init']['required'] = ($lng == I18n::defaultLocale() && !empty($field['Trois/Tinymce.tinymce']['init']['required']))? $field['Trois/Tinymce.tinymce']['init']['required'] : false;
         $inputConf['field'] = $fieldName;
+
         if(!empty($field['Trois/Tinymce.tinymce']['value'])){
           $inputConf['value'] = ($lng == I18n::defaultLocale())? $field['Trois/Tinymce.tinymce']['value']->$fieldName : $field['Trois/Tinymce.tinymce']['value']->_translations[$lng]->$key;
         }
+
+
         $fieldInputs .= $this->element('Trois/Tinymce.tinymce', [
           'field' => $inputConf['field'],
           'value' => $inputConf['value'],
-          'required' => $inputConf['required'],
           'init' => [ // optional
               'class' => $inputConf['init']['class'],
               'label' => $inputConf['init']['label'],
+              'required' => $inputConf['init']['required'],
               'external_plugins' => (!empty($inputConf['init']['external_plugins']))? $inputConf['init']['external_plugins'] : null,
               'attachment_settings' => (!empty($inputConf['init']['attachment_settings']))? $this->Attachment->jsSetup($fieldName, $inputConf['init']['attachment_settings']) : null
             ]
