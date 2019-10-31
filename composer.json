@@ -22,6 +22,12 @@
         "phpunit/phpunit": "^8.0",
         "psy/psysh": "@stable"
     },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/3xw/crud"
+      }
+    ],
     "suggest": {
         "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
         "dereuromark/cakephp-ide-helper": "After baking your code, this keeps your annotations in sync with the code evolving from there on for maximum IDE and PHPStan compatibility."
