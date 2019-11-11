@@ -192,7 +192,7 @@ table{
 
 header{
   padding: $margin--semi;border-bottom: 1px solid map-get($colors, 'grey-light');
-  img{filter: invert(100%);}
+  img{}
 }
 
 /*
@@ -206,7 +206,7 @@ header{
     width: 24px;margin: $margin--mini auto $margin--semi auto ;cursor: pointer;
     div{margin: 3px;height: 3px;background: map-get($colors, 'white');}
     &.actived{
-      div{margin: 3px auto;width: 5px;border-radius: 5px;}
+      div{margin: 3px auto;border-radius: 5px;}
     }
   }
 
@@ -268,8 +268,8 @@ header{
 
 .utils__sidebar--simple{
   @media (min-width: 767px){
-    >.col-xl-2{width: 80px !important;flex: 0 0 80px!important;max-width: 100% !important;}
-    >.col-xl-10{width: calc(100vw - 80px)!important;flex: 0 0 calc(100vw - 80px)!important;max-width: 100% !important;}
+    >.col-xl-2{width: 80px !important;flex: 0 0 79px!important;max-width: 100% !important;}
+    >.col-xl-10{width: calc(100vw - 80px)!important;flex: 0 0 100%!important;max-width: calc(100% - 90px) !important;}
     .sidebar{
       .sidebar__menu a p{display: none;}
     }
