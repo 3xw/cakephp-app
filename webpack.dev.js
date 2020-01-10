@@ -12,7 +12,7 @@ const vendorConfig = env => {
   return {
     mode: 'development', // production
     name: 'vendorConfig',
-    entry: path.join(__dirname, 'src/Assets/'+env.prefix, 'vendor.conf.js'),
+    entry: path.join(__dirname, 'resources/assets/'+env.prefix, 'vendor.conf.js'),
     output: {
       path: path.resolve(__dirname, 'webroot'),
       filename: 'js/'+env.prefix+'/vendor.min.js',
@@ -93,7 +93,7 @@ const themeAppConfig = env => {
   return {
     mode: 'development', // production
     name: 'themeAppConfig',
-    entry: './src/Assets/'+env.prefix+'/themeApp.conf.js',
+    entry: './resources/assets/'+env.prefix+'/themeApp.conf.js',
     output: {
       path: path.resolve(__dirname, 'webroot'),
       publicPath: webroot,
@@ -137,7 +137,7 @@ const themeAppConfig = env => {
               plugins: loader => [
                 require('postcss-preset-env')(),
                 require('pixrem')(),
-                require('autoprefixer')({browsers: 'last 10 versions'}),
+                require('autoprefixer')({overrideBrowserslist: 'last 10 versions'}),
                 require('cssnano')()
               ]
             }

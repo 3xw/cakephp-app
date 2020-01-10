@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -24,7 +26,6 @@ use Psy\Shell as PsyShell;
  */
 class ConsoleShell extends Shell
 {
-
     /**
      * Start the shell and interactive console.
      *
@@ -64,14 +65,14 @@ class ConsoleShell extends Shell
      *
      * @return \Cake\Console\ConsoleOptionParser
      */
-    public function getOptionParser()
+    public function getOptionParser(): ConsoleOptionParser
     {
         $parser = new ConsoleOptionParser('console');
         $parser->setDescription(
-            'This shell provides a REPL that you can use to interact ' .
-            'with your application in an interactive fashion. You can use ' .
-            'it to run adhoc queries with your models, or experiment ' .
-            'and explore the features of CakePHP and your application.' .
+            'This shell provides a REPL that you can use to interact with ' .
+            'your application in a command line designed to run PHP code. ' .
+            'You can use it to run adhoc queries with your models, or ' .
+            'explore the features of CakePHP and your application.' .
             "\n\n" .
             'You will need to have psysh installed for this Shell to work.'
         );

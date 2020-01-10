@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -20,12 +22,50 @@ use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\TestSuite\IntegrationTestCase;
+use InvalidArgumentException;
 
 /**
  * ApplicationTest class
  */
 class ApplicationTest extends IntegrationTestCase
 {
+    /**
+     * testBootstrap
+     *
+     * @return void
+     */
+    public function testBootstrap()
+    {
+        $app = new Application(dirname(dirname(__DIR__)) . '/config');
+        $app->bootstrap();
+        $plugins = $app->getPlugins();
+
+        $this->assertCount(2, $plugins);
+        $this->assertSame('Bake', $plugins->get('Bake')->getName());
+        $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
+        // Currently there's no Cake 4.x compatible branch for Migrations.
+        // $this->assertSame('Migrations', $plugins->get('Migrations')->getName());
+    }
+
+    /**
+     * testBootstrapPluginWitoutHalt
+     *
+     * @return void
+     */
+    public function testBootstrapPluginWithoutHalt()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $app = $this->getMockBuilder(Application::class)
+            ->setConstructorArgs([dirname(dirname(__DIR__)) . '/config'])
+            ->setMethods(['addPlugin'])
+            ->getMock();
+
+        $app->method('addPlugin')
+            ->will($this->throwException(new InvalidArgumentException('test exception.')));
+
+        $app->bootstrap();
+    }
 
     /**
      * testMiddleware
@@ -39,8 +79,10 @@ class ApplicationTest extends IntegrationTestCase
 
         $middleware = $app->middleware($middleware);
 
-        $this->assertInstanceOf(ErrorHandlerMiddleware::class, $middleware->get(0));
-        $this->assertInstanceOf(AssetMiddleware::class, $middleware->get(1));
-        $this->assertInstanceOf(RoutingMiddleware::class, $middleware->get(2));
+        $this->assertInstanceOf(ErrorHandlerMiddleware::class, $middleware->current());
+        $middleware->seek(1);
+        $this->assertInstanceOf(AssetMiddleware::class, $middleware->current());
+        $middleware->seek(2);
+        $this->assertInstanceOf(RoutingMiddleware::class, $middleware->current());
     }
 }

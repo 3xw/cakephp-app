@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -10,7 +12,7 @@ use CakeDC\Users\Model\Table\UsersTable as CakeDCUsersTable;
 class UsersTable extends CakeDCUsersTable
 {
 
-  public function initialize(array $config)
+  public function initialize(array $config): void
   {
     parent::initialize($config);
 
@@ -73,7 +75,7 @@ class UsersTable extends CakeDCUsersTable
     return $validator;
   }
 
-  public function validationDefault(Validator $validator)
+  public function validationDefault(Validator $validator): Validator
   {
     $validator = parent::validationDefault($validator);
     $validator = $this->validationStrongUsername($validator);

@@ -5,29 +5,33 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=5.6",
-        "cakephp/cakephp": "^3.7",
-        "cakephp/migrations": "^2.0.0",
-        "cakephp/plugin-installer": "^1.0",
-        "mobiledetect/mobiledetectlib": "2.*",
-        "cakedc/users": "^8.0",
-        "3xw/attachment": "^3.7.0",
-        "3xw/cakephp-utils":"^3.7.0",
-        "3xw/cakephp-tinymce": "^3.7.0"
+        "php": ">=7.2",
+        "3xw/attachment": "dev-master as 4.0.0.0",
+        "cakedc/users": "^9.0.0",
+        "cakephp/cakephp": "^4.0",
+        "cakephp/migrations": "^3.0",
+        "cakephp/plugin-installer": "^1.2",
+        "mobiledetect/mobiledetectlib": "^2.8"
     },
     "require-dev": {
-        "cakephp/bake": "^1.9.0",
-        "cakephp/cakephp-codesniffer": "^3.0",
-        "cakephp/debug_kit": "^3.17.0",
-        "josegonzalez/dotenv": "3.*",
-        "phpunit/phpunit": "^5|^6",
-        "psy/psysh": "@stable",
-        "3xw/cakephp-bake": "^3.7.0"
+        "3xw/cakephp-bake": "~4.0.0",
+        "cakephp/bake": "4.x-dev",
+        "cakephp/cakephp-codesniffer": "~4.0.0",
+        "cakephp/debug_kit": "^4.0",
+        "josegonzalez/dotenv": "^3.2",
+        "phpunit/phpunit": "^8.5",
+        "psy/psysh": "@stable"
     },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/3xw/crud"
+      }
+    ],
     "suggest": {
-        "admad/cakephp-i18n": "i18n",
-        "friendsofcake/crud": "Rest API",
-        "3xw/cakephp-elastic-search": "Elastic Search"
+        "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
+        "dereuromark/cakephp-ide-helper": "After baking your code, this keeps your annotations in sync with the code evolving from there on for maximum IDE and PHPStan/Psalm compatibility.",
+        "phpstan/phpstan": "PHPStan focuses on finding errors in your code without actually running it. It catches whole classes of bugs even before you write tests for the code."
     },
     "autoload": {
         "psr-4": {
@@ -50,10 +54,12 @@
         ],
         "cs-check": "phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
         "cs-fix": "phpcbf --colors --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
+        "stan": "phpstan analyse src/",
         "test": "phpunit --colors=always"
     },
     "prefer-stable": true,
     "config": {
         "sort-packages": true
-    }
+    },
+    "minimum-stability": "dev"
 }

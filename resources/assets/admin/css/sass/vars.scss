@@ -1,0 +1,76 @@
+
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Bd.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Bd.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Bd.otf") format("opentype"); font-style:normal;font-weight:800; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-BdIt.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-BdIt.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-BdIt.otf") format("opentype"); font-style:italic;font-weight:800; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Md.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Md.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Md.otf") format("opentype"); font-style:normal;font-weight:600; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-MdIt.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-MdIt.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-MdIt.otf") format("opentype"); font-style:italic;font-weight:600; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Roman.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Roman.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Roman.otf") format("opentype"); font-style:normal;font-weight:400; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-It.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-It.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-It.otf") format("opentype"); font-style:italic;font-weight:400; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Lt.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Lt.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-Lt.otf") format("opentype"); font-style:normal;font-weight:300; }
+@font-face { font-family:"HelveticaNeue"; src:url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-LtIt.woff2") format("woff2"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-LtIt.woff") format("woff"),url("../../../fonts/helveticaNeue/HelveticaNeueLTStd-LtIt.otf") format("opentype"); font-style:italic;font-weight:300; }
+
+$margin--mini: 10px;
+$margin--semi: 25px;
+$margin--default: 50px;
+$margin--double: 100px;
+
+$padding--mini: 10px;
+$padding--semi: 20px;
+$padding--default: 40px;
+$padding--double: 80px;
+
+/*** VARS -- BREAKPOINTS (TYPE:LIST / KEY:NAME / VALUE:WIDTH) ****/
+$breakpoints: ('small': 576px, 'medium': 768px, 'large': 992px, 'extra large': 1200px);
+
+/*** VARS -- RATIOS (TYPE:LIST / KEY:RATIO / VALUE:HEIGHT ) ****/
+$ratios: ('3:1': 33.33%, '2:1': 50%, '16:9': 56.25%, '3:2': 66.66%, '4:3': 75%, '1:1': 100%, '3:4': 133.33%, '2:3': 150%, '9:16': 177.77%, '1:2': 200%, '1:3': 300%);
+
+/*** VARS -- COLORS (TYPE:LIST / KEY:NAME / VALUE:HEX ) ****/
+$colors: (
+
+  'blue':    #2E7CA9 ,
+  'blue-dark': #123447,
+  'blue-light': #55BCF7 ,
+  'indigo':  #6610f2 ,
+  'purple':  #6f42c1 ,
+  'pink':    #e83e8c ,
+  'red':     #c90123 ,//Default #dc3545
+  'orange':  #fd7e14 ,
+  'yellow':  #ffc107 ,
+  'green':   #28a745 ,
+  'teal':    #20c997 ,
+  'cyan':    #17a2b8 ,
+
+  'grey': #4A4A4A,
+  'grey-light': #E6E5E5,
+  'grey-light-text': #A9A9A9,
+  'grey-very-light': #fbfbf9,
+  'grey-heavy': #302F2F,
+  'grey-sidebar': #282828,
+
+  'black': #000000,
+  'white': #FFFFFF,
+
+);
+
+$color--default: map-get($colors, 'white');
+$color--primary: map-get($colors, 'cyan');
+$color--success: map-get($colors, 'green');
+$color--info: map-get($colors, 'blue');
+$color--warning: map-get($colors, 'orange');
+$color--danger: map-get($colors, 'red');
+$color--link: map-get($colors, 'white');
+
+$link--color: map-get($colors, 'red');
+
+$sidebar--background: map-get($colors, 'grey-sidebar');
+$sidebar--color: map-get($colors, 'white');
+
+$content--background: map-get($colors, 'white');
+$content--color: map-get($colors, 'grey-heavy');
+
+$login--background: map-get($colors, 'red');
+$login--color: map-get($colors, 'white');
+
+$border--radius: 0px;
+
+$font--default: 'HelveticaNeue', sans-serif;

@@ -34,7 +34,7 @@ use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
-use Cake\Database\Type;
+use Cake\Database\TypeFactory;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
 use Cake\Http\ServerRequest;
@@ -120,7 +120,6 @@ if ($isCli) {
 } else {
     (new ErrorHandler(Configure::read('Error')))->register();
 }
-
 /*
  * Include the CLI bootstrap overrides.
  */
@@ -155,13 +154,6 @@ Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
 
 /*
- * The default crypto extension in 3.0 is OpenSSL.
- * If you are migrating from 2.x uncomment this code to
- * use a more compatible Mcrypt based implementation
- */
-//Security::engine(new \Cake\Utility\Crypto\Mcrypt());
-
-/*
  * Setup detectors for mobile and tablet.
  */
 ServerRequest::addDetector('mobile', function ($request) {
@@ -183,13 +175,13 @@ ServerRequest::addDetector('tablet', function ($request) {
  * locale specific date formats. For details see
  * @link https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
-Type::build('time')
+TypeFactory::build('time')
     ->useImmutable();
-Type::build('date')
+TypeFactory::build('date')
     ->useImmutable();
-Type::build('datetime')
+TypeFactory::build('datetime')
     ->useImmutable();
-Type::build('timestamp')
+TypeFactory::build('timestamp')
     ->useImmutable();
 
 /*
