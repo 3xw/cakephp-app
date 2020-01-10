@@ -15,7 +15,6 @@
     },
     "require-dev": {
         "3xw/cakephp-bake": "~4.0.0",
-        "cakephp/bake": "4.x-dev",
         "cakephp/cakephp-codesniffer": "~4.0.0",
         "cakephp/debug_kit": "^4.0",
         "josegonzalez/dotenv": "^3.2",
