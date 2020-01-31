@@ -52,7 +52,7 @@ $config = [
     'Profile' => [
       // Allow view other users profiles
       'viewOthers' => true,
-      'route' => ['controller' => 'Users', 'action' => 'profile','prefix' => 'admin','plugin' => false],
+      'route' => ['controller' => 'Users', 'action' => 'profile','prefix' => 'Admin','plugin' => false],
     ],
     'Key' => [
       'Session' => [
@@ -88,15 +88,10 @@ $config = [
         ]
       ]
     ],
+    'Superuser' => ['allowedToChangePasswords' => true], // able to reset any users password
   ],
   'OneTimePasswordAuthenticator' => [
     'checker' => \CakeDC\Auth\Authentication\DefaultOneTimePasswordAuthenticationChecker::class,
-    'verifyAction' => [
-      'plugin' => 'CakeDC/Users',
-      'controller' => 'Users',
-      'action' => 'verify',
-      'prefix' => false,
-    ],
     'login' => false,
     'issuer' => null,
     // The number of digits the resulting codes will be
@@ -113,12 +108,6 @@ $config = [
   'U2f' => [
     'enabled' => false,
     'checker' => \CakeDC\Auth\Authentication\DefaultU2fAuthenticationChecker::class,
-    'startAction' => [
-      'plugin' => 'CakeDC/Users',
-      'controller' => 'Users',
-      'action' => 'u2f',
-      'prefix' => false,
-    ]
   ],
   // default configuration used to auto-load the Auth Component, override to change the way Auth works
   'Auth' => [
@@ -139,7 +128,7 @@ $config = [
         'action' => 'login',
         'prefix' => false,
       ],
-      'loginRedirect' => ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false],
+      'loginRedirect' => ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'Admin', 'plugin' => false],
       'requireIdentity' => false
     ],
     'Authenticators' => [
@@ -203,6 +192,7 @@ $config = [
           'plugin' => 'CakeDC/Users',
           'controller' => 'Users',
           'action' => 'login',
+          'prefix' => FALSE
         ]
       ]
     ],
