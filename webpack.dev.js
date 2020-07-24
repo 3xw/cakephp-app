@@ -137,7 +137,7 @@ const themeAppConfig = env => {
               plugins: loader => [
                 require('postcss-preset-env')(),
                 require('pixrem')(),
-                require('autoprefixer')({browsers: 'last 10 versions'}),
+                require('autoprefixer')(),
                 require('cssnano')()
               ]
             }

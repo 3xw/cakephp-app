@@ -47,8 +47,7 @@
         <?= h($user->api_token) ?>
         <label><?= __('Role') ?></label>
         <?= h($user->role) ?>
-        <label><?= __('Attachment Id') ?></label>
-        <?= h($user->attachment_id) ?>
+
       </div>
     </div>
     <?php if (!empty($user->social_accounts)): ?>
@@ -122,10 +121,6 @@
               <tr>
                 <th scope="row"><?= __('Is Superuser') ?></th>
                 <td><?= $user->is_superuser ? __('Yes') : __('No'); ?></td>
-              </tr>
-              <tr>
-                <th scope="row"><?= __('Attachment') ?></th>
-                <td><?= $user->has('attachment') ? $this->Html->link($user->attachment->name, ['controller' => 'Attachments', 'action' => 'view', $user->attachment->id]) : '' ?></td>
               </tr>
               <tr>
                 <th scope="row"><?= __('Token Expires') ?></th>

@@ -27,18 +27,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-12">
-            <?= $this->Form->input('attachment_id', ['type' => 'hidden']); ?>
-            <?= $this->Attachment->input('attachment_id',[
-              'label' => 'Avatar',
-              'types' =>['image/jpeg','image/png','image/gif'],
-              'atags' => ['avatar',$user->username],
-              'restrictions' => [
-                Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
-                Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
-              ],
-              'attachments' => $user->attachment? [$user->attachment]: []
-            ])
-            ?>
+            
             <?php
             //echo $this->Form->input('username', ['class' => 'form-control']);
             echo $this->Form->input('email', ['class' => 'form-control']);

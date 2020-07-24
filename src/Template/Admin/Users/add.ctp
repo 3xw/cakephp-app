@@ -38,19 +38,6 @@
             ?>
           </div>
           <div class="col-sm-4">
-            <?= $this->Attachment->input('attachment_id',[
-              'label' => __('Avatar'),
-              'types' =>['image/jpeg','image/png'],
-              'atags' => [],
-              'cols' => 'col-xs-6 col-md-6 col-lg-4',
-              'maxquantity' => 1,
-              'restrictions' => [
-                Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
-                Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
-                ],
-                'attachments' => []
-              ]
-            );?>
           </div>
         </div>
       </div>
