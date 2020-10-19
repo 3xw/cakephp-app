@@ -7,7 +7,7 @@ prefix = process.env
 
 const
 MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+TerserPlugin = require('terser-webpack-plugin'),
 VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const
@@ -24,13 +24,10 @@ vendor = () =>
         filename: 'js/'+prefix+'/vendor.min.js',
       },
       optimization: {
-        minimizer: [new UglifyJsPlugin({
-          extractComments: false,
-          parallel: true,
-          uglifyOptions: {
-            keep_fnames: true,
-            mangle: true,
-          }
+        minimize: true,
+        minimizer: [new TerserPlugin({
+          extractComments: 'all',
+          parallel: true
         })],
       },
       module: {
@@ -109,7 +106,11 @@ app = () =>
       chunkFilename: 'js/'+prefix+'/components/[hash].[name].min.js',
     },
     optimization: {
-      minimizer: [new UglifyJsPlugin()],
+      minimize: true,
+      minimizer: [new TerserPlugin({
+        extractComments: false,
+        parallel: true
+      })],
     },
     module: {
       rules: [
