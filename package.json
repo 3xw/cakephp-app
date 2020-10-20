@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.js --config-name app-admin",
+    "build": "webpack --config webpack.js --config-name app-front",
     "watchFront": "webpack --config webpack.js --config-name app --watch --mode development && webpack --config vendor/3xw/attachment/webpack.js --config-name attachmentConfig --watch --mode development"
   },
   "keywords": [],
