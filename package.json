@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "vendor": "webpack --config webpack.js --config-name vendor-front && webpack --config webpack.js --config-name vendor-admin && webpack --config vendor/3xw/attachment/webpack.js --config-name attachmentVendorConfig",
-    "build": "webpack --config webpack.js && webpack --config vendor/3xw/attachment/webpack.js",
+    "build": "webpack --config webpack.js --config-name app-admin",
     "watchFront": "webpack --config webpack.js --config-name app --watch --mode development && webpack --config vendor/3xw/attachment/webpack.js --config-name attachmentConfig --watch --mode development"
   },
   "keywords": [],
@@ -29,7 +28,7 @@
     "style-loader": "^2.0",
     "terser-webpack-plugin": "^5.0",
     "vue-loader": "^15.9",
-    "vue-template-compiler": "^2.6",
+    "vue-template-compiler": "2.6.11",
     "webpack": "^5.1",
     "webpack-cli": "^4.1"
   },
@@ -42,7 +41,7 @@
     "pixrem": "^5.0.0",
     "popper.js": "^1.16.1",
     "select2": "^4.0",
-    "vue": "^2.6.8",
+    "vue": "2.6.11",
     "vuex": "^3.1.1",
     "vuex-crud": "^0.3.2",
     "vuex-easy-access": "^3.1.7"
