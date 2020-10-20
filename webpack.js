@@ -68,5 +68,5 @@ configs = prefixes.map(prefix => {
   }
 })
 
-console.log(configs)
+//console.log(configs)
 module.exports = configs
