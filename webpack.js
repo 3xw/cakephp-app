@@ -8,69 +8,86 @@ prefix = process.env
 const
 MiniCssExtractPlugin = require("mini-css-extract-plugin"),
 TerserPlugin = require('terser-webpack-plugin'),
-VueLoaderPlugin = require('vue-loader/lib/plugin')
+VueLoaderPlugin = require('vue-loader/lib/plugin'),
+{ CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const
+optimization = (type) =>
+{
+  return {
+    minimize: true,
+    minimizer: [new TerserPlugin()]
+  }
+},
+postcssOptions =
+{
+  app:
+  {
+
+  },
+  vendor:
+  {
+    ident: 'postcss',
+    plugins: [
+      require('cssnano')({preset: ['default', {discardComments: {removeAll: true}}]})
+    ]
+  }
+},
+rules =
+{
+  babel:
+  {
+    test: /\.js$/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: ["@babel/plugin-syntax-dynamic-import"]
+      }
+    }
+  },
+  postcss: (type) => {
+    return {
+      test: /\.(css)$/,
+      exclude: /node_modules/,
+      use: [
+        { loader: MiniCssExtractPlugin.loader},
+        { loader: 'css-loader' },
+        {
+          loader: 'postcss-loader',
+          options:{ postcssOptions: postcssOptions[type] }
+        }
+      ]
+    }
+  }
+}
 
 const
 prefixes = ['front','admin'],
-vendor = () =>
+vendors = () =>
 {
   return prefixes.map(prefix => {
     return {
       mode: 'production',
-      name: 'vendor',
+      name: 'vendor-'+prefix,
       entry: path.join(__dirname, 'resources/assets/'+prefix, 'vendor.conf.js'),
       output: {
         path: path.resolve(__dirname, 'webroot'),
         filename: 'js/'+prefix+'/vendor.min.js',
       },
-      optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin({
-          extractComments: 'all',
-          parallel: true
-        })],
-      },
+      optimization: optimization('vendor'),
       module: {
         rules: [
-          {
-            test: /\.js$/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env'],
-                plugins: [
-                  "@babel/plugin-syntax-dynamic-import"
-                ]
-              }
-            }
-          },
-          {
-            test: /\.(css)$/,
-            use: [
-              {
-                loader: MiniCssExtractPlugin.loader,
-              },
-              'css-loader',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  ident: 'postcss',
-                  plugins: loader => [
-                    require('cssnano')({
-                      preset: ['default', {
-                        discardComments: {
-                          removeAll: true,
-                        }
-                      }]
-                    })
-                  ]
-                }
-              }
-            ]
-          }
+          rules.babel,
+          rules.postcss('vendor')
         ]
       },
       plugins: [
+        new CleanWebpackPlugin({
+          cleanOnceBeforeBuildPatterns: [
+            path.join(__dirname,'webroot','js/'+prefix+'/components/*')
+          ],
+        }),
         new MiniCssExtractPlugin({
           filename: 'css/'+prefix+'/vendor.min.css',
         }),
@@ -93,101 +110,108 @@ vendor = () =>
   })
 },
 
-app = () =>
+apps = () =>
 {
   return prefixes.map(prefix => {
-    mode: 'production',
-    name: 'themeAppConfig',
-    entry: './resources/assets/'+prefix+'/themeApp.conf.js',
-    output: {
-      path: path.resolve(__dirname, 'webroot'),
-      publicPath: webroot,
-      filename: 'js/'+prefix+'/app.min.js',
-      chunkFilename: 'js/'+prefix+'/components/[hash].[name].min.js',
-    },
-    optimization: {
-      minimize: true,
-      minimizer: [new TerserPlugin({
-        extractComments: false,
-        parallel: true
-      })],
-    },
-    module: {
-      rules: [
-        {
-        test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              "@babel/plugin-syntax-dynamic-import"
-            ]
-          }
-        }
+    return {
+      mode: 'production',
+      name: 'app-'+prefix,
+      entry: './resources/assets/'+prefix+'/app.conf.js',
+      output: {
+        path: path.resolve(__dirname, 'webroot'),
+        publicPath: webroot,
+        filename: 'js/'+prefix+'/app.min.js',
+        chunkFilename: 'js/'+prefix+'/components/[hash].[name].min.js',
       },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          cacheBusting: true,
-        }
+      optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin({
+          extractComments: false,
+          parallel: true
+        })],
       },
-      {
-        test: /\.(scss)$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader, },
-          'css-loader',
+      module: {
+        rules: [
           {
-            loader: 'postcss-loader',
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
             options: {
-              ident: 'postcss',
-              plugins: loader => [
-                require('postcss-preset-env')(),
-                require('pixrem')(),
-                require('autoprefixer')({overrideBrowserslist: 'last 10 versions'}),
-                require('cssnano')()
+              presets: ['@babel/preset-env'],
+              plugins: [
+                "@babel/plugin-syntax-dynamic-import"
               ]
             }
-          },
-          { loader: 'resolve-url-loader' },
-          { loader: 'sass-loader' },
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-          test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [{
-              loader: 'file-loader',
+          }
+        },
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+          options: {
+            cacheBusting: true,
+          }
+        },
+        {
+          test: /\.(scss)$/,
+          use: [
+            { loader: MiniCssExtractPlugin.loader, },
+            'css-loader',
+            {
+              loader: 'postcss-loader',
               options: {
-                  name: '[name].[ext]',
-                  publicPath: webroot+'fonts/',
-                  outputPath: 'fonts/'
+                postcssOptions:
+                {
+                  ident: 'postcss',
+                  plugins: loader => [
+                    require('postcss-preset-env')(),
+                    require('pixrem')(),
+                    require('autoprefixer')({overrideBrowserslist: 'last 10 versions'}),
+                    require('cssnano')()
+                  ]
+                }
               }
-          }]
-      }]
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: 'css/'+prefix+'/theme.min.css',
-        chunkFilename: 'css/'+prefix+'/components/[name].min.css',
-      }),
-      new VueLoaderPlugin()
-    ],
-    resolve: {
-      alias: {
-          'vue$': 'vue/dist/vue.esm.js'
+            },
+            { loader: 'resolve-url-loader' },
+            { loader: 'sass-loader' },
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [
+            'vue-style-loader',
+            'css-loader',
+            'sass-loader'
+          ]
+        },
+        {
+            test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    publicPath: webroot+'fonts/',
+                    outputPath: 'fonts/'
+                }
+            }]
+        }]
       },
-      extensions: ['*', '.js', '.vue', '.json']
-    },
+      plugins: [
+        new MiniCssExtractPlugin({
+          filename: 'css/'+prefix+'/theme.min.css',
+          chunkFilename: 'css/'+prefix+'/components/[name].min.css',
+        }),
+        new VueLoaderPlugin()
+      ],
+      resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        },
+        extensions: ['*', '.js', '.vue', '.json']
+      },
+    }
   })
 }
 
-module.exports = [vendor, app];
+//console.log(apps().concat(vendors()));
+
+module.exports = apps().concat(vendors())
