@@ -1,3 +1,9 @@
+import $ from 'jquery';
+import select2 from 'select2'; // will load the css too
+
+//Hook up select2 to jQuery
+select2($);
+
 // inputs
 var initSelect = function(){
   $('select').select2();

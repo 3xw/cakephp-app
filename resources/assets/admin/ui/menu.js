@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var collapseIconChange = function(){
   $('[data-toggle="collapse"]:not(.navbar-toggler)').click(function(){
     var ico = $(this).find('i:last-child');
