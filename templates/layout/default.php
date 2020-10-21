@@ -47,7 +47,6 @@ use Cake\I18n\I18n;
   <?= $this->Html->meta('icon') ?>
   <?= $this->fetch('meta') ?>
   <?= $this->Html->css([
-    'front/vendor.min.css?v='.md5_file(APP.'../webroot/css/front/vendor.min.css'),
     'front/theme.min.css?v='.md5_file(APP.'../webroot/css/front/theme.min.css')])
   ?>
   <?= $this->fetch('css') ?>
@@ -66,7 +65,6 @@ use Cake\I18n\I18n;
   <?= $this->fetch('template') ?>
 
   <?= $this->Html->script([
-    'front/vendor.min.js?v='.md5_file(APP.'../webroot/js/front/vendor.min.js'),
     'front/app.min.js?v='.md5_file(APP.'../webroot/js/front/app.min.js')])
   ?>
   <?= $this->fetch('script') ?>

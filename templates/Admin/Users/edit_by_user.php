@@ -26,26 +26,14 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-12">
-            <?= $this->Form->input('attachment_id', ['type' => 'hidden']); ?>
-            <?= $this->Attachment->input('attachment_id',[
-              'label' => 'Avatar',
-              'types' =>['image/jpeg','image/png','image/gif'],
-              'atags' => ['avatar',$user->username],
-              'restrictions' => [
-                Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
-                Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
-              ],
-              'attachments' => $user->attachment? [$user->attachment]: []
-            ])
-            ?>
-            <?php
-            //echo $this->Form->input('username', ['class' => 'form-control']);
-            echo $this->Form->input('email', ['class' => 'form-control']);
-            //echo $this->Form->input('password', ['class' => 'form-control']);
-            echo $this->Form->input('first_name', ['class' => 'form-control']);
-            echo $this->Form->input('last_name', ['class' => 'form-control']);
-            ?>
+          <div class="col-sm-8">
+            <?= $this->Form->control('email',['class'=>'form-control']);?>
+            <?= $this->Form->control('title',['options'=> ['Mme.'=>'Mme.','M.'=>'M.','Dr.'=>'Dr.','Pr.'=>'Pr.'],'class'=>'form-control']);?>
+            <?= $this->Form->control('first_name',['class'=>'form-control']);?>
+            <?= $this->Form->control('last_name',['class'=>'form-control']);?>
+            <?= $this->Form->control('hospital',['class'=>'form-control', 'required' => 'required']);?>
+            <?= $this->Form->control('service',['class'=>'form-control', 'required' => 'required']);?>
+            <?= $this->Form->control('country',['class'=>'form-control', 'required' => 'required']);?>
           </div>
         </div>
       </div>

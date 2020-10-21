@@ -1,5 +1,6 @@
 <?php
 use Cake\Routing\Router;
+use Cake\Core\Configure;
 
 $config = [
   'Users' => [
@@ -7,7 +8,7 @@ $config = [
     //'table' => 'CakeDC/Users.Users',
     'table' => 'Users',
     // Controller used to manage users plugin features & actions
-    'controller' => 'CakeDC/Users.Users',
+    'controller' => 'admin/users',
     // Password Hasher
     'passwordHasher' => '\Cake\Auth\DefaultPasswordHasher',
     'middlewareQueueLoader' => \CakeDC\Users\Loader\MiddlewareQueueLoader::class,
@@ -33,9 +34,9 @@ $config = [
     ],
     'reCaptcha' => [
       // reCaptcha key goes here
-      'key' => null,
+      'key' => Configure::read('Recaptcha.sitekey'),
       // reCaptcha secret
-      'secret' => null,
+      'secret' => Configure::read('Recaptcha.secret'),
       // use reCaptcha in registration
       'registration' => false,
       // use reCaptcha in login, valid values are false, true
@@ -117,16 +118,16 @@ $config = [
     'AuthenticationComponent' => [
       'load' => true,
       'loginAction' => [
-        'plugin' => 'CakeDC/Users',
+        'plugin' => false,
         'controller' => 'Users',
         'action' => 'login',
-        'prefix' => false,
+        'prefix' => 'Admin',
       ],
       'logoutRedirect' => [
-        'plugin' => 'CakeDC/Users',
+        'plugin' => false,
         'controller' => 'Users',
         'action' => 'login',
-        'prefix' => false,
+        'prefix' => 'Admin',
       ],
       'loginRedirect' => ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'Admin', 'plugin' => false],
       'requireIdentity' => false
@@ -145,10 +146,10 @@ $config = [
         ],
         'urlChecker' => 'Authentication.CakeRouter',
         'loginUrl' => [
-          'plugin' => 'CakeDC/Users',
+          'plugin' => false,
           'controller' => 'Users',
           'action' => 'login',
-          'prefix' => false,
+          'prefix' => 'Admin',
         ]
       ]
     ],
@@ -187,12 +188,17 @@ $config = [
           'MissingIdentityException' => 'Authorization\Exception\MissingIdentityException',
           'ForbiddenException' => 'Authorization\Exception\ForbiddenException',
         ],
-        'className' => 'Authorization.CakeRedirect',
+        'className' => \Trois\Utils\Http\Middleware\UnauthorizedHandler\RequestDetectorHandler::class,//'Authorization.CakeRedirect',
         'url' => [
-          'plugin' => 'CakeDC/Users',
+          'plugin' => false,
           'controller' => 'Users',
           'action' => 'login',
-          'prefix' => FALSE
+          'prefix' => 'Admin'
+        ],
+        'detectors' => [
+          'json' => [
+            'handler' => Authorization\Middleware\UnauthorizedHandler\ExceptionHandler::class
+          ]
         ]
       ]
     ],

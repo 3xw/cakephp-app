@@ -13,7 +13,6 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <?= $this->Html->css([
-    'admin/vendor.min.css?v='.md5_file(APP.'../webroot/css/admin/vendor.min.css'),
     'admin/theme.min.css?v='.md5_file(APP.'../webroot/css/admin/theme.min.css')])
   ?>
   <?= $this->fetch('meta') ?>
@@ -32,7 +31,6 @@
       </div>
     </div>
     <?= $this->fetch('template') ?>
-    <?= $this->Html->script(['admin/vendor.min.js?v='.md5_file(APP.'../webroot/js/admin/vendor.min.js')]) ?>
     <?= $this->Html->script(['admin/app.min.js?v='.md5_file(APP.'../webroot/js/admin/app.min.js')]) ?>
     <?= $this->fetch('script') ?>
   </body>

@@ -18,7 +18,7 @@
         <?= $this->Html->link('<i class="material-icons">vpn_key</i> '.__d('CakeDC/Users', 'Change Password'), ['action' => 'changePassword'],['class' => '','escape' => false]) ?>
       </li>
       <li class="nav-item">
-        <?= $this->Html->link('<i class="material-icons">vpn_key</i> '.__d('CakeDC/Users', 'Logout'),['controller' => 'Users', 'action' => 'logout','prefix' => false, 'plugin' => 'CakeDC/Users'],['class' => '','escape' => false] ) ?>
+        <?= $this->Html->link('<i class="material-icons">vpn_key</i> '.__d('CakeDC/Users', 'Logout'),['action' => 'logout'],['class' => '','escape' => false] ) ?>
       </li>
     </ul>
   </div>
@@ -45,7 +45,7 @@
       <!-- CONTENT -->
       <div class="card-body text-center">
         <h4 class="title">
-          <?= $user->first_name.' '.$user->last_name ?>
+          <?= $user->title.' '.$user->first_name.' '.$user->last_name ?>
           <br>
           <small>
             <?= $user->username ?>

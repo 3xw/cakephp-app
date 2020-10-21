@@ -7,7 +7,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
 
 <div class="sidebar navbar-expand-md">
   <div class="logo logo-mini d-block d-md-none text-left">
-    <?= $this->Html->link('WGR SA', ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text']) ?>
+    <?= $this->Html->link('OFROU', ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'Admin', 'plugin' => false], ['class' => 'logo-text']) ?>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <i class="material-icons">menu</i>
     </button>
@@ -31,7 +31,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
         {
           $menuCount++;
           $html = '<li>'."\n";
-          $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto">expand_more</i></a>'."\n";
+          $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto nav-expend">expand_more</i></a>'."\n";
           $html .= '<div class="collapse" id="menu-item-'.$menuCount.'">'."\n";
 
           // check active
@@ -41,7 +41,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
             {
               $in = $this->request->getSession()->read('Settings.css.sidebar-mini') == '' ? 'in' : '';
               $html = '<li class="active">'."\n";
-              $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto">expand_more</i></a>'."\n";
+              $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto nav-expend">expand_more</i></a>'."\n";
               $html .= '<div class="collapse '.$in.'" id="menu-item-'.$menuCount.'">'."\n";
             }
           }

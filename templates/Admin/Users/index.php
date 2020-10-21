@@ -41,26 +41,59 @@
           <table id="datatables" class="table table-no-bordered table-hover dataTable dtr-inline" cellspacing="0" width="100%" style="width: 100%;" role="grid" aria-describedby="datatables_info">
             <thead class="thead-default">
               <tr>
-                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('is_superuser') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('hospital') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('service') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('country') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('role') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('upcoming_lessons') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('past_lessons') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('active_users_licences',['label' => 'Active Licences']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('unactive_users_licences',['label' => 'Unactive Licences']) ?></th>
+                <th scope="col">Niveau</th>
+                <th scope="col"><?= $this->Paginator->sort('transactions') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
               </tr>
             </thead>
             <tbody>
             <?php foreach ($users as $user): ?>
               <tr>
-                <td><?= h($user->username) ?></td>
-                <td><?= h($user->email) ?></td>
-                <td><?= h($user->first_name) ?></td>
-                <td><?= h($user->last_name) ?></td>
-                <td><?= ($user->active) ? __('Yes') : __('No')?></td>
-                <td><?= ($user->is_superuser) ? __('Yes') : __('No')?></td>
-                <td><?= h($user->role) ?></td>
+                <td><?= $user->created->format('d.m.y') ?></td>
+                <td><?= ($user->name)? $user->name : $user->full_name ?></td>
+                <td><?= h($user->hospital) ?></td>
+                <td><?= h($user->service) ?></td>
+                <td><?= h($user->country) ?></td>
+                <td><?php switch ($user->role) {
+                  case 'superuser':
+                    echo "SU";
+                    break;
+                  case 'doctor':
+                      echo "DR";
+                      break;
+                  case 'caregiver':
+                      echo "CG";
+                      break;
+                } ?></td>
+
+                <td>
+                  <?= ($count = count($user->upcoming_lessons))? $this->Html->tag('span', $count, ['class' =>'badge badge-primary']): '' ?>
+                </td>
+                <td>
+                  <?= ($count = count($user->past_lessons))? $this->Html->tag('span', $count, ['class' =>'badge badge-secondary']): '' ?>
+                </td>
+                <td>
+                  <?= ($count = count($user->active_users_licences))? $this->Html->tag('span', $count, ['class' =>'badge badge-primary']): '' ?>
+                </td>
+                <td>
+                  <?= ($count = count($user->unactive_users_licences))? $this->Html->tag('span', $count, ['class' =>'badge badge-secondary']): '' ?>
+                </td>
+                <td>
+                  <? foreach($user->users_components as $uc) echo $this->Html->tag('span', strtoupper(substr($uc->component->name,0,1).$uc->level).' ('.substr($uc->module->name,0,2).')', ['class' =>'badge badge-info']); ?>
+                </td>
+                <td>
+                  <?= ($count = count($user->transactions))? $this->Html->tag('span', $count, ['class' =>'badge badge-info']): '' ?>
+                </td>
                 <td data-title="actions" class="actions" class="text-right">
                   <div class="btn-group">
                     <?= $this->Html->link('<i class="material-icons">visibility</i>', ['action' => 'view', $user->id],['class' => 'btn btn-xs btn-simple btn-info btn-icon edit','escape' => false]) ?>

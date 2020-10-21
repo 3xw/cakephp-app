@@ -1,7 +1,7 @@
 <? use Cake\Core\Configure; ?>
 <header class="d-flex flex-row justify-content-between align-items-center">
   <div class="logo d-none d-md-block">
-    <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', ['fullBase' => true]).'img/admin/logo--sidebar.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
+    <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', ['fullBase' => true]).'img/admin/logo--sidebar.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'Admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
   </div>
   <div class="sidebar__user-menu">
     <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
@@ -21,7 +21,7 @@
           <?= $this->html->link(__('Edit Profile'), ['controller' => 'Users', 'action' => 'editByUser', $this->request->getSession()->read('Auth.id')]) ?>
         </li>
         <li>
-          <?= $this->Html->link(__('Logout'),['controller' => 'Users', 'action' => 'logout','prefix' => false, 'plugin' => 'CakeDC/Users'] ) ?>
+          <?= $this->Html->link(__('Logout'),['controller' => 'Users', 'action' => 'logout', 'prefix' => 'Admin', 'plugin' => false] ) ?>
         </li>
       </ul>
     </div>

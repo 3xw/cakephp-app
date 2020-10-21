@@ -39,7 +39,7 @@ $this->layout = 'login';
         <div class="utils--spacer-semi"></div>
 
         <div class=" text-center">
-          <? /* echo $this->Attachment->image(['image' => 'admin/logo--login.png', 'profile' => 'img', 'width' => '200'], ['class' => 'img-responsive', 'width' => '127']) */ ?>
+          <?= $this->Attachment->image(['image' => 'admin/logo--login.png', 'profile' => 'img', 'width' => '200'], ['class' => 'img-responsive', 'width' => '127']) ?>
           <div class="utils--spacer-mini"></div>
 
           <h2>Connexion</h2>
@@ -50,7 +50,7 @@ $this->layout = 'login';
         <div class="utils--spacer-semi">
 
         </div>
-        <?= $this->Form->create('User') ?>
+        <?= $this->Form->create(null) ?>
 
         <div class="form-group">
           <label>Adresse Email</label>

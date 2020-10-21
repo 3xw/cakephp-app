@@ -4,7 +4,7 @@ use Cake\I18n\I18n;
 use Cake\Utility\Inflector;
 
 $languages = Configure::read('I18n.languages');
-$language = I18n::locale();
+$language = I18n::getLocale();
 
 $this->Html->scriptBlock('var languages = '.  json_encode($languages).'; var language = "'.$language.'";', ['block' => 'script']);
 
@@ -41,11 +41,11 @@ foreach( $languages as $lng )
       }else{
         $label = Inflector::humanize($field).' ('.$lng.')';
       }
-      if( $lng == I18n::defaultLocale() )
+      if( $lng == I18n::getDefaultLocale() )
       {
-        $fieldInputs .= $this->Form->input($field, ['class' => 'form-control '.$class, 'label' => $label]);
+        $fieldInputs .= $this->Form->control($field, ['class' => 'form-control '.$class, 'label' => $label]);
       }else{
-        $fieldInputs .= $this->Form->input('_translations.'.$lng.'.'.$field, ['class' => 'form-control '.$class, 'label' => $label,'required' => false]);
+        $fieldInputs .= $this->Form->control('_translations.'.$lng.'.'.$field, ['class' => 'form-control '.$class, 'label' => $label,'required' => false]);
       }
     }else{
       if(!empty($labels) && !empty($labels[$i])){
@@ -55,14 +55,14 @@ foreach( $languages as $lng )
       }
 
       $inputConf = ['class' => '', 'label' => $label];
-      $inputConf['required'] = ($lng == I18n::defaultLocale())? true: false;
-      $fieldName = ($lng == I18n::defaultLocale())? $key: '_translations.'.$lng.'.'.$key;
+      $inputConf['required'] = ($lng == I18n::getDefaultLocale())? true: false;
+      $fieldName = ($lng == I18n::getDefaultLocale())? $key: '_translations.'.$lng.'.'.$key;
       if(!empty($field['Attachment.trumbowyg']))
       {
         $inputConf = array_merge($inputConf, $field['Attachment.trumbowyg']);
         $inputConf['class'] .= ' form-control '.$class;
         if(!empty($field['Attachment.trumbowyg']['content'])){
-          $inputConf['content'] = ($lng == I18n::defaultLocale())? $field['Attachment.trumbowyg']['content']->$fieldName : $field['Attachment.trumbowyg']['content']->_translations[$lng]->$key;
+          $inputConf['content'] = ($lng == I18n::getDefaultLocale())? $field['Attachment.trumbowyg']['content']->$fieldName : $field['Attachment.trumbowyg']['content']->_translations[$lng]->$key;
         }
         $fieldInputs .= $this->Attachment->trumbowyg($fieldName,$inputConf);
       }elseif(!empty($field['Trois/Tinymce.tinymce']))
@@ -70,11 +70,11 @@ foreach( $languages as $lng )
         $inputConf = array_merge($inputConf, $field['Trois/Tinymce.tinymce']);
         $inputConf['init']['class'] = ' no-trumbowyg '.$class;
         $inputConf['init']['label'] = $label;
-        $inputConf['init']['required'] = ($lng == I18n::defaultLocale() && !empty($field['Trois/Tinymce.tinymce']['init']['required']))? $field['Trois/Tinymce.tinymce']['init']['required'] : false;
+        $inputConf['init']['required'] = ($lng == I18n::getDefaultLocale() && !empty($field['Trois/Tinymce.tinymce']['init']['required']))? $field['Trois/Tinymce.tinymce']['init']['required'] : false;
         $inputConf['field'] = $fieldName;
 
         if(!empty($field['Trois/Tinymce.tinymce']['value'])){
-          $inputConf['value'] = ($lng == I18n::defaultLocale())? $field['Trois/Tinymce.tinymce']['value']->$fieldName : $field['Trois/Tinymce.tinymce']['value']->_translations[$lng]->$key;
+          $inputConf['value'] = ($lng == I18n::getDefaultLocale())? $field['Trois/Tinymce.tinymce']['value']->$fieldName : $field['Trois/Tinymce.tinymce']['value']->_translations[$lng]->$key;
         }
 
 
@@ -86,14 +86,14 @@ foreach( $languages as $lng )
               'label' => $inputConf['init']['label'],
               'required' => $inputConf['init']['required'],
               'external_plugins' => (!empty($inputConf['init']['external_plugins']))? $inputConf['init']['external_plugins'] : null,
-              'attachment_settings' => (!empty($inputConf['init']['attachment_settings']))? $this->Attachment->jsSetup($fieldName, $inputConf['init']['attachment_settings']) : null
+              'attachment_settings' => (!empty($inputConf['init']['attachment_settings']))? $this->Attachment->setup($fieldName, $inputConf['init']['attachment_settings']) : null
             ]
           ]);
         }else
         {
           $inputConf = array_merge($inputConf, $field);
           $inputConf['class'] .= ' form-control '.$class;
-          $fieldInputs .= $this->Form->input($fieldName, $inputConf);
+          $fieldInputs .= $this->Form->control($fieldName, $inputConf);
         }
       }
       $i++;
