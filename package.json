@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.js",
-    "watch": "webpack --config webpack.js --watch --mode development"
+    "build": "webpack --config webpack.js && webpack --config vendor/3xw/attachment/webpack.js",
+    "dev": "webpack --config webpack.js --mode development && webpack --config vendor/3xw/attachment/webpack.js --mode development"
   },
   "keywords": [],
   "author": "",
@@ -37,11 +37,15 @@
     "axios": "^0.20",
     "bootstrap": "^4.5",
     "dotenv": "^7.0.0",
+    "element-ui": "^2.13",
     "jquery": "^3.4",
+    "moment": "^2.29.1",
     "pixrem": "^5.0.0",
     "popper.js": "^1.16.1",
     "select2": "^4.0",
     "vue": "2.6.11",
+    "vue-images-loaded": "^1.1",
+    "vue-packery-plugin": "^1.4",
     "vuex": "^3.1.1",
     "vuex-crud": "^0.3.2",
     "vuex-easy-access": "^3.1.7"

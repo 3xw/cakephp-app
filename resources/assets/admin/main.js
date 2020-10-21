@@ -1,3 +1,4 @@
+import 'bootstrap'
 import Vue from 'vue'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
 
@@ -19,7 +20,7 @@ Vue.config.devtools = true;
 Vue.config.productionTip = true;
 
 // create instance
-new Vue({
+window.adminApp = new Vue({
   store,
   el: "#admin-app"
 })

@@ -22,3 +22,20 @@ var reduceMenu = function(){
     }
   });
 }
+
+var goMenuIfSmall = function(){
+  $('.sidebar__menu [data-toggle="collapse"]').click(function(){
+    if(!$('.sidebar__toggler').hasClass('actived')){
+      $('.sidebar__toggler').addClass('actived')
+      $('.row-sidebar').removeClass('utils__sidebar--simple')
+    }
+  })
+}
+
+const init = () =>
+{
+  collapseIconChange()
+  reduceMenu()
+}
+
+$(document).ready(init);
