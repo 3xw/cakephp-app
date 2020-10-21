@@ -1,6 +1,5 @@
-<?= $this->Attachment->buildIndex([
-  'actions' => ['add','edit','delete','view'],
-  'types' =>['image/jpeg','image/png','embed/youtube','embed/vimeo','video/quicktime','transit/youtube', 'application/pdf'],
+<?= $this->Attachment->index([
+  'types' =>['image/jpeg','image/png','embed/youtube','embed/vimeo','video/quicktime','transit/youtube', 'application/pdf','application/zip'],
   'atags' => [],
   'atagsDisplay' => 'select', // false | 'select' | 'input'
   'restrictions' => [
