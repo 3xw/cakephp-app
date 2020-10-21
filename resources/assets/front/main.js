@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import $ from 'jquery'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
 
 //import store from '@/store/store'
@@ -18,7 +19,12 @@ Vue.config.devtools = true;
 Vue.config.productionTip = true;
 
 // create instance
-new Vue({
-  //store,
-  el: "#front-app"
-})
+const init = () => {
+  window.frontApp = new Vue({
+    //store,
+    el: "#front-app"
+  })
+}
+
+// boostrap
+$(document).ready(init)

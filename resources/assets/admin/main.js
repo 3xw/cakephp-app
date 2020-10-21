@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
 
 import store from '@/store/store'
@@ -19,7 +18,12 @@ Vue.config.devtools = true;
 Vue.config.productionTip = true;
 
 // create instance
-window.adminApp = new Vue({
-  store,
-  el: "#admin-app"
-})
+const init = () => {
+  window.adminApp = new Vue({
+    store,
+    el: "#admin-app"
+  })
+}
+
+// boostrap
+$(document).ready(init)
