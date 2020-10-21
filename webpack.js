@@ -29,11 +29,24 @@ plugins = (prefix) => {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/'+prefix+'/theme.min.css',
+      filename: 'css/'+prefix+'/[name].min.css',
       chunkFilename: 'css/'+prefix+'/components/[name].min.css',
     }),
     new VueLoaderPlugin()
   ]
+},
+entry = (prefix) =>
+{
+  let entry =
+  {
+    main: [
+      './resources/assets/'+prefix+'/main.js',
+      './resources/assets/'+prefix+'/assets/scss/theme.scss'
+    ]
+  }
+  return prefix == 'front'? entry: Object.assign(entry,{
+    common: './resources/assets/'+prefix+'/common.js'
+  })
 }
 
 // configs
@@ -43,14 +56,11 @@ configs = prefixes.map(prefix => {
   return {
     mode: 'production',
     name: 'app-'+prefix,
-    entry: [
-      './resources/assets/'+prefix+'/main.js',
-      './resources/assets/'+prefix+'/assets/scss/theme.scss'
-    ],
+    entry: entry(prefix),
     output: {
       path: path.resolve(__dirname, 'webroot'),
       publicPath: webroot,
-      filename: 'js/'+prefix+'/app.min.js',
+      filename: 'js/'+prefix+'/[name].min.js',
       chunkFilename: 'js/'+prefix+'/components/[hash].[name].min.js',
     },
     optimization,

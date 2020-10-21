@@ -1,4 +1,3 @@
-import $ from 'jquery';
 
 var collapseIconChange = function(){
   $('[data-toggle="collapse"]:not(.navbar-toggler)').click(function(){

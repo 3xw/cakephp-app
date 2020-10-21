@@ -1,4 +1,3 @@
-import 'bootstrap'
 import Vue from 'vue'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
 
