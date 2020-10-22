@@ -17,7 +17,7 @@ $routes->scope('/', function (RouteBuilder $builder)
   $resources = [];
   foreach($resources as $res) $builder->resources($res);
 
-  $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+  $builder->redirect('/', '/login', ['status' => 302]);
   $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
   $builder->fallbacks();
