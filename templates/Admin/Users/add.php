@@ -26,49 +26,29 @@
         <h2><?= __('Add User') ?></h2>
       </div>
       <div class="card-body">
-
         <div class="row">
-          <div class="col-sm-2">
+          <div class="col-sm-8">
+            <?= $this->Attachment->input('attachment_id',[
+              'label' => __('Media'),
+              'types' =>['image/jpeg','image/png'],
+              'atags' => [],
+              'cols' => 'col-xs-6 col-md-6 col-lg-4',
+              'maxquantity' => 1,
+              'restrictions' => [
+                Attachment\View\Helper\AttachmentHelper::TAG_RESTRICTED,
+                Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
+                ],
+                'attachments' => [],
+              ]
+            );?>
+            <?= $this->Form->control('username',['class'=>'form-control']);?>
+            <?= $this->Form->control('email',['class'=>'form-control']);?>
+            <?= $this->Form->control('first_name',['class'=>'form-control']);?>
+            <?= $this->Form->control('last_name',['class'=>'form-control']);?>
+            <?= $this->Form->control('role',['class'=>'form-control']);?>
             <?= $this->Form->control('active', ['class'=>'form-control']);?>
           </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('role',['options'=> ['doctor'=>'doctor','caregiver'=>'caregiver','teacher'=>'teacher','admin'=>'admin'],'class'=>'form-control']);?>
-          </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('email',['class'=>'form-control']);?>
-          </div>
-
-          <div class="col-sm-2">
-            <?= $this->Form->control('title',['options'=> ['Mme.'=>'Mme.','M.'=>'M.','Dr.'=>'Dr.','Pr.'=>'Pr.'],'class'=>'form-control']);?>
-          </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('last_name',['class'=>'form-control']);?>
-          </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('first_name',['class'=>'form-control']);?>
-          </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('hospital',['class'=>'form-control', 'required' => 'required']);?>
-          </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('service',['class'=>'form-control', 'required' => 'required']);?>
-          </div>
-          <div class="col-sm-5">
-            <?= $this->Form->control('country',['class'=>'form-control', 'required' => 'required']);?>
-          </div>
         </div>
-
-        <hr>
-
-        <div class="row">
-          <div class="col-sm-6">
-            <?= $this->Form->control('licences._ids',['class'=>'form-control']);?>
-          </div>
-          <div class="col-sm-6">
-            <?= $this->Form->control('lessons._ids',['class'=>'form-control']);?>
-          </div>
-        </div>
-
       </div>
       <div class="card-footer">
         <div class="text-right">
