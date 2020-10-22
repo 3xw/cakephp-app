@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.js && webpack --config vendor/3xw/attachment/webpack.js",
-    "dev": "webpack --config webpack.js --mode development && webpack --config vendor/3xw/attachment/webpack.js --mode development"
+    "dev": "webpack --config webpack.js --mode development && webpack --config vendor/3xw/attachment/webpack.js --mode development",
+    "watchAttachment": "webpack --config vendor/3xw/attachment/webpack.js --mode development --watch"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "file-loader": "^6.1",
     "mini-css-extract-plugin": "1.0",
     "node-sass": "^4.14",
+    "postcss": "^8.1.2",
     "postcss-loader": "^4.0",
     "postcss-preset-env": "^6.7",
     "resolve-url-loader": "^3.1",

@@ -61,7 +61,7 @@ configs = prefixes.map(prefix => {
       path: path.resolve(__dirname, 'webroot'),
       publicPath: webroot,
       filename: 'js/'+prefix+'/[name].min.js',
-      chunkFilename: 'js/'+prefix+'/components/[hash].[name].min.js',
+      chunkFilename: 'js/'+prefix+'/components/[fullhash].[name].min.js',
     },
     optimization,
     module: {
