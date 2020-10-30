@@ -1,6 +1,6 @@
 <?php
 return [
-  //'key.to.change' => 'some value',
+  'key.to.change' => 'some value',
 
   /*
   'Auth.AuthorizationMiddleware.unauthorizedHandler' => [

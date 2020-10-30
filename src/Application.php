@@ -59,7 +59,7 @@ class Application extends BaseApplication
     }
 
     // Load more plugins here
-    Configure::load('users');
+    Configure::write('Users.config', 'users');
     $this->addPlugin(\CakeDC\Users\Plugin::class); // permissions.php automatically loaded...
 
     // Attachment
