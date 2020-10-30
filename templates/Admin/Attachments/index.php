@@ -3,8 +3,8 @@
   'atags' => [],
   'atagsDisplay' => 'select', // false | 'select' | 'input'
   'restrictions' => [
-    Attachment\View\Helper\AttachmentHelper::TAG_OR_RESTRICTED,
-    Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
+    Trois\Attachment\View\Helper\AttachmentHelper::TAG_OR_RESTRICTED,
+    Trois\Attachment\View\Helper\AttachmentHelper::TYPES_RESTRICTED
   ],
   /*
   'listeners' => [

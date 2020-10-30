@@ -36,7 +36,7 @@ class UsersTable extends CakeDCUsersTable
       'comparison' => 'LIKE',
       'wildcardAny' => '*',
       'wildcardOne' => '?',
-      'field' => [$this->aliasField('first_name'), $this->aliasField('last_name'),$this->aliasField('email'),$this->aliasField('role')]
+      'fields' => [$this->aliasField('first_name'), $this->aliasField('last_name'),$this->aliasField('email'),$this->aliasField('role')]
     ]);
   }
 

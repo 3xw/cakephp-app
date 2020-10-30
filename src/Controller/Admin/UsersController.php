@@ -33,7 +33,7 @@ class UsersController extends CakeDCUsersController
   public function initialize():void
   {
     parent::initialize();
-    $this->loadComponent('Search.Prg', [
+    $this->loadComponent('Search.Search', [
       'actions' => ['index']
     ]);
   }
@@ -65,6 +65,7 @@ class UsersController extends CakeDCUsersController
   */
   public function index()
   {
+    debug($this->Users);
     $query = $this->Users->find('search', ['search' => $this->getRequest()->getQuery()])->contain([]);
     if (isset($this->getRequest()->params['?'])) {
       if (!$query->count()) {

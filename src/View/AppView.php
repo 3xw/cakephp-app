@@ -11,6 +11,6 @@ class AppView extends View
   {
     $this->loadHelper('Form', ['templates' => 'app_form']);
     $this->loadHelper('Vue');
-    $this->loadHelper('Attachment.Attachment');
+    $this->loadHelper('Trois/Attachment.Attachment');
   }
 }
