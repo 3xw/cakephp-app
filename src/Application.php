@@ -67,6 +67,9 @@ class Application extends BaseApplication
 
     // pages
     $this->addPlugin(\Trois\Pages\Plugin::class);
+
+    // pages
+    $this->addPlugin(\Trois\Tinymce\Plugin::class);
   }
 
   /**

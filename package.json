@@ -4,9 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.js && webpack --config vendor/3xw/attachment/webpack.js",
-    "dev": "webpack --config webpack.js --mode development && webpack --config vendor/3xw/attachment/webpack.js --mode development",
-    "watchAttachment": "webpack --config vendor/3xw/attachment/webpack.js --mode development --watch"
+    "build": "webpack --config webpack.js && webpack --config vendor/3xw/cakephp-attachment/webpack.js",
+    "watch": "webpack --config webpack.js --mode development",
+    "watchAttachment": "webpack --config vendor/3xw/cakephp-attachment/webpack.js --mode development --watch",
+    "watchPages": "webpack --config vendor/3xw/cakephp-pages/webpack.js --mode development --watch",
+    "watchTinymce": "webpack --config vendor/3xw/cakephp-tinymce/webpack.js --mode development --watch"
   },
   "keywords": [],
   "author": "",
@@ -48,6 +50,7 @@
     "vue": "2.6.11",
     "vue-images-loaded": "^1.1",
     "vue-packery-plugin": "^1.4",
+    "vuedraggable": "^2.24.3",
     "vuex": "^3.1.1",
     "vuex-crud": "^0.3.2",
     "vuex-easy-access": "^3.1.7"
