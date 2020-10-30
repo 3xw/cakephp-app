@@ -24,8 +24,16 @@ return [
 
     [ // resize fct
       'prefix' => false,
-      'plugin' => 'Attachment',
+      'plugin' => 'Trois/Attachment',
       'controller' => 'Resize',
+      'action' => '*',
+      'bypassAuth' => true,
+    ],
+
+    [ // pages front
+      'prefix' => false,
+      'plugin' => 'Trois/Pages',
+      'controller' => '*',
       'action' => '*',
       'bypassAuth' => true,
     ],
@@ -70,6 +78,8 @@ return [
       ],
       'bypassAuth' => true,
     ],
+
+
     //admin role allowed to all the things
     [
       'role' => 'admin',
