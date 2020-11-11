@@ -34,7 +34,18 @@
       </div>
     </div>
   </div>
+
+  <!-- TEMPLATES -->
   <?= $this->fetch('template') ?>
+
+  <!-- TOKEN -->
+  <?php if($csrfToken = $this->getRequest()->getAttribute('csrfToken')): ?>
+    <script type="text/javascript">
+      window.csrfToken = '<?= $csrfToken ?>'
+    </script>
+  <?php endif; ?>
+
+  <!-- SCRIPTS -->
   <?= $this->Html->script([
       'admin/common.min.js?v='.md5_file(APP.'../webroot/js/admin/common.min.js'),
       'admin/main.min.js?v='.md5_file(APP.'../webroot/js/admin/main.min.js')

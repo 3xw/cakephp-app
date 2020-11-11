@@ -13,6 +13,7 @@ return [
         ]
       ],
       '<i class="material-icons">person</i><p>'.__('Users').'</p>' => ['controller' => 'Users', 'action' => 'index','prefix' => 'Admin', 'plugin' => false],
+      '<i class="material-icons">edit</i><p>'.__('Pages').'</p>' => ['controller' => 'Pages', 'action' => 'index','prefix' => 'Admin', 'plugin' => 'Trois/Pages'],
     ],
 
     /* Menu admin
