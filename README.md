@@ -7,7 +7,7 @@ PHP
 composer create-project --prefer-dist 3xw/cakephp-app myapp
 ```
 
-Modify webpack.env tnen run
+Modify webpack.env and run
 
 ```bash
 npm i && npm run build
