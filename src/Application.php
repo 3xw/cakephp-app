@@ -27,6 +27,7 @@ use Cake\Routing\Middleware\RoutingMiddleware;
 
 use Trois\Utils\Http\Middleware\CorsMiddleware;
 use Trois\Utils\Http\Middleware\ClusterAliasMiddleware;
+use Trois\Utils\Http\Middleware\CookieConsentMiddleware;
 use Trois\Utils\Http\Middleware\CsrfProtectionMiddleware;
 use Trois\Utils\Http\Middleware\ModifyConfigureMiddleware;
 
@@ -86,6 +87,12 @@ class Application extends BaseApplication
         return json_decode($body, true);
     });
 
+    // set Cookie consent
+    CookieConsentMiddleware::setConfig([
+      'cookieName' => 'cookieconsent_status',
+      'value' => 'allow',
+    ]);
+
     $middlewareQueue
     ->add(CorsMiddleware::class)
 
@@ -112,6 +119,7 @@ class Application extends BaseApplication
     ->add($bodies)
 
     // TROIS AFTER Routing stuff!!
+    ->add(CookieConsentMiddleware::class)
     ->add(ModifyConfigureMiddleware::class)
     ->add(CsrfProtectionMiddleware::class)
     ->add(ClusterAliasMiddleware::class);
