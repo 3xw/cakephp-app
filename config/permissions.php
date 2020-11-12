@@ -9,9 +9,9 @@ return [
     [ // all the front
       'prefix' => false,
       'plugin' => false,
-      'controller' => 'Users',
-      'action' => ['profile','editByUser','change_password'],
-      'bypassAuth' => false,
+      'controller' => '*',
+      'action' => '*',
+      'bypassAuth' => true,
     ],
 
     [ // debug kit
