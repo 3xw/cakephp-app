@@ -3,8 +3,9 @@ use Cake\Core\Configure;
 use Trois\Utils\Http\Middleware\CookieConsentMiddleware as Cookie;
 if(Cookie::$exists && !Cookie::$allow)
 {
+  /* not working */
   $cookieName = Configure::read('CookieConsent.cookieName');
-  $script = "document.cookie = $cookieName + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';";
+  $script = "document.cookie = '$cookieName' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';";
   $this->Html->scriptBlock($script, ['block' => true]);
 }
 ?>

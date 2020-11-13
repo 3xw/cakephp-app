@@ -56,7 +56,7 @@ window.addEventListener('load', function()
 
   window.getCsrfToken = function()
   {
-    return window.getCookie(<?= Configure::read('CookieConsent.cookieName') ?>)
+    return window.getCookie('<?= Configure::read('CookieConsent.cookieName') ?>')
   }
 });
 
