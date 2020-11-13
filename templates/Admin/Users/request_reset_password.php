@@ -1,6 +1,5 @@
 <?php
 use Cake\Core\Configure;
-$this->layout = 'default';
 ?>
 <section class="section--default">
   <div class="container">

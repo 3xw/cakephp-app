@@ -88,10 +88,7 @@ class Application extends BaseApplication
     });
 
     // set Cookie consent
-    CookieConsentMiddleware::setConfig([
-      'cookieName' => 'cookieconsent_status',
-      'value' => 'allow',
-    ]);
+    CookieConsentMiddleware::setConfig(Configure::read('CookieConsent'));
 
     $middlewareQueue
     ->add(CorsMiddleware::class)

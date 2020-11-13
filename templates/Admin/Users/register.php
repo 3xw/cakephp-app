@@ -9,7 +9,6 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 use Cake\Core\Configure;
-$this->layout = 'login';
 ?>
 
 <nav class="navbar navbar-expand-lg">

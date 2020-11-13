@@ -1,3 +1,6 @@
+<?php
+use Cake\Core\Configure;
+?>
 <!-- dependencies -->
 <!-- https://2gdpr.com/cookieconsent -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" />
@@ -33,6 +36,28 @@ window.addEventListener('load', function()
       if (this.hasConsented()) myScripts();
     }
   })
+
+  window.getCookie = function(cname)
+  {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  window.getCsrfToken()
+  {
+    return window.getCookie(<?= Configure::read('CookieConsent.cookieName') ?>)
+  }
 });
 
 function loadScript(src)

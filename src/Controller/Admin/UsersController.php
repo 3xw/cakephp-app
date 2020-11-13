@@ -38,19 +38,6 @@ class UsersController extends CakeDCUsersController
     ]);
   }
 
-
-  public function register()
-  {
-    $this->viewBuilder()->setLayout('login');
-    return parent::register();
-  }
-
-  public function login()
-  {
-    $this->viewBuilder()->setLayout('login');
-    return parent::login();
-  }
-
   public function view($id = null)
   {
     $user = $this->Users->get($id,['contain' => ['Attachments']]);
