@@ -54,7 +54,7 @@ window.addEventListener('load', function()
     return "";
   }
 
-  window.getCsrfToken()
+  window.getCsrfToken = function()
   {
     return window.getCookie(<?= Configure::read('CookieConsent.cookieName') ?>)
   }
