@@ -10,7 +10,6 @@
   <?= $this->fetch('meta') ?>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <?= $this->Html->css(['admin/main.min.css?v='.md5_file(APP.'../webroot/css/admin/main.min.css')])?>
   <?= $this->fetch('css') ?>
 
@@ -18,19 +17,15 @@
   <?= $this->element('cookies/consent',['googleTag' => false, 'fbPixel' => false])?>
 
 </head>
-<body itemscope itemtype="http://schema.org/WebPage">
+<body class="login" itemscope itemtype="http://schema.org/WebPage">
 
   <div id="admin-app" data-webroot="<?= $this->request->getAttribute('webroot') ?>" class="page-wrap">
-    <div class="row row-sidebar no-gutters <?= ($this->request->getParam('controller') == 'Attachments')? 'utils__sidebar--simple' : '' ?>">
-      <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-        <?= $this->element('sidebar') ?>
-      </div>
-      <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+    <div class="row no-gutters">
+      <div class="col-12 col-md-8 col-lg-9 col-xl-10 mx-auto">
         <?= $this->Flash->render() ?>
         <?= $this->Flash->render('auth') ?>
-        <?= $this->element('header') ?>
         <?= $this->fetch('content') ?>
-        <? // $this->element('footer') ?>
+        <?= $this->element('footer') ?>
       </div>
     </div>
   </div>

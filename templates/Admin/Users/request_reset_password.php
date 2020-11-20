@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+$this->layout = 'login';
 ?>
 <section class="section--default">
   <div class="container">
