@@ -33,7 +33,9 @@ var handleI18nTabs = function(evt)
 const init = () =>
 {
   initSelect()
-  initI18n()
+  setTimeout(function(){
+    initI18n()
+  }, 1000)
 }
 
-$(document).ready(init);
+export { init }

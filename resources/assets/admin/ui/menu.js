@@ -37,4 +37,4 @@ const init = () =>
   reduceMenu()
 }
 
-$(document).ready(init);
+export { init }

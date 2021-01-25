@@ -2,6 +2,7 @@
 <html lang="<?= substr(\Cake\I18n\I18n::getLocale(), 0, 2) ?>">
 <head>
   <?= $this->Html->charset() ?>
+  <title><?= $this->fetch('title') ?></title>
 
   <!-- HEAD -->
   <?= $this->element('head/meta', ['googleId' => false, 'fbId' => false])?>
@@ -10,7 +11,8 @@
   <?= $this->fetch('meta') ?>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <?= $this->Html->css(['admin/main.min.css?v='.md5_file(APP.'../webroot/css/admin/main.min.css')])?>
   <?= $this->fetch('css') ?>
 

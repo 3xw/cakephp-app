@@ -1,4 +1,7 @@
+import ElementUI from 'element-ui'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
+
+import locale from 'element-ui/lib/locale/lang/fr'
 
 import store from '@/store/store'
 
@@ -7,8 +10,11 @@ import store from '@/store/store'
 //import '@/utils/filters'
 
 // ADMIN UI old school
-import '@/ui/menu.js'
-import '@/ui/form.js'
+import {init as initMenu} from '@/ui/menu.js'
+import {init as initForm} from '@/ui/form.js'
+
+// use
+Vue.use(ElementUI, { locale })
 
 // components
 Vue.component('component-loader', ComponentLoader)
@@ -21,7 +27,12 @@ Vue.config.productionTip = true;
 const init = () => {
   window.adminApp = new Vue({
     store,
-    el: "#admin-app"
+    el: "#admin-app",
+    mounted: function()
+    {
+      initMenu()
+      initForm()
+    }
   })
 }
 
