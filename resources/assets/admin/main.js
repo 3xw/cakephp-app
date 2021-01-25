@@ -4,8 +4,6 @@ import store from '@/store/store'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/fr'
 
-import Cms from '©/3xw/cakephp-cms/resources/assets/vue/plugin'
-
 // utils
 //import '@/utils/directives'
 //import '@/utils/filters'

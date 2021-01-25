@@ -2,7 +2,7 @@ import ComponentLoader from '@/components/ComponentLaoder.vue'
 //import store from '@/store/store'
 
 // CakePHP Cms
-import Cms from '©/3xw/cakephp-cms/resources/assets/vue/plugin'
+import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
 
 // utils
 //import '@/utils/directives'
@@ -18,7 +18,6 @@ import { init as initMenu } from '@/ui/menu'
 Vue.component('component-loader', ComponentLoader)
 
 // use
-console.log(Cms);
 Vue.use(Cms)
 
 // boostrap settings
