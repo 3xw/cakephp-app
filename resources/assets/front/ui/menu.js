@@ -1,5 +1,3 @@
-import $ from 'jquery'
-
 var initMenu = function(){}
 
 const init = () =>

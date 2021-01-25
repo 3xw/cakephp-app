@@ -1,6 +1,3 @@
-import Vue from 'vue'
-import $ from 'jquery'
-import 'bootstrap'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
 
 //import store from '@/store/store'

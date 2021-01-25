@@ -69,8 +69,11 @@ class Application extends BaseApplication
     // pages
     $this->addPlugin(\Trois\Pages\Plugin::class);
 
-    // pages
+    // tinymce
     $this->addPlugin(\Trois\Tinymce\Plugin::class);
+
+    // cms
+    $this->addPlugin(\Trois\Cms\Plugin::class);
   }
 
   /**

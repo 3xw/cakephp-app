@@ -37,16 +37,17 @@ plugins = (prefix) => {
 },
 entry = (prefix) =>
 {
+  // play here with prefix and output...
   let entry =
   {
     main: [
       './resources/assets/'+prefix+'/main.js',
       './resources/assets/'+prefix+'/assets/scss/theme.scss'
-    ]
-  }
-  return prefix == 'front'? entry: Object.assign(entry,{
+    ],
     common: './resources/assets/'+prefix+'/common.js'
-  })
+  }
+
+  return entry
 }
 
 // configs

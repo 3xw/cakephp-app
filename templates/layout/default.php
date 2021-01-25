@@ -29,7 +29,10 @@
 
   <!-- SCRIPTS -->
   <?= $this->fetch('template') ?>
-  <?= $this->Html->script(['front/main.min.js?v='.md5_file(APP.'../webroot/js/front/main.min.js')])?>
+  <?= $this->Html->script([
+    'front/common.min.js?v='.md5_file(APP.'../webroot/js/front/common.min.js'),
+    'front/main.min.js?v='.md5_file(APP.'../webroot/js/front/main.min.js')
+    ])?>
   <?= $this->fetch('script') ?>
 
 </body>

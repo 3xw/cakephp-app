@@ -1,5 +1,3 @@
-import $ from 'jquery'
-
 /*  FILTER UTILS
  *  use with ( data-filter-container, data-filter-list, data-filter="VALUE", data-filter-items, data-filter-item="VALUE")
  **/
