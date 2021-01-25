@@ -72,6 +72,7 @@ configs = prefixes.map(prefix => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'resources/assets', prefix),
+        '©': path.resolve(__dirname, 'vendor'),
         'vue$': 'vue/dist/vue.esm.js'
       },
       extensions: ['*', '.js', '.vue', '.json']

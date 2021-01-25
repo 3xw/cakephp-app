@@ -1,9 +1,10 @@
-import ElementUI from 'element-ui'
 import ComponentLoader from '@/components/ComponentLaoder.vue'
+import store from '@/store/store'
 
+import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/fr'
 
-import store from '@/store/store'
+import Cms from '©/3xw/cakephp-cms/resources/assets/vue/plugin'
 
 // utils
 //import '@/utils/directives'
