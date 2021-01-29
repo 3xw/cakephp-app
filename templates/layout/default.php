@@ -14,7 +14,11 @@
   <?= $this->fetch('css') ?>
 
   <!-- COOKIE CONSENT -->
-  <?= $this->element('cookies/consent',['googleTag' => false, 'fbPixel' => false])?>
+  <?= $this->element('cookies/consent',[
+    'cookie' => [
+      'tracking' => ['google' => false, 'facbook' => false]
+    ]
+  ])?>
 
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
