@@ -6,6 +6,14 @@ return [
     /* ALL BYPASSES
     ***************************/
 
+    [ // cms TO REMOVE !!!!
+      'prefix' => 'Api',
+      'plugin' => 'Trois/Cms',
+      'controller' => '*',
+      'action' => '*',
+      'bypassAuth' => true,
+    ],
+
     [ // all the front
       'prefix' => false,
       'plugin' => false,

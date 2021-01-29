@@ -33,9 +33,6 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <main class="main">
     <div class="container">
         <div class="content">
-
-          <cms-page></cms-page>
-
             <div class="row">
                 <div class="column">
                     <div class="message default text-center">

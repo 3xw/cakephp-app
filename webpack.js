@@ -22,6 +22,9 @@ optimization =
 },
 plugins = (prefix) => {
   return [
+    new webpack.DefinePlugin({
+      BASE_URL: JSON.stringify(conf.parsed.BASE_URL)
+    }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
         path.join(__dirname,'webroot','js/'+prefix+'/components/*'),

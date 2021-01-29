@@ -7,9 +7,38 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\I18n\I18n;
 
 class PagesController extends AppController
 {
+  public function view($slug)
+  {
+    $this->loadModel('Trois/Cms.Pages');
+
+    $lng = I18n::getLocale();
+    $slugField = $lng == 'fr_CH'? 'Pages.slug' : 'Pages_slug_translation.content';
+    if(property_exists($this->Pages, 'setLocale')) $this->Pages->setLocale($lng);
+
+    $page = $this->Pages->find()
+    ->where([$slugField => $slug])
+    ->contain([
+      'ParentPages',
+      'ChildPages',
+      'Attachments',
+      'Sections' => [
+        'Articles' => 'Attachments',
+        /*'Modules' => [
+          'Articles' => 'Attachments'
+        ]*/
+      ]
+    ])
+    ->first();
+
+    $this->set('title', $page->title);
+    $this->set('description', $page->meta);
+    $this->set(compact('page'));
+
+  }
 
   public function display(...$path): ?Response
   {

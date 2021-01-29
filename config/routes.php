@@ -9,7 +9,7 @@ $routes->scope('/', function (RouteBuilder $builder)
   //$builder->redirect('/', '/admin/users/login', ['status' => 302]);
   $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'plugin' => 'Trois/Pages', 'home']);
   $builder->connect('/static-pages/*', ['controller' => 'Pages', 'action' => 'display', 'plugin' => 'Trois/Pages']);
-  $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'view', 'plugin' => 'Trois/Pages']);
+  //$builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'view', 'plugin' => 'Trois/Pages']);
 
   $builder->fallbacks();
 });

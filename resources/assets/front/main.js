@@ -28,7 +28,12 @@ const init = () => {
   window.frontApp = new Vue({
     store,
     el: "#front-app",
-    mounted: function(){
+    data:
+    {
+      baseUrl: BASE_URL
+    },
+    mounted()
+    {
       initJqueryUtils()
       initMenu()
     }
