@@ -7,9 +7,8 @@ $routes->setRouteClass(DashedRoute::class);
 $routes->scope('/', function (RouteBuilder $builder)
 {
   //$builder->redirect('/', '/admin/users/login', ['status' => 302]);
-  $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'plugin' => 'Trois/Pages', 'home']);
-  $builder->connect('/static-pages/*', ['controller' => 'Pages', 'action' => 'display', 'plugin' => 'Trois/Pages']);
-  //$builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'view', 'plugin' => 'Trois/Pages']);
+  $builder->connect('/', ['plugin' => false, 'controller' => 'Pages', 'action' => 'display', 'home']);
+  $builder->connect('/pages/*', ['plugin' => false, 'controller' => 'Pages', 'action' => 'view']);
 
   $builder->fallbacks();
 });
