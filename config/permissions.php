@@ -7,7 +7,7 @@ return [
     ***************************/
 
     [ // CMS TO REMOVE !!!!
-      'prefix' => 'Api',
+      'prefix' => '*',
       'plugin' => 'Trois/Cms',
       'controller' => '*',
       'action' => '*',
