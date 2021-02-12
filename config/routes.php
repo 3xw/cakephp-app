@@ -8,7 +8,9 @@ $routes->scope('/', function (RouteBuilder $builder)
 {
   //$builder->redirect('/', '/admin/users/login', ['status' => 302]);
   $builder->connect('/', ['plugin' => false, 'controller' => 'Pages', 'action' => 'display', 'home']);
-  $builder->connect('/pages/*', ['plugin' => false, 'controller' => 'Pages', 'action' => 'view']);
+  $builder->connect('/pages/*', ['plugin' => false, 'controller' => 'Pages', 'action' => 'display']);
+
+  $builder->connect('/*', ['plugin' => false, 'controller' => 'Pages', 'action' => 'view']);
 
   $builder->fallbacks();
 });

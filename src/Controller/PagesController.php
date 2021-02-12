@@ -8,7 +8,9 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
 
-class PagesController extends AppController
+use Trois\Cms\Controller\PagesController as CmsPagesController;
+
+class PagesController extends CmsPagesController
 {
   public function display(...$path): ?Response
   {

@@ -1,0 +1,1 @@
+<?= $this->Cms->page($page) ?>
