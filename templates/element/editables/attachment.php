@@ -1,4 +1,5 @@
 <?
+/*
 $html = $this->Attachment->input('Attachments', // if Attachments => HABTM else if !Attachments => belongsTo
 ['label' => __('Images'),
 'types' =>['image/jpeg','image/png', 'application/pdf', 'video/mp4'],
@@ -11,4 +12,5 @@ $html = $this->Attachment->input('Attachments', // if Attachments => HABTM else 
 ]);
 
 echo $this->Html->tag('cms-editable-attachment', $html, $attributes);
+*/
 ?>

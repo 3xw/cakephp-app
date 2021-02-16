@@ -37,7 +37,6 @@
     "webpack-cli": "^4.1"
   },
   "dependencies": {
-    "@tinymce/tinymce-vue": "^3.2.8",
     "@vuex-orm/core": "^0.36.3",
     "@wgr-sa/vuex-orm-crud": "0.0.8",
     "autoprefixer": "^10.0",

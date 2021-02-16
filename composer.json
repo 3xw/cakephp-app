@@ -9,6 +9,7 @@
     "3xw/cakephp-attachment": "^4.0",
     "3xw/cakephp-cms": "dev-main",
     "3xw/cakephp-pages": "^4.0",
+    "3xw/cakephp-tinymce": "dev-master as 4.1",
     "3xw/cakephp-utils": "dev-master as 4.1",
     "cakedc/users": "^9.0.0",
     "cakephp/cakephp": "^4.0",
