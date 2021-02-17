@@ -13,6 +13,14 @@ return [
       'action' => '*',
       'bypassAuth' => true,
     ],
+    [ // CMS TO REMOVE !!!!
+      'prefix' => '*',
+      'plugin' => 'Trois/Attachment',
+      'controller' => '*',
+      'action' => '*',
+      'bypassAuth' => true,
+    ],
+
     [ // CMS
       'prefix' => false,
       'plugin' => 'Trois/Cms',

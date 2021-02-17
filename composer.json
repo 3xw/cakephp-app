@@ -6,7 +6,7 @@
   "license": "MIT",
   "require": {
     "php": ">=7.2",
-    "3xw/cakephp-attachment": "^4.0",
+    "3xw/cakephp-attachment": "dev-master as 4.1",
     "3xw/cakephp-cms": "dev-main",
     "3xw/cakephp-pages": "^4.0",
     "3xw/cakephp-tinymce": "dev-master as 4.1",
@@ -16,7 +16,8 @@
     "cakephp/migrations": "^3.0",
     "cakephp/plugin-installer": "^1.2",
     "friendsofcake/crud-json-api": "^1.0",
-    "mobiledetect/mobiledetectlib": "^2.8"
+    "mobiledetect/mobiledetectlib": "^2.8",
+    "paquettg/php-html-parser": "^3.1"
   },
   "require-dev": {
     "3xw/cakephp-bake": "^4.0",
