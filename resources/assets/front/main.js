@@ -17,9 +17,13 @@ import { init as initMenu } from '@/ui/menu'
 // components
 Vue.component('component-loader', ComponentLoader)
 
-// Attachment :)
+// CakePHP Attachment
 import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'
 Vue.use(Attachment,{ store })
+
+// CakePHP Tinymce
+import Tinymce from '©/3xw/cakephp-tinymce/resources/assets/plugin'
+Vue.use(Tinymce,{ store })
 
 // CakePHP Cms
 import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'

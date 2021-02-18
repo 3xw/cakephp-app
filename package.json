@@ -6,9 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.js && webpack --config vendor/3xw/cakephp-attachment/webpack.js && webpack --config vendor/3xw/cakephp-pages/webpack.js && webpack --config vendor/3xw/cakephp-tinymce/webpack.js",
     "watch": "webpack --config webpack.js --mode development --watch",
-    "watchAttachment": "webpack --config vendor/3xw/cakephp-attachment/webpack.js --mode development --watch",
-    "watchPages": "webpack --config vendor/3xw/cakephp-pages/webpack.js --mode development --watch",
-    "watchTinymce": "webpack --config vendor/3xw/cakephp-tinymce/webpack.js --mode development --watch"
+    "watchPages": "webpack --config vendor/3xw/cakephp-pages/webpack.js --mode development --watch"
   },
   "keywords": [],
   "author": "",
