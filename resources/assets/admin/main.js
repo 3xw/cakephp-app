@@ -7,6 +7,7 @@ import locale from 'element-ui/lib/locale/lang/fr'
 // utils
 //import '@/utils/directives'
 //import '@/utils/filters'
+import '@/utils/getCsrfToken'
 
 // ADMIN UI old school
 import {init as initMenu} from '@/ui/menu.js'
@@ -18,6 +19,14 @@ Vue.use(ElementUI, { locale })
 // components
 Vue.component('component-loader', ComponentLoader)
 
+// CakePHP Tinymce
+import Tinymce from '©/3xw/cakephp-tinymce/resources/assets/plugin'
+Vue.use(Tinymce,{ store })
+
+// CakePHP Attachment
+import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'
+Vue.use(Attachment,{ store })
+
 // boostrap settings
 Vue.config.devtools = true;
 Vue.config.productionTip = true;
@@ -27,6 +36,10 @@ const init = () => {
   window.adminApp = new Vue({
     store,
     el: "#admin-app",
+    data:
+    {
+      baseUrl: BASE_URL
+    },
     mounted: function()
     {
       initMenu()

@@ -12,6 +12,12 @@ return [
           __('Atags') => ['controller' => 'Atags', 'action' => 'index','prefix' => 'Admin', 'plugin' => 'Trois/Attachment'],
         ]
       ],
+      '<i class="material-icons">article</i><p>'.__('Blog').'<b class="caret"></b></p>' => [
+        'collapse' => [
+          __('Articles') => ['controller' => 'Articles', 'action' => 'index','prefix' => 'Admin', 'plugin' => 'Trois/Cms'],
+          __('Categories') => ['controller' => 'Categories', 'action' => 'index','prefix' => 'Admin', 'plugin' => 'Trois/Cms']
+        ]
+      ],
       '<i class="material-icons">person</i><p>'.__('Users').'</p>' => ['controller' => 'Users', 'action' => 'index','prefix' => 'Admin', 'plugin' => false],
       '<i class="material-icons">edit</i><p>'.__('Pages').'</p>' => ['controller' => 'Pages', 'action' => 'index','prefix' => 'Admin', 'plugin' => 'Trois/Pages'],
     ],
