@@ -10,6 +10,7 @@
   <?= $this->fetch('meta') ?>
 
   <!-- CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <?= $this->Html->css(['front/main.min.css?v='.md5_file(APP.'../webroot/css/front/main.min.css')])?>
   <?= $this->fetch('css') ?>
 
