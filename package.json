@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@vuex-orm/core": "^0.36.3",
-    "@wgr-sa/vuex-orm-crud": "0.0.8",
+    "@wgr-sa/vuex-orm-crud": "0.0.9",
     "autoprefixer": "^10.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5",
