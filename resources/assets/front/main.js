@@ -25,6 +25,10 @@ Vue.use(Attachment,{ store })
 import Tinymce from '©/3xw/cakephp-tinymce/resources/assets/plugin'
 Vue.use(Tinymce,{ store })
 
+// plugin attachment for Tinymce
+import TinyFactory from '©/3xw/cakephp-attachment/resources/assets/plugins/TinyFactory.js'
+TinyFactory.init(store)
+
 // CakePHP Cms
 import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
 Vue.use(Cms,{ store })
