@@ -1,3 +1,7 @@
+// inputs
+var initSelect = function(){
+  $('select').select2();
+}
 
 // i18n
 var initI18n = function()
@@ -28,6 +32,7 @@ var handleI18nTabs = function(evt)
 
 const init = () =>
 {
+  initSelect()
   setTimeout(function(){
     initI18n()
   }, 1000)
