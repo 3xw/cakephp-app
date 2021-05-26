@@ -1,4 +1,3 @@
-import ComponentLoader from '@/components/ComponentLaoder.vue'
 import store from '@/store'
 
 import ElementUI from 'element-ui'
@@ -11,11 +10,21 @@ import '@/utils/getCsrfToken'
 
 import { init as initJqueryUtils } from '@/utils/jquery'
 
-// UI old school
-import { init as initMenu } from '@/ui/menu'
+// CakePHP Attachment
+import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'
+Vue.use(Attachment,{ store })
 
-// components
-Vue.component('component-loader', ComponentLoader)
+// CakePHP Tinymce
+import Tinymce from '©/3xw/cakephp-tinymce/resources/assets/plugin'
+Vue.use(Tinymce,{ store })
+
+// plugin attachment for Tinymce
+import TinyFactory from '©/3xw/cakephp-attachment/resources/assets/plugins/TinyFactory.js'
+TinyFactory.init(store)
+
+// CakePHP Cms
+import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
+Vue.use(Cms,{ store })
 
 // CakePHP Attachment
 import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'

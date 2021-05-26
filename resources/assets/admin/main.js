@@ -6,7 +6,7 @@ import locale from 'element-ui/lib/locale/lang/fr'
 
 // utils
 //import '@/utils/directives'
-//import '@/utils/filters'
+import '@/utils/filters'
 import '@/utils/getCsrfToken'
 
 // ADMIN UI old school

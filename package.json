@@ -4,9 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.js && webpack --config vendor/3xw/cakephp-attachment/webpack.js && webpack --config vendor/3xw/cakephp-pages/webpack.js && webpack --config vendor/3xw/cakephp-tinymce/webpack.js",
-    "watch": "webpack --config webpack.js --mode development --watch",
-    "watchPages": "webpack --config vendor/3xw/cakephp-pages/webpack.js --mode development --watch"
+    "build": "webpack --config webpack.js --mode production",
+    "watch": "webpack --config webpack.js --mode development --watch"
   },
   "keywords": [],
   "author": "",
@@ -35,11 +34,12 @@
     "webpack-cli": "^4.1"
   },
   "dependencies": {
+    "@popperjs/core": "^2.8.3",
     "@vuex-orm/core": "^0.36.3",
-    "@wgr-sa/vuex-orm-crud": "^0.0.10",
+    "@wgr-sa/vuex-orm-crud": "^0.0.11",
     "autoprefixer": "^10.0",
     "axios": "^0.21.1",
-    "bootstrap": "^4.5",
+    "bootstrap": "^5.0.0-beta2",
     "dotenv": "^7.0.0",
     "element-ui": "^2.13",
     "jquery": "^3.4",

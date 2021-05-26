@@ -1,39 +1,163 @@
-/*
- *   COLORS SHIT
- *************/
-@mixin hover-background-lighten($color) {
-    background-color: $color;
-    &:hover {
-        background-color: lighten($color,10%);
+$orientations: 'a', 'x', 'y', 't', 'r', 'b', 'l';
+
+.utils{
+
+  $this: &;
+
+  //OLD SPACER CLASSES
+  &--spacer-mini{height: $margin--mini;}
+  &--spacer-semi{height: $margin--semi;}
+  &--spacer-default{height: $margin--default;}
+  &--spacer-double{height: $margin--double;}
+
+  &__spacer{
+    &--mini{height: $margin--mini;}
+    &--semi{height: $margin--semi;}
+    &--default{height: $margin--default;}
+    &--double{height: $margin--double;}
+
+    @media (max-width: 991px){
+      &--default{height: $margin--semi;}
+      &--double{height: $margin--semi;}
     }
+  }
+
+  &__padding{
+    @each $orientation in $orientations {
+      @if $orientation == 'a' {
+        &--#{$orientation}-mini{padding: $margin--mini;}
+        &--#{$orientation}-semi{padding: $margin--semi;}
+        &--#{$orientation}-default{padding: $margin--default;}
+        &--#{$orientation}-double{padding: $margin--double;}
+      }
+      @if $orientation == 'x' {
+        &--#{$orientation}-mini{padding: 0 $margin--mini;}
+        &--#{$orientation}-semi{padding: 0 $margin--semi;}
+        &--#{$orientation}-default{padding: 0 $margin--default;}
+        &--#{$orientation}-double{padding: 0 $margin--double;}
+      }
+      @if $orientation == 'y' {
+        &--#{$orientation}-mini{padding: $margin--mini 0;}
+        &--#{$orientation}-semi{padding: $margin--semi 0;}
+        &--#{$orientation}-default{padding: $margin--default 0;}
+        &--#{$orientation}-double{padding: $margin--double 0;}
+      }
+      @if $orientation == 't' {
+        &--#{$orientation}-mini{padding: $margin--mini 0 0 0;}
+        &--#{$orientation}-semi{padding: $margin--semi 0 0 0;}
+        &--#{$orientation}-default{padding: $margin--default 0 0 0;}
+        &--#{$orientation}-double{padding: $margin--double 0 0 0;}
+      }
+      @if $orientation == 'r' {
+        &--#{$orientation}-mini{padding: 0 $margin--mini 0 0;}
+        &--#{$orientation}-semi{padding: 0 $margin--semi 0 0;}
+        &--#{$orientation}-default{padding: 0 $margin--default 0 0;}
+        &--#{$orientation}-double{padding: 0 $margin--double 0 0;}
+      }
+      @if $orientation == 'b' {
+        &--#{$orientation}-mini{padding: 0 0 $margin--mini 0;}
+        &--#{$orientation}-semi{padding: 0 0 $margin--semi 0;}
+        &--#{$orientation}-default{padding: 0 0 $margin--default 0;}
+        &--#{$orientation}-double{padding: 0 0 $margin--double 0;}
+      }
+      @if $orientation == 'l' {
+        &--#{$orientation}-mini{padding: 0 0 0 $margin--mini;}
+        &--#{$orientation}-semi{padding: 0 0 0 $margin--semi;}
+        &--#{$orientation}-default{padding: 0 0 0 $margin--default;}
+        &--#{$orientation}-double{padding: 0 0 0 $margin--double;}
+      }
+    }
+  }
+
+  &__margin{
+    @each $orientation in $orientations {
+      @if $orientation == 'a' {
+        &--#{$orientation}-mini{margin: $margin--mini;}
+        &--#{$orientation}-semi{margin: $margin--semi;}
+        &--#{$orientation}-default{margin: $margin--default;}
+        &--#{$orientation}-double{margin: $margin--double;}
+      }
+      @if $orientation == 'x' {
+        &--#{$orientation}-mini{margin: 0 $margin--mini;}
+        &--#{$orientation}-semi{margin: 0 $margin--semi;}
+        &--#{$orientation}-default{margin: 0 $margin--default;}
+        &--#{$orientation}-double{margin: 0 $margin--double;}
+      }
+      @if $orientation == 'y' {
+        &--#{$orientation}-mini{margin: $margin--mini 0;}
+        &--#{$orientation}-semi{margin: $margin--semi 0;}
+        &--#{$orientation}-default{margin: $margin--default 0;}
+        &--#{$orientation}-double{margin: $margin--double 0;}
+      }
+      @if $orientation == 't' {
+        &--#{$orientation}-mini{margin: $margin--mini 0 0 0;}
+        &--#{$orientation}-semi{margin: $margin--semi 0 0 0;}
+        &--#{$orientation}-default{margin: $margin--default 0 0 0;}
+        &--#{$orientation}-double{margin: $margin--double 0 0 0;}
+      }
+      @if $orientation == 'r' {
+        &--#{$orientation}-mini{margin: 0 $margin--mini 0 0;}
+        &--#{$orientation}-semi{margin: 0 $margin--semi 0 0;}
+        &--#{$orientation}-default{margin: 0 $margin--default 0 0;}
+        &--#{$orientation}-double{margin: 0 $margin--double 0 0;}
+      }
+      @if $orientation == 'b' {
+        &--#{$orientation}-mini{margin: 0 0 $margin--mini 0;}
+        &--#{$orientation}-semi{margin: 0 0 $margin--semi 0;}
+        &--#{$orientation}-default{margin: 0 0 $margin--default 0;}
+        &--#{$orientation}-double{margin: 0 0 $margin--double 0;}
+      }
+      @if $orientation == 'l' {
+        &--#{$orientation}-mini{margin: 0 0 0 $margin--mini;}
+        &--#{$orientation}-semi{margin: 0 0 0 $margin--semi;}
+        &--#{$orientation}-default{margin: 0 0 0 $margin--default;}
+        &--#{$orientation}-double{margin: 0 0 0 $margin--double;}
+      }
+    }
+  }
+}
+
+/*
+*   COLORS SHIT
+*************/
+@mixin hover-background-lighten($color) {
+  background-color: $color;
+  &:hover {
+    background-color: lighten($color,10%);
+  }
 }
 @mixin hover-background-darken($color) {
-    background-color: $color;
-    &:hover {
-        background-color: darken($color,10%);
-    }
+  background-color: $color;
+  &:hover {
+    background-color: darken($color,10%);
+  }
 }
 @mixin hover-text-lighten($color) {
-    color: $color;
-    &:hover {
-        color: lighten($color,20%);
-    }
+  color: $color;
+  &:hover {
+    color: lighten($color,20%);
+  }
 }
 @mixin hover-text-darken($color) {
-    color: $color;
-    &:hover {
-        color: darken($color,20%);
-    }
+  color: $color;
+  &:hover {
+    color: darken($color,20%);
+  }
 }
 
 .no-scroll{overflow: hidden;}
 
 [data-aspect-ratio] {
-    display: block;
-    max-width: 100%;
-    position: relative;
-    &:before { content: ''; display: block; }
-    > * { display: block; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+  display: block;
+  max-width: 100%;
+  position: relative;
+  &:before { content: ''; display: block; }
+  > * { display: block; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+
+  @media (max-width: 767px){
+    &:before {  padding-top: 0 !important; }
+    >*{ position: relative; }
+  }
 }
 [data-aspect-ratio="3:1"]:before { padding-top: 33.33%; }
 [data-aspect-ratio="2:1"]:before { padding-top: 50%; }
@@ -50,6 +174,7 @@
 @each $name, $hexa in $colors {
   .color--#{$name} {
     color: #{$hexa} !important;
+    *{color: #{$hexa} !important;}
   }
   .bg--#{$name} {
     background: #{$hexa} !important;
@@ -68,6 +193,10 @@
     background: #{$hexa} !important;
   }
 
+  .border--#{$name}{
+    border: 1px solid #{$hexa} !important;
+  }
+
   .badge--#{$name}{
     background: #{$hexa};
   }
@@ -79,15 +208,66 @@
   .label--#{$name}{
     background: #{$hexa};
   }
-
 }
 
-/*
- *   UTILS
- *************/
-.utils--absolute-default{position:absolute;top:0;left:0;right:0;bottom:0;}
+@mixin fluid-font($responsive, $min, $max: false, $fallback: false, $line-height: 1.5) {
+  $responsive-unitless: $responsive / ($responsive - $responsive + 1);
+  $dimension: if(unit($responsive) == 'vh', 'height', 'width');
+  $min-breakpoint: $min / $responsive-unitless * 100;
+  @media (max-#{$dimension}: #{$min-breakpoint}) {
+    font-size: $min;
+  }
+  @if $max {
+    $max-breakpoint: $max / $responsive-unitless * 100;
+    @media (min-#{$dimension}: #{$max-breakpoint}) {
+      font-size: $max;
+    }
+  }
+  @if $fallback {
+    font-size: $fallback;
+  }
+  font-size: $responsive;
+  line-height: $line-height;
+}
 
-.utils--spacer-mini{height:$margin--mini;}
-.utils--spacer-semi{height:$margin--semi;}
-.utils--spacer-default{height:$margin--default;}
-.utils--spacer-double{height:$margin--double;}
+
+.cms{
+  &-controls--article{position: relative;}
+  &-edit{
+    width: 100% !important;
+    .el-select { display: block; margin: 5px 0; position: relative; }
+    &.article--home-highlight{z-index: 20 !important;max-width: 50% !important;}
+  }
+  &-attachments__input{
+
+    display: none;
+    &.cms-editable-textarea{
+      display: block;
+    }
+  }
+}
+
+// ATtachment front fix
+.section-attachment--container{
+  h1, h2, h3{font-size: 1.5rem;}
+  p{font-size: 1.4rem!important;line-height: 1.2!important;}
+  *{line-height: 1.5!important;}
+  .small{font-size: 1.2rem!important;}
+  .input-group-text{
+    border: 0;
+    svg{margin-top: 6px;}
+  }
+  input, select{
+    font-size: 100%;appearance: default;
+    &[type="file"]{margin: $margin--mini 0 $margin--mini;line-height: 1.5 !important;}
+  }
+  .form-control{appearance: auto !important;}
+  .input.select:after {display: none;}
+  .attachment__actions{
+    .btn{padding: 4px;}
+    i{font-size: 1.6rem;}
+  }
+  .el-date-editor--daterange is-active{display: none;}
+  .btn{padding: 5px $margin--mini;}
+  .attachment-thumb .card-body{padding: 10px;}
+}

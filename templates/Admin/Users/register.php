@@ -40,7 +40,7 @@ $this->layout = 'login';
 <div class="container">
   <?= $this->Flash->render() ?>
   <?= $this->Flash->render('auth') ?>
-  <div class="row no-gutters">
+  <div class="row no-gutters g-0">
 
     <div class="col-md-8 col-sm-10 mx-auto col-lg-6">
       <div class="utils--spacer-double"></div>

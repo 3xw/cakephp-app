@@ -1,6 +1,6 @@
 
 var collapseIconChange = function(){
-  $('[data-toggle="collapse"]:not(.navbar-toggler)').click(function(){
+  $('[data-bs-toggle="collapse"]:not(.navbar-toggler)').click(function(){
     var ico = $(this).find('i:last-child');
     if(ico.text() == 'expand_more'){
       ico.text('expand_less');

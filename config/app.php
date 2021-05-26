@@ -68,6 +68,21 @@ return [
     ],
   ],
 
+  'Recaptcha' => [
+     // Register API keys at https://www.google.com/recaptcha/admin
+     'sitekey' => 'xxx',
+     'secret' => 'xxx',
+     // reCAPTCHA supported 40+ languages listed
+     // here: https://developers.google.com/recaptcha/docs/language
+     'lang' => 'fr',
+     // either light or dark
+     'theme' => 'light',
+     // either image or audio
+     'type' => 'image',
+     // either normal or compact
+     'size' => 'normal'
+ ],
+
   'CookieConsent' => [
     'cookieName' => 'cookieconsent_status',
     'value' => 'allow',
@@ -136,6 +151,7 @@ return [
       'duration' => '+1 years',
       'url' => env('CACHE_CAKEMODEL_URL', null),
     ],
+  ],
 
     /*
     * Configure the cache for routes. The cached routes collection is built the
@@ -417,6 +433,7 @@ return [
   * To use database sessions, load the SQL file located at config/schema/sessions.sql
   */
   'Session' => [
+    'timeout' => '4320',
     'defaults' => 'php',
   ],
 ];

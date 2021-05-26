@@ -12,7 +12,8 @@ rules =
     test: /\.js$/,
     use: {
       loader: 'babel-loader'
-    }
+    },
+    exclude: path.resolve(__dirname, 'node_modules/')
   },
   vue:
   {
@@ -68,6 +69,18 @@ rules =
         name: '[name].[ext]',
         publicPath: webroot+'fonts/',
         outputPath: 'fonts/'
+      }
+    }]
+  },
+  imgs:
+  {
+    test: /\.(jpg|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
+    use: [{
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+        publicPath: webroot+'img/webpack',
+        outputPath: 'img/webpack'
       }
     }]
   },

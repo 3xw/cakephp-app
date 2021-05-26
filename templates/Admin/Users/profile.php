@@ -24,7 +24,7 @@
   </div>
 </nav>
 <div class="utils--spacer-semi"></div>
-<div class="row no-gutters">
+<div class="row no-gutters g-0">
   <div class="col-6 mx-auto">
     <div class="card">
       <div class="utils--spacer-default"></div>

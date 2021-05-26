@@ -6,11 +6,9 @@ $routes->setRouteClass(DashedRoute::class);
 
 $routes->scope('/', function (RouteBuilder $builder)
 {
-  //$builder->redirect('/', '/admin/users/login', ['status' => 302]);
+  $builder->redirect('/login', '/admin/users/login', ['status' => 302]);
   $builder->connect('/', ['plugin' => false, 'controller' => 'Pages', 'action' => 'display', 'home']);
   $builder->connect('/pages/*', ['plugin' => false, 'controller' => 'Pages', 'action' => 'display']);
-
-  $builder->connect('/*', ['plugin' => false, 'controller' => 'Pages', 'action' => 'view']);
 
   $builder->fallbacks();
 });
@@ -18,7 +16,17 @@ $routes->scope('/', function (RouteBuilder $builder)
 // ADMIN SECTION
 $routes->prefix('Admin', function (RouteBuilder $builder)
 {
-  $builder->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
+  $builder->connect('/', ['controller' => 'Pages', 'action' => 'index', 'plugin' => 'Trois/Cms']);
+  $builder->setExtensions(['json']);
+  $builder->fallbacks();
+});
+
+// API SECTION
+$routes->prefix('Api', function (RouteBuilder $builder)
+{
+  $resources = [];
+  foreach($resources as $res) $builder->resources($res,['inflect' => 'dasherize']);
+
   $builder->setExtensions(['json']);
   $builder->fallbacks();
 });

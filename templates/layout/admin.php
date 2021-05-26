@@ -23,7 +23,7 @@
 <body itemscope itemtype="http://schema.org/WebPage">
 
   <div id="admin-app" data-webroot="<?= $this->request->getAttribute('webroot') ?>" class="page-wrap">
-    <div class="row row-sidebar no-gutters <?= ($this->request->getParam('controller') == 'Attachments')? 'utils__sidebar--simple' : '' ?>">
+    <div class="row row-sidebar no-gutters g-0 <?= ($this->request->getParam('controller') == 'Attachments')? 'utils__sidebar--simple' : '' ?>">
       <div class="col-12 col-md-4 col-lg-3 col-xl-2">
         <?= $this->element('sidebar') ?>
       </div>

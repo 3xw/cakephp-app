@@ -19,13 +19,14 @@
 </head>
 <body class="login" itemscope itemtype="http://schema.org/WebPage">
 
-  <div id="admin-app" data-webroot="<?= $this->request->getAttribute('webroot') ?>" class="page-wrap">
-    <div class="row no-gutters">
-      <div class="col-12 col-md-8 col-lg-9 col-xl-10 mx-auto">
-        <?= $this->Flash->render() ?>
-        <?= $this->Flash->render('auth') ?>
-        <?= $this->fetch('content') ?>
-        <?= $this->element('footer') ?>
+    <div id="admin-app" data-webroot="<?= $this->request->getAttribute('webroot') ?>" class="page-wrap">
+      <div class="row no-gutters g-0">
+        <div class="col-12 col-md-8 col-lg-9 col-xl-10 mx-auto">
+          <?= $this->Flash->render() ?>
+          <?= $this->Flash->render('auth') ?>
+          <?= $this->fetch('content') ?>
+          <?= $this->element('footer') ?>
+        </div>
       </div>
     </div>
   </div>

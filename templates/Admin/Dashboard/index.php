@@ -19,7 +19,7 @@ use Cake\Network\Exception\NotFoundException;
   </div>
 </nav>
 <div class="utils--spacer-default"></div>
-<div class="row no-gutters">
+<div class="row no-gutters g-0">
   <div class="col-11 mx-auto ">
         <div class="card">
           <!-- HEADER -->

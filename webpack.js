@@ -30,12 +30,13 @@ plugins = (prefix) => {
         path.join(__dirname,'webroot','js/'+prefix+'/components/*'),
         path.join(__dirname,'webroot','css/'+prefix+'/components/*')
       ],
+      cleanStaleWebpackAssets: false
     }),
     new MiniCssExtractPlugin({
       filename: 'css/'+prefix+'/[name].min.css',
       chunkFilename: 'css/'+prefix+'/components/[name].min.css',
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
   ]
 },
 entry = (prefix) =>
@@ -58,6 +59,7 @@ const
 prefixes = ['front','admin'],
 configs = prefixes.map(prefix => {
   return {
+    cache: false,
     mode: 'production',
     name: 'app-'+prefix,
     entry: entry(prefix),
@@ -69,7 +71,34 @@ configs = prefixes.map(prefix => {
     },
     optimization,
     module: {
-      rules: [rules.babel, rules.vue, rules.scss, rules.css, rules.fonts]
+      rules: [
+        rules.babel,
+        rules.vue,
+        rules.scss,
+        rules.css,
+        {
+          test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: webroot+'fonts/'+prefix+'/',
+              outputPath: 'fonts/'+prefix+'/',
+            }
+          }]
+        },
+        {
+          test: /\.(jpg|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: webroot+'img/webpack/'+prefix+'/',
+              outputPath: 'img/webpack/'+prefix+'/',
+            }
+          }]
+        },
+      ]
     },
     plugins: plugins(prefix),
     resolve: {

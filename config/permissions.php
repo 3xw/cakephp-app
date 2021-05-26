@@ -6,25 +6,18 @@ return [
     /* ALL BYPASSES
     ***************************/
 
-    [ // CMS TO REMOVE !!!!
-      'prefix' => '*',
-      'plugin' => 'Trois/Cms',
-      'controller' => '*',
-      'action' => '*',
-      'bypassAuth' => true,
-    ],
-    [ // CMS TO REMOVE !!!!
-      'prefix' => '*',
-      'plugin' => 'Trois/Attachment',
-      'controller' => '*',
+    [ // HOOKS
+      'prefix' => 'Api',
+      'plugin' => false,
+      'controller' => 'Hooks',
       'action' => '*',
       'bypassAuth' => true,
     ],
 
-    [ // CMS
-      'prefix' => false,
-      'plugin' => 'Trois/Cms',
-      'controller' => '*',
+    [ // SEARCH
+      'prefix' => 'Api',
+      'plugin' => false,
+      'controller' => 'Search',
       'action' => '*',
       'bypassAuth' => true,
     ],
@@ -67,9 +60,10 @@ return [
       'controller' => 'Users',
       'action' => [
         // LoginTrait
-        'socialLogin',
+        //'socialLogin',
         'login',
         'logout',
+        /*
         'socialEmail',
         'verify',
         // RegisterTrait
@@ -88,9 +82,11 @@ return [
         'u2fRegisterFinish',
         'u2fAuthenticate',
         'u2fAuthenticateFinish',
+        */
       ],
       'bypassAuth' => true,
     ],
+    /*
     [
       'prefix' => false,
       'plugin' => 'CakeDC/Users',
@@ -101,10 +97,11 @@ return [
       ],
       'bypassAuth' => true,
     ],
+    */
+    /* AUTH AREA - *
+    ***************************/
 
-
-    //admin role allowed to all the things
-    [
+    [ // * - ROLE ADMIN
       'role' => 'admin',
       'prefix' => '*',
       'extension' => '*',
@@ -112,14 +109,47 @@ return [
       'controller' => '*',
       'action' => '*',
     ],
-    //specific actions allowed for the all roles in Users plugin
-    [
+
+    /* AUTH AREA - ADMIN
+    ***************************/
+
+    [ // USER
+      'role' => '*',
+      'prefix' => 'Admin',
+      'plugin' => false,
+      'controller' => 'Drive',
+      'action' => ['index','download'],
+    ],
+
+    [ // USER
+      'role' => ['admin'],
+      'prefix' => 'Admin',
+      'plugin' => false,
+      'controller' => 'Users',
+      'action' => ['profile', 'editByUser','changePassword'],
+    ],
+
+    /* AUTH AREA - TROIS ATTACHMENT
+    ***************************/
+
+    [ // USER
+      'role' => '*',
+      'prefix' => false,
+      'plugin' => 'Trois/Attachment',
+      'controller' => 'Download',
+      'action' => ['file'],
+    ],
+
+    /* AUTH AREA - CAKEDC USERS
+    ***************************/
+
+    [ // USER
       'role' => '*',
       'plugin' => 'CakeDC/Users',
       'controller' => 'Users',
       'action' => ['profile', 'logout', 'linkSocial', 'callbackLinkSocial'],
     ],
-    [
+    [ // USER
       'role' => '*',
       'plugin' => 'CakeDC/Users',
       'controller' => 'Users',
@@ -133,13 +163,5 @@ return [
         return false;
       }
     ],
-    //all roles allowed to Pages/display
-    [
-      'role' => '*',
-      'controller' => 'Pages',
-      'action' => 'display',
-      'plugin' => null
-    ],
-
   ]
 ];

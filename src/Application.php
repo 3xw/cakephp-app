@@ -44,6 +44,7 @@ class Application extends BaseApplication
   */
   public function bootstrap(): void
   {
+
     // Call parent to load bootstrap from files.
     parent::bootstrap();
 
@@ -66,14 +67,19 @@ class Application extends BaseApplication
     // Attachment
     $this->addPlugin(\Trois\Attachment\Plugin::class); // attachment.php automatically loaded...
 
-    // pages
-    $this->addPlugin(\Trois\Pages\Plugin::class);
-
     // tinymce
-    $this->addPlugin(\Trois\Tinymce\Plugin::class);
+    $this->addPlugin(\Trois\Tinymce\Plugin::class); // tinymce.php automatically loaded...
 
     // cms
     $this->addPlugin(\Trois\Cms\Plugin::class);
+
+    // elastic
+    $this->addPlugin(\Trois\ElasticSearch\Plugin::class);
+
+    //Recaptcha
+    $this->addPlugin('Recaptcha', ['routes' => true, 'bootstrap' => true]);
+
+    $this->addPlugin('Search');
   }
 
   /**
@@ -87,7 +93,7 @@ class Application extends BaseApplication
     // set body parser
     $bodies = new BodyParserMiddleware();
     $bodies->addParser(['application/vnd.api+json'], function ($body) {
-        return json_decode($body, true);
+      return json_decode($body, true);
     });
 
     // set Cookie consent

@@ -1,28 +1,75 @@
 @import '~element-ui/lib/theme-chalk/index.css';
 @import "~bootstrap/scss/bootstrap";
-@import 'vars';
+@import 'fonts';
+/*
+*   VARS
+*************/
+$margin--default: 4rem;
+$margin--semi: $margin--default / 2;
+$margin--mini: $margin--default / 4;
+$margin--double: $margin--default * 2;
+
+$screen--xxl: 1500px;
+$screen--xl: 1200px;
+$screen--lg: 991px;
+$screen--md: 767px;
+$screen--xs: 564px;
+
+$width--max: 1500px;
+
+$colors: (
+'black': #000000,
+'white': #FFFFFF,
+'grey': #EFEFEF
+);
+
+$font--default: 'sans-serif';
+$font--heading: 'sans-serif';
+
 @import 'utils';
 
-/*
- *   FONTS
- *************/
-body{ font-family: $font--default;color: map-get($colors, 'black');-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
-html{font-size: 62.5%;}
-body{font-size: 1.6rem;}
-h1{font-family: $font--heading;font-size: 3.5rem;}
-h2{font-family: $font--heading;font-size: 3rem;}
-h3{font-family: $font--heading;font-size: 2rem;}
-h4{font-family: $font--heading;font-size: 2rem;}
 
-@media (max-width:$break--phone){
-  h1{font-size: 2.5rem;}
-  h2 {font-size: 1.6rem;}
+/*
+**  FONTS
+*************/
+html{ font-size: 62.5%; } // 62.5%: rem*10 = px
+body{ -webkit-font-smoothing: antialiased;text-rendering: optimizeLegibility;-moz-osx-font-smoothing: grayscale;}
+body{ font-size: 1.4rem;font-family: sans-serif;color: map-get($colors, 'black');}
+h1{ @include fluid-font(4vw, 35px, 46px, 35px, 1.2);font-weight: 700;}
+h2{ @include fluid-font(3vw, 25px, 35px, 25px, 1.2);font-weight: 700;color: map-get($colors, 'black');}
+h3{ @include fluid-font(2vw, 16px, 26px, 16px, 1.2);font-weight: 700;color: map-get($colors, 'black');}
+h4{ @include fluid-font(2vw, 14px, 16px, 14px, 1.2);font-weight: 700;color: map-get($colors, 'black');}
+h5{ font-size: 1.4rem;line-height: 1;font-weight: 700;color: map-get($colors, 'black');}
+
+
+/*
+**  STYLES
+*************/
+
+.header{
+  $this: &;
+}
+
+.footer{
+  $this: &;
 }
 
 /*
- *   STYLES
- *************/
+**  ELEMS
+*************/
 
-/*
- *   ELEMS
- *************/
+.section{
+  $this: &;
+}
+
+.block{
+  $this: &;
+}
+
+.article{
+  $this: &;
+}
+
+.module{
+  $this: &;
+}

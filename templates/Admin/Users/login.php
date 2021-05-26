@@ -29,7 +29,7 @@ $this->layout = 'login';
 <div class="container">
   <?= $this->Flash->render() ?>
   <?= $this->Flash->render('auth') ?>
-  <div class="row no-gutters">
+  <div class="row no-gutters g-0">
 
     <div class="col-md-8 col-sm-10 mx-auto col-lg-6">
       <div class="utils--spacer-double"></div>
@@ -85,7 +85,7 @@ $this->layout = 'login';
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse d-flex flex-row justify-content-between w-100" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <?= $this->Html->link('Accueil','/'); ?>
@@ -93,7 +93,7 @@ $this->layout = 'login';
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          © <?= date('Y') ?> <a href="http://wgrcommunication.ch/h" target="_blank">WGR SA</a>
+          © <?= date('Y') ?> <a href="http://wgrcommunication.ch/h" target="_blank"><strong>WGR</strong></a>
         </li>
       </ul>
     </div>
