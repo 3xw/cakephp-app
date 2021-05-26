@@ -151,7 +151,6 @@ return [
       'duration' => '+1 years',
       'url' => env('CACHE_CAKEMODEL_URL', null),
     ],
-  ],
 
     /*
     * Configure the cache for routes. The cached routes collection is built the
