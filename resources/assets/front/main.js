@@ -26,22 +26,6 @@ TinyFactory.init(store)
 import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
 Vue.use(Cms,{ store })
 
-// CakePHP Attachment
-import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'
-Vue.use(Attachment,{ store })
-
-// CakePHP Tinymce
-import Tinymce from '©/3xw/cakephp-tinymce/resources/assets/plugin'
-Vue.use(Tinymce,{ store })
-
-// plugin attachment for Tinymce
-import TinyFactory from '©/3xw/cakephp-attachment/resources/assets/plugins/TinyFactory.js'
-TinyFactory.init(store)
-
-// CakePHP Cms
-import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
-Vue.use(Cms,{ store })
-
 // boostrap settings
 Vue.config.devtools = true;
 Vue.config.productionTip = true;
