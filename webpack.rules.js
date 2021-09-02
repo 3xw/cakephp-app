@@ -11,7 +11,14 @@ rules =
   {
     test: /\.js$/,
     use: {
-      loader: 'babel-loader'
+      loader: 'babel-loader',
+      options: {
+        plugins: [
+          ["@babel/plugin-proposal-private-methods", { "loose": true }],
+          ["@babel/plugin-proposal-class-properties"],
+          "@babel/plugin-syntax-dynamic-import",
+        ]
+      }
     },
     exclude: path.resolve(__dirname, 'node_modules/')
   },
@@ -48,8 +55,15 @@ rules =
           }
         }
       },
-      { loader: 'resolve-url-loader' },
-      { loader: 'sass-loader' },
+      {
+        loader: 'resolve-url-loader'
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+        }
+      }
     ]
   },
   css:

@@ -4,7 +4,7 @@
     <?= $this->Html->link($this->Attachment->image(['image' => $this->Url->build('/', ['fullBase' => true]).'img/admin/logo--sidebar.png', 'width' => '254'], ['class' => 'img-responsive', 'width' => '127']), ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'Admin', 'plugin' => false], ['class' => 'logo-text', 'escape' => false]) ?>
   </div>
   <div class="sidebar__user-menu">
-    <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
+    <a data-bs-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
       <? if(empty($this->request->getSession()->read('Auth.first_name')) && empty($this->request->getSession()->read('Auth.last_name'))): ?>
         <?= $this->request->getSession()->read('Auth.email') ?>
       <? else: ?>

@@ -28,8 +28,8 @@ import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'
 Vue.use(Attachment,{ store })
 
 // CakePHP Cms
-import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
-Vue.use(Cms,{ store })
+//import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
+//Vue.use(Cms,{ store })
 
 // boostrap settings
 Vue.config.devtools = true;

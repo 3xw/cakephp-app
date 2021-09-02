@@ -8,7 +8,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
 <div class="sidebar navbar-expand-md">
   <div class="logo logo-mini d-block d-md-none text-left">
     <?= $this->Html->link('OFROU', ['controller' => 'Dashboard', 'action' => 'index', 'prefix' => 'Admin', 'plugin' => false], ['class' => 'logo-text']) ?>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <i class="material-icons">menu</i>
     </button>
   </div>
@@ -31,7 +31,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
         {
           $menuCount++;
           $html = '<li>'."\n";
-          $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto nav-expend">expand_more</i></a>'."\n";
+          $html .= '<a data-bs-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto nav-expend">expand_more</i></a>'."\n";
           $html .= '<div class="collapse" id="menu-item-'.$menuCount.'">'."\n";
 
           // check active

@@ -71,7 +71,7 @@ class Application extends BaseApplication
     $this->addPlugin(\Trois\Tinymce\Plugin::class); // tinymce.php automatically loaded...
 
     // cms
-    $this->addPlugin(\Trois\Cms\Plugin::class);
+    //$this->addPlugin(\Trois\Cms\Plugin::class);
 
     // elastic
     $this->addPlugin(\Trois\ElasticSearch\Plugin::class);
