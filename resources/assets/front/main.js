@@ -23,8 +23,10 @@ import TinyFactory from '©/3xw/cakephp-attachment/resources/assets/plugins/Tiny
 TinyFactory.init(store)
 
 // CakePHP Cms
-import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
-Vue.use(Cms,{ store })
+//import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
+//Vue.use(Cms,{ store })
+
+console.log('ok');
 
 // boostrap settings
 Vue.config.devtools = true;

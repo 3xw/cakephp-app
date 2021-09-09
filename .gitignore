@@ -33,9 +33,10 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-# Webpack ENV && built assets files #
+# ENV && built assets files #
 #####################################
 /webpack.env
+/vite.env
 /webroot/css/*
 /webroot/js/*
 /webroot/fonts/*
