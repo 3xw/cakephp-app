@@ -1,8 +1,5 @@
 import store from '@/store'
 
-import ElementUI from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/fr'
-
 // utils
 //import '@/utils/directives'
 //import '@/utils/filters'

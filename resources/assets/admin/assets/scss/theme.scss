@@ -1,13 +1,10 @@
-@import '~element-ui/lib/theme-chalk/index.css';
-@import "~bootstrap/scss/bootstrap";
-@import '~select2/dist/css/select2.min.css';
 @import 'vars';
 @import 'utils';
 
 /*
 *   FONTS
 *************/
-body{color:$content--color;background:$content--background;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+body{color:$content--color;background:red;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
 body.login{background: $login--background;}
 html{font-size: 62.5%;}
 body, ul, li{font-family: $font--default;font-size: 1.4rem;font-weight: 400;}

@@ -9,7 +9,6 @@ prefix = process.env
 const
 MiniCssExtractPlugin = require("mini-css-extract-plugin"),
 TerserPlugin = require('terser-webpack-plugin'),
-VueLoaderPlugin = require('vue-loader/lib/plugin'),
 { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 // settings
@@ -30,18 +29,9 @@ plugins = (prefix) => {
     new webpack.DefinePlugin({
       BASE_URL: JSON.stringify(conf.parsed.BASE_URL)
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        path.join(__dirname,'webroot','js/'+prefix+'/components/*'),
-        path.join(__dirname,'webroot','css/'+prefix+'/components/*')
-      ],
-      cleanStaleWebpackAssets: false
-    }),
     new MiniCssExtractPlugin({
       filename: 'css/'+prefix+'/[name].min.css',
-      chunkFilename: 'css/'+prefix+'/components/[name].min.css',
-    }),
-    new VueLoaderPlugin(),
+    })
   ]
 },
 entry = (prefix) =>
@@ -49,33 +39,14 @@ entry = (prefix) =>
   // play here with prefix and output...
   let entry =
   {
-    main: [
-      './resources/assets/'+prefix+'/main.js',
-      './resources/assets/'+prefix+'/assets/scss/theme.scss'
+    vendors: [
+      './resources/assets/'+prefix+'/vendors.js',
+      './resources/assets/'+prefix+'/assets/scss/vendors.scss'
     ],
   }
 
   return entry
-},
-externals =
-{
-  vue: 'vue',
-  vuex: 'vuex',
-  vuexCrud: 'vuex-crud',
-  axios: 'axios',
-  jquery: 'jquery',
-  packery: 'packery',
-  bootstrap: 'bootstrap',
-  select2: 'select2',
-  ElementUI: 'element-ui',
-  moment: 'moment',
-  imagesloaded: 'imagesloaded',
-  sortablejs: 'sortablejs',
-  modernizr: 'modernizr',
-  tiptap: 'tiptap',
-  lodash: 'lodash',
 }
-
 // configs
 const
 prefixes = ['front','admin'],
@@ -83,7 +54,7 @@ configs = prefixes.map(prefix => {
   return {
     cache: false,
     mode: 'production',
-    name: 'app-'+prefix,
+    name: 'vendors-'+prefix,
     entry: entry(prefix),
     output: {
       path: path.resolve(__dirname, 'webroot'),
@@ -91,12 +62,10 @@ configs = prefixes.map(prefix => {
       filename: 'js/'+prefix+'/[name].min.js',
       chunkFilename: 'js/'+prefix+'/components/[fullhash].[name].min.js',
     },
-    externals,
     optimization,
     module: {
       rules: [
         rules.babel,
-        rules.vue,
         rules.scss
       ]
     },

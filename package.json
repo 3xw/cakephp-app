@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.js --mode production",
+    "build": "webpack --config webpack.vendors.js --mode production && webpack --config webpack.js --mode production ",
+    "vendor": "webpack --config webpack.vendors.js --mode production",
     "watch": "webpack --config webpack.js --mode development --watch --stats-children"
   },
   "keywords": [],
@@ -47,6 +48,7 @@
     "moment": "^2.29.1",
     "pixrem": "^5.0.0",
     "select2": "^4.1.0-rc.0",
+    "tiptap": "^1.32.2",
     "vue": "2.6.14",
     "vue-images-loaded": "^1.1",
     "vue-packery-plugin": "^1.4.8",

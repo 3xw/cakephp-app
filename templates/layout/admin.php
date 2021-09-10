@@ -13,7 +13,7 @@
   <!-- CSS -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <?= $this->Html->css(['admin/main.min.css?v='.md5_file(APP.'../webroot/css/admin/main.min.css')])?>
+  <?= $this->Html->css(['admin/vendors.min.css?v='.md5_file(APP.'../webroot/css/admin/vendors.min.css'), 'admin/main.min.css?v='.md5_file(APP.'../webroot/css/admin/main.min.css')])?>
   <?= $this->fetch('css') ?>
 
   <!-- COOKIE CONSENT -->
@@ -39,7 +39,7 @@
 
   <!-- SCRIPTS -->
   <?= $this->fetch('template') ?>
-  <?= $this->Html->script(['admin/common.min.js?v='.md5_file(APP.'../webroot/js/admin/common.min.js'),'admin/main.min.js?v='.md5_file(APP.'../webroot/js/admin/main.min.js')]) ?>
+  <?= $this->Html->script(['admin/vendors.min.js?v='.md5_file(APP.'../webroot/js/admin/vendors.min.js'),'admin/main.min.js?v='.md5_file(APP.'../webroot/js/admin/main.min.js')]) ?>
   <?= $this->fetch('script') ?>
 
 </body>

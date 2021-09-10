@@ -10,17 +10,19 @@ rules =
   babel:
   {
     test: /\.js$/,
+    include: path.resolve(__dirname, 'ressources/'),
+    exclude: path.resolve(__dirname, 'node_modules/'),
     use: {
       loader: 'babel-loader',
       options: {
         plugins: [
           ["@babel/plugin-proposal-private-methods", { "loose": true }],
-          ["@babel/plugin-proposal-class-properties"],
+          ["@babel/plugin-proposal-class-properties", { "loose": true }],
+          ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
           "@babel/plugin-syntax-dynamic-import",
         ]
       }
-    },
-    exclude: path.resolve(__dirname, 'node_modules/')
+    }
   },
   vue:
   {
@@ -36,7 +38,12 @@ rules =
     exclude: /node_modules/,
     use: [
       { loader: MiniCssExtractPlugin.loader},
-      { loader: 'css-loader' },
+      {
+        loader: 'css-loader',
+        options: {
+          url: false
+        }
+      },
       {
         loader: 'postcss-loader',
         options:
@@ -45,18 +52,11 @@ rules =
             ident: 'postcss',
             plugins: [
               'postcss-preset-env',
-              'pixrem',
-              [
-                'autoprefixer',
-                {overrideBrowserslist: 'last 10 versions'}
-              ],
+              'autoprefixer',
               'cssnano'
             ]
           }
         }
-      },
-      {
-        loader: 'resolve-url-loader'
       },
       {
         loader: 'sass-loader',
@@ -65,39 +65,7 @@ rules =
         }
       }
     ]
-  },
-  css:
-  {
-    test: /\.css$/,
-    use: [
-      'vue-style-loader',
-      'css-loader',
-    ]
-  },
-  fonts:
-  {
-    test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-    use: [{
-      loader: 'file-loader',
-      options: {
-        name: '[name].[ext]',
-        publicPath: webroot+'fonts/',
-        outputPath: 'fonts/'
-      }
-    }]
-  },
-  imgs:
-  {
-    test: /\.(jpg|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
-    use: [{
-      loader: 'file-loader',
-      options: {
-        name: '[name].[ext]',
-        publicPath: webroot+'img/webpack',
-        outputPath: 'img/webpack'
-      }
-    }]
-  },
+  }
 }
 
 module.exports = rules

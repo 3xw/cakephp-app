@@ -11,7 +11,7 @@
 
   <!-- CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <?= $this->Html->css(['front/main.min.css?v='.md5_file(APP.'../webroot/css/front/main.min.css')])?>
+  <?= $this->Html->css(['front/vendors.min.css?v='.md5_file(APP.'../webroot/css/front/vendors.min.css'), 'front/main.min.css?v='.md5_file(APP.'../webroot/css/front/main.min.css')])?>
   <?= $this->fetch('css') ?>
 
   <!-- COOKIE CONSENT -->
@@ -35,7 +35,7 @@
   <!-- SCRIPTS -->
   <?= $this->fetch('template') ?>
   <?= $this->Html->script([
-    'front/common.min.js?v='.md5_file(APP.'../webroot/js/front/common.min.js'),
+    'front/vendors.min.js?v='.md5_file(APP.'../webroot/js/front/vendors.min.js'),
     'front/main.min.js?v='.md5_file(APP.'../webroot/js/front/main.min.js')
     ])?>
   <?= $this->fetch('script') ?>

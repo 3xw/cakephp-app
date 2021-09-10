@@ -10,7 +10,7 @@
   <?= $this->fetch('meta') ?>
 
   <!-- CSS -->
-  <?= $this->Html->css(['admin/main.min.css?v='.md5_file(APP.'../webroot/css/admin/main.min.css')])?>
+  <?= $this->Html->css(['admin/vendors.min.css?v='.md5_file(APP.'../webroot/css/admin/vendors.min.css'), 'admin/main.min.css?v='.md5_file(APP.'../webroot/css/admin/main.min.css')])?>
   <?= $this->fetch('css') ?>
 
   <!-- COOKIE CONSENT -->
@@ -33,7 +33,7 @@
 
   <!-- SCRIPTS -->
   <?= $this->fetch('template') ?>
-  <?= $this->Html->script(['admin/common.min.js?v='.md5_file(APP.'../webroot/js/admin/common.min.js'),'admin/main.min.js?v='.md5_file(APP.'../webroot/js/admin/main.min.js')]) ?>
+  <?= $this->Html->script(['admin/vendors.min.js?v='.md5_file(APP.'../webroot/js/admin/vendors.min.js'),'admin/main.min.js?v='.md5_file(APP.'../webroot/js/admin/main.min.js')]) ?>
   <?= $this->fetch('script') ?>
 
 </body>
