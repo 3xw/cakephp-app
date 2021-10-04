@@ -10,7 +10,6 @@ rules =
   babel:
   {
     test: /\.js$/,
-    include: path.resolve(__dirname, 'ressources/'),
     exclude: path.resolve(__dirname, 'node_modules/'),
     use: {
       loader: 'babel-loader',
