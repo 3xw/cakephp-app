@@ -74,10 +74,10 @@ class Application extends BaseApplication
     $this->addPlugin(\Trois\Cms\Plugin::class);
 
     // elastic
-    $this->addPlugin(\Trois\ElasticSearch\Plugin::class);
+    // $this->addPlugin(\Trois\ElasticSearch\Plugin::class);
 
     //Recaptcha
-    $this->addPlugin('Recaptcha', ['routes' => true, 'bootstrap' => true]);
+    // $this->addPlugin('Recaptcha', ['routes' => true, 'bootstrap' => true]);
 
     $this->addPlugin('Search');
   }

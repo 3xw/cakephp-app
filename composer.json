@@ -6,15 +6,13 @@
   "license": "MIT",
   "require": {
     "php": ">=7.2",
-    "3xw/cakephp-attachment": "dev-master as 4.1",
-    "3xw/cakephp-cms": "dev-main",
-    "3xw/cakephp-elastic-search": "dev-master as 4.1",
-    "3xw/cakephp-tinymce": "dev-master as 4.1",
-    "3xw/cakephp-utils": "dev-master as 4.1",
+    "3xw/cakephp-attachment": "^4.1",
+    "3xw/cakephp-cms": "^4.0",
+    "3xw/cakephp-tinymce": "^4.1",
+    "3xw/cakephp-utils": "^4.1",
     "aws/aws-php-sns-message-validator": "^1.6",
     "aws/aws-sdk-php": "^3.173",
     "cakedc/users": "^9.0.0",
-    "cakephp-fr/recaptcha": "dev-master",
     "cakephp/cakephp": "^4.0",
     "cakephp/migrations": "^3.0",
     "cakephp/plugin-installer": "^1.2",
@@ -30,28 +28,6 @@
     "phpunit/phpunit": "^8.5",
     "psy/psysh": "@stable"
   },
-  "repositories": [
-    {
-        "type": "vcs",
-        "url": "git@github.com:3xw/cakephp-attachment.git"
-    },
-    {
-        "type": "vcs",
-        "url": "git@github.com:3xw/cakephp-bake.git"
-    },
-    {
-        "type": "vcs",
-        "url": "git@github.com:3xw/cakephp-pages.git"
-    },
-    {
-        "type": "vcs",
-        "url": "git@github.com:3xw/cakephp-tinymce.git"
-    },
-    {
-        "type": "vcs",
-        "url": "git@github.com:3xw/cakephp-utils.git"
-    }
-  ],
   "autoload": {
     "psr-4": {
       "App\\": "src/"
