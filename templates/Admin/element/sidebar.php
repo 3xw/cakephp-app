@@ -41,7 +41,7 @@ $menu = Configure::read('Menus.'.$this->request->getSession()->read('Auth.role')
             {
               $in = $this->request->getSession()->read('Settings.css.sidebar-mini') == '' ? 'in' : '';
               $html = '<li class="active">'."\n";
-              $html .= '<a data-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto nav-expend">expand_more</i></a>'."\n";
+              $html .= '<a data-bs-toggle="collapse" href="#menu-item-'.$menuCount.'" aria-expanded="false" aria-controls="menu-item-'.$menuCount.'">'.$header.'<i class="material-icons ml-auto nav-expend">expand_more</i></a>'."\n";
               $html .= '<div class="collapse '.$in.'" id="menu-item-'.$menuCount.'">'."\n";
             }
           }
