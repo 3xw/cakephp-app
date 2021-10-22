@@ -21,3 +21,17 @@ bin/cake server -p 8765
 ```
 
 Then visit `http://localhost:8765` to see the welcome page.
+
+## Crate a user & token
+
+#### user
+
+```bash
+bin/cake users add_superadmin -e email@email.com -p password
+```
+
+#### token
+
+```bash
+bin/cake tu_token superadmin
+```

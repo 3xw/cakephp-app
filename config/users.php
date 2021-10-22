@@ -138,6 +138,10 @@ $config = [
         'skipTwoFactorVerify' => true,
         'sessionKey' => 'Auth',
       ],
+      'JWT' => [
+        'className' => 'Authentication.Jwt',
+        'returnPayload' => false
+      ],
       'Form' => [
         'className' => 'CakeDC/Auth.Form',
         'fields' => [
@@ -169,14 +173,9 @@ $config = [
         'className' => 'CakeDC/Users.Social',
         'authFinder' => false
       ],
-      'Token' => [
-        'className' => 'Authentication.Token',
-        'tokenField' => 'api_token',
-        'resolver' => [
-          'className' => 'Authentication.Orm',
-          'finder' => 'active'
-        ],
-      ]
+      'JWT' => [
+        'className' => 'Authentication.JwtSubject'
+      ],
     ],
     "Authorization" => [
       'enable' => true,
