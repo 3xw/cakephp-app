@@ -67,13 +67,14 @@ externals =
   packery: 'packery',
   bootstrap: 'bootstrap',
   select2: 'select2',
-  ElementUI: 'element-ui',
+  'element-ui': 'element-ui',
   moment: 'moment',
   imagesloaded: 'imagesloaded',
   sortablejs: 'sortablejs',
   modernizr: 'modernizr',
   tiptap: 'tiptap',
   lodash: 'lodash',
+  tinymce: 'tinymce',
 }
 
 // configs

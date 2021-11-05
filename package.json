@@ -48,6 +48,7 @@
     "moment": "^2.29.1",
     "pixrem": "^5.0.0",
     "select2": "^4.1.0-rc.0",
+    "tinymce": "^5.10.1",
     "tiptap": "^1.32.2",
     "vue": "2.6.14",
     "vue-images-loaded": "^1.1",

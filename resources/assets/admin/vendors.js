@@ -28,9 +28,10 @@ import lodash from 'lodash'
 window.lodash = lodash
 window._ = lodash
 
-import ElementUI from 'element-ui'
-window.ElementUI = ElementUI
+window["element-ui"] = require("element-ui")
 
 window.tiptap = require('tiptap')
 
 window.bootstrap = require('bootstrap')
+
+window.tinymce = require('tinymce')
