@@ -35,6 +35,6 @@ Thumbs.db
 
 # Webpack ENV && built assets files #
 #####################################
-/webpack.env
-/webroot/css/*
-/webroot/js/*
+/.env
+/.env.*
+!/.env.default

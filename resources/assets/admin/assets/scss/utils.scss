@@ -11,19 +11,19 @@
 /*** MIXIN -- COLORS ****/
 @mixin hover-background-lighten($color) {
     background-color: $color;
-    &:hover { background-color: lighten($color,10%); }
+    //&:hover { background-color: lighten($color,10%); }
 }
 @mixin hover-background-darken($color) {
     background-color: $color;
-    &:hover { background-color: darken($color,10%); }
+    //&:hover { background-color: darken($color,10%); }
 }
 @mixin hover-text-lighten($color) {
     color: $color;
-    &:hover { color: lighten($color,20%); }
+    //&:hover { color: lighten($color,20%); }
 }
 @mixin hover-text-darken($color) {
     color: $color;
-    &:hover { color: darken($color,20%); }
+    //&:hover { color: darken($color,20%); }
 }
 
 /*

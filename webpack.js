@@ -1,9 +1,9 @@
+require('dotenv').config()
+
 const
 webpack = require('webpack'),
 path = require('path'),
-conf = require('dotenv').config({path: './webpack.env'}),
-webroot = conf.parsed.PUBLIC_PATH,
-prefix = process.env
+webroot = process.env.PUBLIC_PATH
 
 // WebpackPlugins
 const
@@ -28,7 +28,7 @@ optimization =
 plugins = (prefix) => {
   return [
     new webpack.DefinePlugin({
-      BASE_URL: JSON.stringify(conf.parsed.BASE_URL)
+      BASE_URL: JSON.stringify(process.env.BASE_URL)
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
@@ -58,24 +58,29 @@ entry = (prefix) =>
   return entry
 },
 externals =
-{
-  vue: 'vue',
-  vuex: 'vuex',
-  vuexCrud: 'vuex-crud',
-  axios: 'axios',
-  jquery: 'jquery',
-  packery: 'packery',
-  bootstrap: 'bootstrap',
-  select2: 'select2',
-  'element-ui': 'element-ui',
-  moment: 'moment',
-  imagesloaded: 'imagesloaded',
-  sortablejs: 'sortablejs',
-  modernizr: 'modernizr',
-  tiptap: 'tiptap',
-  lodash: 'lodash',
-  tinymce: 'tinymce',
-}
+[
+  {
+    vue: 'vue',
+    vuex: 'vuex',
+    vuexCrud: 'vuex-crud',
+    axios: 'axios',
+    jquery: 'jquery',
+    packery: 'packery',
+    bootstrap: 'bootstrap',
+    select2: 'select2',
+    'element-ui': 'element-ui',
+    moment: 'moment',
+    imagesloaded: 'imagesloaded',
+    sortablejs: 'sortablejs',
+    modernizr: 'modernizr',
+    tiptap: 'tiptap',
+    lodash: 'lodash',
+    store: 'store',
+    d3: 'd3',
+
+  },
+  //@codemirror\/[a-z-]i,
+]
 
 // configs
 const
@@ -91,6 +96,7 @@ configs = prefixes.map(prefix => {
       publicPath: webroot,
       filename: 'js/'+prefix+'/[name].min.js',
       chunkFilename: 'js/'+prefix+'/components/[fullhash].[name].min.js',
+      libraryTarget: 'umd'
     },
     externals,
     optimization,

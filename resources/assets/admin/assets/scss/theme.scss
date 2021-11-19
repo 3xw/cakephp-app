@@ -4,7 +4,7 @@
 /*
 *   FONTS
 *************/
-body{color:$content--color;background:red;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+body{color:$content--color;-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
 body.login{background: $login--background;}
 html{font-size: 62.5%;}
 body, ul, li{font-family: $font--default;font-size: 1.4rem;font-weight: 400;}
@@ -286,7 +286,7 @@ header{
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
+    background-color: $content--background;
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
 .attachment-trumbowyg.form-control{padding: 0;border: 0;}

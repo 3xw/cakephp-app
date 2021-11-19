@@ -1,7 +1,8 @@
+require('dotenv').config()
+
 const
 path = require('path'),
-conf = require('dotenv').config({path: './webpack.env'}),
-webroot = conf.parsed.PUBLIC_PATH
+webroot = process.env.PUBLIC_PATH
 
 const
 MiniCssExtractPlugin = require("mini-css-extract-plugin"),
