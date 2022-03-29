@@ -28,9 +28,9 @@
         <?= $this->element('sidebar') ?>
       </div>
       <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+        <?= $this->element('header') ?>
         <?= $this->Flash->render() ?>
         <?= $this->Flash->render('auth') ?>
-        <?= $this->element('header') ?>
         <?= $this->fetch('content') ?>
         <? // $this->element('footer') ?>
       </div>
