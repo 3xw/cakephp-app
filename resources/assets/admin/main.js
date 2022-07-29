@@ -1,5 +1,6 @@
 import ComponentLoader from '@/components/ComponentLaoder.vue'
 import store from '@/store/store'
+import ElementUI from 'element-ui'
 
 import locale from 'element-ui/lib/locale/lang/fr'
 
@@ -26,9 +27,9 @@ Vue.use(Tinymce,{ store })
 import Attachment from '©/3xw/cakephp-attachment/resources/assets/plugin'
 Vue.use(Attachment,{ store })
 
-// CakePHP Cms
-import Cms from '©/3xw/cakephp-cms/resources/assets/plugin'
-Vue.use(Cms,{ store })
+// plugin attachment for Tinymce
+import TinyFactory from '©/3xw/cakephp-attachment/resources/assets/plugins/TinyFactory.js'
+TinyFactory.init(store)
 
 // boostrap settings
 Vue.config.devtools = true;

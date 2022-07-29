@@ -68,7 +68,6 @@ externals =
     packery: 'packery',
     bootstrap: 'bootstrap',
     select2: 'select2',
-    'element-ui': 'element-ui',
     moment: 'moment',
     imagesloaded: 'imagesloaded',
     sortablejs: 'sortablejs',
