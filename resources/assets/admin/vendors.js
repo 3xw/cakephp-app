@@ -15,9 +15,6 @@ window.jQuery = $
 import Sortable from 'sortablejs'
 window.sortablejs = Sortable
 
-import packery from 'packery'
-window.packery = packery
-
 import moment from 'moment'
 window.moment = moment
 
@@ -28,7 +25,6 @@ import lodash from 'lodash'
 window.lodash = lodash
 window._ = lodash
 
-window["element-ui"] = require("element-ui")
 
 window.tiptap = require('tiptap')
 

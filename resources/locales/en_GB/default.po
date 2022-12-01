@@ -1,0 +1,260 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2022-11-18 10:54+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./src/Controller/Admin/UsersController.php:58
+msgid "No result."
+msgstr ""
+
+#: ./src/Controller/Admin/UsersController.php:60
+msgid "result(s)."
+msgstr ""
+
+#: ./src/Controller/Admin/UsersController.php:75
+#: ./src/Controller/Admin/UsersController.php:95
+#: ./src/Controller/Admin/UsersController.php:114
+msgid "The user has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/UsersController.php:78
+msgid "The parser could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/UsersController.php:99
+#: ./src/Controller/Admin/UsersController.php:118
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:49
+msgid "Password need to be at least 8 characters long AND must contain at least 1 Alphabet and 1 Number"
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:62
+msgid "Username need to be at least 5 characters long AND must contain only following chars"
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:62
+msgid "and optionally"
+msgstr ""
+
+#: ./templates/Admin/Dashboard/index.php:16
+msgid "Dashboard"
+msgstr ""
+
+#: ./templates/Admin/Users/add.php:14
+#: ./templates/Admin/Users/change_user_password.php:18
+#: ./templates/Admin/Users/edit.php:14
+#: ./templates/Admin/Users/view.php:15
+msgid "List"
+msgstr ""
+
+#: ./templates/Admin/Users/add.php:26
+msgid "Add User"
+msgstr ""
+
+#: ./templates/Admin/Users/add.php:32
+#: ./templates/Admin/Users/edit.php:38
+msgid "Media"
+msgstr ""
+
+#: ./templates/Admin/Users/add.php:56
+#: ./templates/Admin/Users/change_password.php:52
+#: ./templates/Admin/Users/change_user_password.php:42
+#: ./templates/Admin/Users/edit.php:56
+#: ./templates/Admin/Users/edit_by_user.php:43
+msgid "Cancel"
+msgstr ""
+
+#: ./templates/Admin/Users/add.php:57
+#: ./templates/Admin/Users/change_password.php:53
+#: ./templates/Admin/Users/change_user_password.php:43
+#: ./templates/Admin/Users/edit.php:57
+#: ./templates/Admin/Users/edit_by_user.php:44
+msgid "Submit"
+msgstr ""
+
+#: ./templates/Admin/Users/change_password.php:18
+#: ./templates/Admin/Users/profile.php:15
+msgid "Edit profile"
+msgstr ""
+
+#: ./templates/Admin/Users/change_password.php:29
+#: ./templates/Admin/Users/view.php:14
+msgid "Change Password"
+msgstr ""
+
+#: ./templates/Admin/Users/change_user_password.php:29
+msgid "Change User Password"
+msgstr ""
+
+#: ./templates/Admin/Users/edit.php:25
+msgid "Edit User"
+msgstr ""
+
+#: ./templates/Admin/Users/edit_by_user.php:25
+msgid "Edit My Profile"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:14
+msgid "Add"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:27
+msgid "Users"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:31
+msgid "Search..."
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:51
+msgid "Actions"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:61
+#: ./templates/Admin/Users/index.php:62
+#: ./templates/Admin/Users/view.php:56
+#: ./templates/Admin/Users/view.php:60
+msgid "Yes"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:61
+#: ./templates/Admin/Users/index.php:62
+#: ./templates/Admin/Users/view.php:56
+#: ./templates/Admin/Users/view.php:60
+msgid "No"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:69
+#: ./templates/Admin/Users/view.php:17
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:89
+msgid "first"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:90
+msgid "previous"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:92
+msgid "next"
+msgstr ""
+
+#: ./templates/Admin/Users/index.php:93
+msgid "last"
+msgstr ""
+
+#: ./templates/Admin/Users/request_reset_password.php:12
+msgid "Mot de passe oublié"
+msgstr ""
+
+#: ./templates/Admin/Users/request_reset_password.php:14
+msgid "Si vous n'avez pas encore de compte, "
+msgstr ""
+
+#: ./templates/Admin/Users/request_reset_password.php:14
+msgid "inscrivez-vous"
+msgstr ""
+
+#: ./templates/Admin/Users/request_reset_password.php:20
+msgid "Envoyer"
+msgstr ""
+
+#: ./templates/Admin/Users/request_reset_password.php:23
+msgid "retour au login"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:16
+msgid "Edit"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:17
+msgid "Delete"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:30
+msgid "Id"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:32
+msgid "Email"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:34
+msgid "First Name"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:36
+msgid "Last Name"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:38
+msgid "Role"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:47
+msgid "Informations"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:55
+msgid "Active"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:59
+msgid "Is Superuser"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:63
+msgid "Attachment"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:67
+msgid "Token Expires"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:71
+msgid "Activation Date"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:75
+msgid "Tos Date"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:79
+msgid "Created"
+msgstr ""
+
+#: ./templates/Admin/Users/view.php:83
+msgid "Modified"
+msgstr ""
+
+#: ./templates/Admin/element/header.php:18
+msgid "My Profile"
+msgstr ""
+
+#: ./templates/Admin/element/header.php:21
+msgid "Edit Profile"
+msgstr ""
+
+#: ./templates/Admin/element/header.php:24
+msgid "Logout"
+msgstr ""
+
+#: ./vendor/cakephp/cakephp/src/View/Helper/PaginatorHelper.php:1260
+msgid "View"
+msgstr ""
+

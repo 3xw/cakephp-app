@@ -15,9 +15,6 @@ window.jQuery = $
 import Sortable from 'sortablejs'
 window.sortablejs = Sortable
 
-import packery from 'packery'
-window.packery = packery
-
 import moment from 'moment'
 window.moment = moment
 

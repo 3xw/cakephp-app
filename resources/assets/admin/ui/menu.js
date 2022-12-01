@@ -22,9 +22,15 @@ var reduceMenu = function(){
   });
 }
 
-var goMenuIfSmall = function(){
-  $('.sidebar__menu [data-toggle="collapse"]').click(function(){
-    if(!$('.sidebar__toggler').hasClass('actived')){
+var goMenuIfSmall = function () {
+  $('.sidebar__menu [data-bs-toggle="collapse"]').click(function () {
+    if (!$('.sidebar__toggler').hasClass('actived')) {
+      $('.sidebar__toggler').addClass('actived')
+      $('.row-sidebar').removeClass('utils__sidebar--simple')
+    }
+  })
+  $('a [data-bs-toggle="collapse"]').click(function () {
+    if (!$('.sidebar__toggler').hasClass('actived')) {
       $('.sidebar__toggler').addClass('actived')
       $('.row-sidebar').removeClass('utils__sidebar--simple')
     }
@@ -35,6 +41,7 @@ const init = () =>
 {
   collapseIconChange()
   reduceMenu()
+  goMenuIfSmall()
 }
 
 export { init }

@@ -65,7 +65,6 @@ externals =
     vuexCrud: 'vuex-crud',
     axios: 'axios',
     jquery: 'jquery',
-    packery: 'packery',
     bootstrap: 'bootstrap',
     select2: 'select2',
     moment: 'moment',

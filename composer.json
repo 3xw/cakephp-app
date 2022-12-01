@@ -6,7 +6,7 @@
   "license": "MIT",
   "require": {
     "php": ">=7.2",
-    "3xw/cakephp-attachment": "^4.1",
+    "3xw/cakephp-attachment": "dev-master as 4.2",
     "3xw/cakephp-cms": "^4.0",
     "3xw/cakephp-tinymce": "^4.1",
     "3xw/cakephp-utils": "^4.1",
